@@ -64,9 +64,7 @@ export default function Homepage() {
   console.log({ data })
   return (
     <div className="home">
-      <FeaturedCollection collection={data.featuredCollection} />
-      {data.metaobject?.references && <HomeVideos items={data.metaobject.references.nodes} />}
-      <RecommendedProducts products={data.recommendedProducts} />
+     <h2>Coming soon</h2>
     </div>
   );
 }
