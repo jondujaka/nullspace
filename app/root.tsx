@@ -153,7 +153,7 @@ export function Layout({children}: {children?: React.ReactNode}) {
         <link rel="stylesheet" href={resetStyles}></link>
         <link rel="stylesheet" href={appStyles}></link>
         <Meta />
-        <Links />
+        {/* <Links /> */}
       </head>
       <body>
         {data ? (
