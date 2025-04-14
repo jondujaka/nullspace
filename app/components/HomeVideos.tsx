@@ -4,7 +4,7 @@ import { VideoObjectFragment } from "storefrontapi.generated";
 
 
 const HomeVideos = ({ items }: { items: VideoObjectFragment[] }) => {
-    return <div>
+    return <div> Home
         {items.map(video => <Video key={video.id} data={video} autoPlay />)}
     </div>
 }
