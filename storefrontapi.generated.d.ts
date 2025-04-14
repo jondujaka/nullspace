@@ -324,6 +324,61 @@ export type FeaturedCollectionQuery = {
   };
 };
 
+export type VideoObjectFragment = Pick<
+  StorefrontAPI.Video,
+  'id' | 'mediaContentType' | 'alt'
+> & {
+  sources: Array<
+    Pick<
+      StorefrontAPI.VideoSource,
+      'url' | 'width' | 'mimeType' | 'height' | 'format'
+    >
+  >;
+  previewImage?: StorefrontAPI.Maybe<
+    Pick<StorefrontAPI.Image, 'url' | 'height' | 'altText' | 'id' | 'width'>
+  >;
+  presentation?: StorefrontAPI.Maybe<
+    Pick<StorefrontAPI.MediaPresentation, 'id'>
+  >;
+};
+
+export type HomePageMetaObjectsQueryVariables = StorefrontAPI.Exact<{
+  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+}>;
+
+export type HomePageMetaObjectsQuery = {
+  metaobject?: StorefrontAPI.Maybe<
+    Pick<StorefrontAPI.Metaobject, 'id'> & {
+      fields: Array<
+        Pick<StorefrontAPI.MetaobjectField, 'value'> & {
+          references?: StorefrontAPI.Maybe<{
+            nodes: Array<
+              Pick<StorefrontAPI.Video, 'id' | 'mediaContentType' | 'alt'> & {
+                sources: Array<
+                  Pick<
+                    StorefrontAPI.VideoSource,
+                    'url' | 'width' | 'mimeType' | 'height' | 'format'
+                  >
+                >;
+                previewImage?: StorefrontAPI.Maybe<
+                  Pick<
+                    StorefrontAPI.Image,
+                    'url' | 'height' | 'altText' | 'id' | 'width'
+                  >
+                >;
+                presentation?: StorefrontAPI.Maybe<
+                  Pick<StorefrontAPI.MediaPresentation, 'id'>
+                >;
+              }
+            >;
+          }>;
+        }
+      >;
+    }
+  >;
+};
+
 export type RecommendedProductFragment = Pick<
   StorefrontAPI.Product,
   'id' | 'title' | 'handle'
@@ -1180,6 +1235,10 @@ interface GeneratedQueryTypes {
   '#graphql\n  fragment FeaturedCollection on Collection {\n    id\n    title\n    image {\n      id\n      url\n      altText\n      width\n      height\n    }\n    handle\n  }\n  query FeaturedCollection($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    collections(first: 1, sortKey: UPDATED_AT, reverse: true) {\n      nodes {\n        ...FeaturedCollection\n      }\n    }\n  }\n': {
     return: FeaturedCollectionQuery;
     variables: FeaturedCollectionQueryVariables;
+  };
+  '#graphql\n\n\n  fragment VideoObject on Video {\n    id\n    sources {\n      url\n      width\n      mimeType\n      height\n      format\n    }\n    previewImage {\n      url\n      height\n      altText\n      id\n      width\n    }\n    presentation {\n      id\n    }\n    mediaContentType\n    alt\n  }\n\n\n  query HomePageMetaObjects($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    metaobject(handle: {handle: "home-page-ubjrgxn5", type: "home_page"}) {\n      id\n      fields {\n        value\n        references(first: 10){\n          nodes {\n            ...VideoObject\n          }\n        }\n      }\n    }\n  }\n': {
+    return: HomePageMetaObjectsQuery;
+    variables: HomePageMetaObjectsQueryVariables;
   };
   '#graphql\n  fragment RecommendedProduct on Product {\n    id\n    title\n    handle\n    priceRange {\n      minVariantPrice {\n        amount\n        currencyCode\n      }\n    }\n    images(first: 1) {\n      nodes {\n        id\n        url\n        altText\n        width\n        height\n      }\n    }\n  }\n  query RecommendedProducts ($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    products(first: 4, sortKey: UPDATED_AT, reverse: true) {\n      nodes {\n        ...RecommendedProduct\n      }\n    }\n  }\n': {
     return: RecommendedProductsQuery;
