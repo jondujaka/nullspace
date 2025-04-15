@@ -1,12 +1,8 @@
 import { type LoaderFunctionArgs } from '@shopify/remix-oxygen';
-import { Await, useLoaderData, Link, type MetaFunction } from '@remix-run/react';
-import { Suspense } from 'react';
-import { Image, Money } from '@shopify/hydrogen';
-import type {
-  FeaturedCollectionFragment,
-  RecommendedProductsQuery,
-} from 'storefrontapi.generated';
-import HomeVideos from '~/components/HomeVideos';
+import { useLoaderData, type MetaFunction } from '@remix-run/react';
+
+import Carousel from '~/components/Carousel/Carousel';
+import Products from '~/components/Products/Products';
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Hydrogen | Home' }];
@@ -14,12 +10,12 @@ export const meta: MetaFunction = () => {
 
 export async function loader(args: LoaderFunctionArgs) {
   // Start fetching non-critical data without blocking time to first byte
-  const deferredData = loadDeferredData(args);
+  
 
   // Await the critical data required to render initial state of the page
   const criticalData = await loadCriticalData(args);
 
-  return { ...deferredData, ...criticalData };
+  return { ...criticalData };
 }
 
 /**
@@ -27,14 +23,14 @@ export async function loader(args: LoaderFunctionArgs) {
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  */
 async function loadCriticalData({ context }: LoaderFunctionArgs) {
-  const [{ collections }, { metaobject }] = await Promise.all([
-    context.storefront.query(FEATURED_COLLECTION_QUERY),
+  const [{ products }, { metaobject }] = await Promise.all([
+    context.storefront.query(HOME_PRODUCTS),
     context.storefront.query(HOME_VIDEOS_QUERY)
     // Add other queries here, so that they are loaded in parallel
   ]);
 
   return {
-    featuredCollection: collections.nodes[0],
+    homeProducts: products.nodes,
     metaobject: metaobject?.fields[0]
   };
 }
@@ -44,113 +40,53 @@ async function loadCriticalData({ context }: LoaderFunctionArgs) {
  * fetched after the initial page load. If it's unavailable, the page should still 200.
  * Make sure to not throw any errors here, as it will cause the page to 500.
  */
-function loadDeferredData({ context }: LoaderFunctionArgs) {
-  const recommendedProducts = context.storefront
-    .query(RECOMMENDED_PRODUCTS_QUERY)
-    .catch((error) => {
-      // Log query errors, but don't throw them so the page can still render
-      console.error(error);
-      return null;
-    });
 
-  return {
-    recommendedProducts,
-  };
-}
 
 export default function Homepage() {
   const data = useLoaderData<typeof loader>();
 
-  console.log({ data })
+  const carouselItems = data.metaobject?.references?.nodes.filter(Boolean);
+
   return (
     <div className="home">
-      <FeaturedCollection collection={data.featuredCollection} />
-      {data.metaobject?.references && <HomeVideos items={data.metaobject.references.nodes} />}
-      <RecommendedProducts products={data.recommendedProducts} />
+
+      {carouselItems && <Carousel items={carouselItems} />}
+      <Products items={data.homeProducts} />
+      
     </div>
   );
 }
 
-function FeaturedCollection({
-  collection,
-}: {
-  collection: FeaturedCollectionFragment;
-}) {
-  if (!collection) return null;
-  const image = collection?.image;
-  return (
-    <Link
-      className="featured-collection"
-      to={`/collections/${collection.handle}`}
-    >
-      {image && (
-        <div className="featured-collection-image">
-          <Image data={image} sizes="100vw" />
-        </div>
-      )}
-      <h1>{collection.title}</h1>
-    </Link>
-  );
-}
 
-function RecommendedProducts({
-  products,
-}: {
-  products: Promise<RecommendedProductsQuery | null>;
-}) {
-  return (
-    <div className="recommended-products">
-      <h2>Recommended Products</h2>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Await resolve={products}>
-          {(response) => (
-            <div className="recommended-products-grid">
-              {response
-                ? response.products.nodes.map((product) => (
-                  <Link
-                    key={product.id}
-                    className="recommended-product"
-                    to={`/products/${product.handle}`}
-                  >
-                    <Image
-                      data={product.images.nodes[0]}
-                      aspectRatio="1/1"
-                      sizes="(min-width: 45em) 20vw, 50vw"
-                    />
-                    <h4>{product.title}</h4>
-                    <small>
-                      <Money data={product.priceRange.minVariantPrice} />
-                    </small>
-                  </Link>
-                ))
-                : null}
-            </div>
-          )}
-        </Await>
-      </Suspense>
-      <br />
-    </div>
-  );
-}
-
-const FEATURED_COLLECTION_QUERY = `#graphql
-  fragment FeaturedCollection on Collection {
+const HOME_PRODUCTS = `#graphql
+  fragment HomeProducts on Product {
     id
     title
-    image {
+    handle
+    priceRange {
+      minVariantPrice {
+        amount
+        currencyCode
+      }
+        maxVariantPrice {
+        amount
+        currencyCode
+      }
+    }
+    featuredImage {
       id
-      url
       altText
+      url
       width
       height
     }
-    handle
   }
-  query FeaturedCollection($country: CountryCode, $language: LanguageCode)
+
+  query HomeProducts($country: CountryCode, $language: LanguageCode)
     @inContext(country: $country, language: $language) {
-    collections(first: 1, sortKey: UPDATED_AT, reverse: true) {
+    products(first: 2, sortKey: UPDATED_AT, reverse: true) {
       nodes {
-        ...FeaturedCollection
+        ...HomeProducts
       }
     }
   }
@@ -162,6 +98,7 @@ const HOME_VIDEOS_QUERY = `#graphql
 
   fragment VideoObject on Video {
     id
+    __typename
     sources {
       url
       width
@@ -170,11 +107,46 @@ const HOME_VIDEOS_QUERY = `#graphql
       format
     }
     previewImage {
+      originalSrc
+      src
+      transformedSrc
+      width
       url
       height
-      altText
       id
+      altText
+    }
+    presentation {
+      id
+    }
+   
+    mediaContentType
+    alt
+  }
+
+  fragment ImageObject on MediaImage {
+    id
+    __typename
+    
+    image {
+      originalSrc
+      src
+      transformedSrc
       width
+      url
+      height
+      id
+      altText
+    }
+    previewImage {
+      originalSrc
+      src
+      transformedSrc
+      width
+      url
+      height
+      id
+      altText
     }
     presentation {
       id
@@ -193,6 +165,7 @@ const HOME_VIDEOS_QUERY = `#graphql
         references(first: 10){
           nodes {
             ...VideoObject
+            ...ImageObject
           }
         }
       }
@@ -200,33 +173,3 @@ const HOME_VIDEOS_QUERY = `#graphql
   }
 ` as const;
 
-const RECOMMENDED_PRODUCTS_QUERY = `#graphql
-  fragment RecommendedProduct on Product {
-    id
-    title
-    handle
-    priceRange {
-      minVariantPrice {
-        amount
-        currencyCode
-      }
-    }
-    images(first: 1) {
-      nodes {
-        id
-        url
-        altText
-        width
-        height
-      }
-    }
-  }
-  query RecommendedProducts ($country: CountryCode, $language: LanguageCode)
-    @inContext(country: $country, language: $language) {
-    products(first: 4, sortKey: UPDATED_AT, reverse: true) {
-      nodes {
-        ...RecommendedProduct
-      }
-    }
-  }
-` as const;

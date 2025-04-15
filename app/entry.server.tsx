@@ -16,6 +16,7 @@ export default async function handleRequest(
       checkoutDomain: context.env.PUBLIC_CHECKOUT_DOMAIN,
       storeDomain: context.env.PUBLIC_STORE_DOMAIN,
     },
+    mediaSrc: ["https://checkout.null-space.eu"]
   });
 
   const body = await renderToReadableStream(
