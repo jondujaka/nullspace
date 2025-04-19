@@ -1,8 +1,8 @@
-import type {EntryContext, AppLoadContext} from '@shopify/remix-oxygen';
-import {RemixServer} from '@remix-run/react';
-import {isbot} from 'isbot';
-import {renderToReadableStream} from 'react-dom/server';
-import {createContentSecurityPolicy} from '@shopify/hydrogen';
+import type { EntryContext, AppLoadContext } from '@shopify/remix-oxygen';
+import { RemixServer } from '@remix-run/react';
+import { isbot } from 'isbot';
+import { renderToReadableStream } from 'react-dom/server';
+import { createContentSecurityPolicy } from '@shopify/hydrogen';
 
 export default async function handleRequest(
   request: Request,
@@ -11,17 +11,19 @@ export default async function handleRequest(
   remixContext: EntryContext,
   context: AppLoadContext,
 ) {
-  const {nonce, header, NonceProvider} = createContentSecurityPolicy({
+  const { nonce, header, NonceProvider } = createContentSecurityPolicy({
     shop: {
       checkoutDomain: context.env.PUBLIC_CHECKOUT_DOMAIN,
       storeDomain: context.env.PUBLIC_STORE_DOMAIN,
     },
-    mediaSrc: ["https://checkout.null-space.eu"]
+    mediaSrc: ["https://checkout.null-space.eu"],
+    styleSrc: ["https://fonts.googleapis.com"],
+    fontSrc: ["https://fonts.gstatic.com"]
   });
 
   const body = await renderToReadableStream(
     <NonceProvider>
-      <RemixServer context={remixContext} url={request.url} nonce={nonce}/>
+      <RemixServer context={remixContext} url={request.url} nonce={nonce} />
     </NonceProvider>,
     {
       nonce,
