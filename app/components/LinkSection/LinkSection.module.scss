@@ -1,0 +1,13 @@
+.wrapper {
+    width: 100%;
+    background: var(--color-dark);
+    padding: 2.5rem 0;
+    text-align: center;
+
+    a {
+        font-family: 'IBM Plex Mono', monospace;
+        color: var(--color-grey);
+        display: block;
+        padding: 2rem;
+    }
+}

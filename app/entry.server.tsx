@@ -18,7 +18,7 @@ export default async function handleRequest(
     },
     mediaSrc: ["https://checkout.null-space.eu"],
     styleSrc: ["https://fonts.googleapis.com"],
-    fontSrc: ["https://fonts.gstatic.com"]
+    fontSrc: ["https://fonts.gstatic.com", "http://localhost:3000"]
   });
 
   const body = await renderToReadableStream(

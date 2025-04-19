@@ -6,8 +6,8 @@ import type {
   HeaderQuery,
 } from 'storefrontapi.generated';
 import {Aside} from '~/components/Aside';
-import {Footer} from '~/components/Footer';
-import {Header, HeaderMenu} from '~/components/Header';
+import Footer from '~/components/Footer/Footer';
+import Header from '~/components/Header/Header';
 import {CartMain} from '~/components/CartMain';
 import {
   SEARCH_ENDPOINT,
@@ -36,7 +36,7 @@ export function PageLayout({
     <Aside.Provider>
       <CartAside cart={cart} />
       <SearchAside />
-      <MobileMenuAside header={header} publicStoreDomain={publicStoreDomain} />
+      {/* <MobileMenuAside header={header} publicStoreDomain={publicStoreDomain} /> */}
       {header && (
         <Header
           header={header}
@@ -46,11 +46,7 @@ export function PageLayout({
         />
       )}
       <main>{children}</main>
-      <Footer
-        footer={footer}
-        header={header}
-        publicStoreDomain={publicStoreDomain}
-      />
+      <Footer />
     </Aside.Provider>
   );
 }
@@ -151,24 +147,24 @@ function SearchAside() {
   );
 }
 
-function MobileMenuAside({
-  header,
-  publicStoreDomain,
-}: {
-  header: PageLayoutProps['header'];
-  publicStoreDomain: PageLayoutProps['publicStoreDomain'];
-}) {
-  return (
-    header.menu &&
-    header.shop.primaryDomain?.url && (
-      <Aside type="mobile" heading="MENU">
-        <HeaderMenu
-          menu={header.menu}
-          viewport="mobile"
-          primaryDomainUrl={header.shop.primaryDomain.url}
-          publicStoreDomain={publicStoreDomain}
-        />
-      </Aside>
-    )
-  );
-}
+// function MobileMenuAside({
+//   header,
+//   publicStoreDomain,
+// }: {
+//   header: PageLayoutProps['header'];
+//   publicStoreDomain: PageLayoutProps['publicStoreDomain'];
+// }) {
+//   return (
+//     header.menu &&
+//     header.shop.primaryDomain?.url && (
+//       <Aside type="mobile" heading="MENU">
+//         <HeaderMenu
+//           menu={header.menu}
+//           viewport="mobile"
+//           primaryDomainUrl={header.shop.primaryDomain.url}
+//           publicStoreDomain={publicStoreDomain}
+//         />
+//       </Aside>
+//     )
+//   );
+// }

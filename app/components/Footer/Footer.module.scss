@@ -1,0 +1,53 @@
+footer {
+    height: 130px;
+    background: var(--color-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+
+
+}
+
+
+.copyright {
+    margin-left: 0;
+    margin-right: auto;
+
+    span {
+        display: block;
+        margin-top: 1rem;
+        text-transform: capitalize;
+
+        color: var(--color-grey);
+        font-size: .625rem;
+    }
+}
+
+.newsletterButton {
+
+    a {
+        color: var(--color-dark);
+        background: var(--color-grey);
+        display: block;
+        padding: .3rem .5rem;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.menu {
+    margin-right: 0;
+    margin-left: auto;
+    display: flex;
+    gap: 2rem;
+
+    >a {
+        font-size: .875rem;
+
+        color: var(--color-grey);
+    }
+}

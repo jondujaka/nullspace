@@ -410,7 +410,7 @@ export type HomePageMetaObjectsQuery = {
   metaobject?: StorefrontAPI.Maybe<
     Pick<StorefrontAPI.Metaobject, 'id'> & {
       fields: Array<
-        Pick<StorefrontAPI.MetaobjectField, 'value'> & {
+        Pick<StorefrontAPI.MetaobjectField, 'value' | 'type'> & {
           references?: StorefrontAPI.Maybe<{
             nodes: Array<
               | ({__typename: 'MediaImage'} & Pick<
@@ -476,6 +476,42 @@ export type HomePageMetaObjectsQuery = {
                   })
             >;
           }>;
+          reference?: StorefrontAPI.Maybe<
+            {__typename: 'MediaImage'} & Pick<
+              StorefrontAPI.MediaImage,
+              'id' | 'mediaContentType' | 'alt'
+            > & {
+                image?: StorefrontAPI.Maybe<
+                  Pick<
+                    StorefrontAPI.Image,
+                    | 'originalSrc'
+                    | 'src'
+                    | 'transformedSrc'
+                    | 'width'
+                    | 'url'
+                    | 'height'
+                    | 'id'
+                    | 'altText'
+                  >
+                >;
+                previewImage?: StorefrontAPI.Maybe<
+                  Pick<
+                    StorefrontAPI.Image,
+                    | 'originalSrc'
+                    | 'src'
+                    | 'transformedSrc'
+                    | 'width'
+                    | 'url'
+                    | 'height'
+                    | 'id'
+                    | 'altText'
+                  >
+                >;
+                presentation?: StorefrontAPI.Maybe<
+                  Pick<StorefrontAPI.MediaPresentation, 'id'>
+                >;
+              }
+          >;
         }
       >;
     }
@@ -1297,7 +1333,7 @@ interface GeneratedQueryTypes {
     return: HomeProductsQuery;
     variables: HomeProductsQueryVariables;
   };
-  '#graphql\n\n\n  fragment VideoObject on Video {\n    id\n    __typename\n    sources {\n      url\n      width\n      mimeType\n      height\n      format\n    }\n    previewImage {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    presentation {\n      id\n    }\n   \n    mediaContentType\n    alt\n  }\n\n  fragment ImageObject on MediaImage {\n    id\n    __typename\n    \n    image {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    previewImage {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    presentation {\n      id\n    }\n    mediaContentType\n    alt\n  }\n\n\n  query HomePageMetaObjects($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    metaobject(handle: {handle: "home-page-ubjrgxn5", type: "home_page"}) {\n      id\n      fields {\n        value\n        references(first: 10){\n          nodes {\n            ...VideoObject\n            ...ImageObject\n          }\n        }\n      }\n    }\n  }\n': {
+  '#graphql\n\n\n  fragment VideoObject on Video {\n    id\n    __typename\n    sources {\n      url\n      width\n      mimeType\n      height\n      format\n    }\n    previewImage {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    presentation {\n      id\n    }\n   \n    mediaContentType\n    alt\n  }\n\n  fragment ImageObject on MediaImage {\n    id\n    __typename\n    \n    image {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    previewImage {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    presentation {\n      id\n    }\n    mediaContentType\n    alt\n  }\n\n\n  query HomePageMetaObjects($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    metaobject(handle: {handle: "home-page-ubjrgxn5", type: "home_page"}) {\n      id\n      fields {\n        value\n        type\n        references(first: 10){\n          nodes {\n            ...VideoObject\n            ...ImageObject\n          }\n        }\n          reference {\n          ...ImageObject\n          }\n      }\n    }\n  }\n': {
     return: HomePageMetaObjectsQuery;
     variables: HomePageMetaObjectsQueryVariables;
   };

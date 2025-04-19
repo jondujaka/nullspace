@@ -1,0 +1,29 @@
+.aboutSection {
+    width: 100%;
+    background: var(--color-dark);
+    display: flex;
+    justify-content: flex-start;
+ 
+   
+    .text {
+        p, a {
+            color: var(--color-grey);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+        padding: 1rem;
+    }
+
+
+    .image {
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+    > div {
+        width: 50%;
+    }
+}

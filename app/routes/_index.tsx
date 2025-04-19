@@ -3,6 +3,8 @@ import { useLoaderData, type MetaFunction } from '@remix-run/react';
 
 import Carousel from '~/components/Carousel/Carousel';
 import Products from '~/components/Products/Products';
+import LinkSection from '~/components/LinkSection/LinkSection';
+import AboutSection from '~/components/AboutSection/AboutSection';
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Hydrogen | Home' }];
@@ -10,7 +12,7 @@ export const meta: MetaFunction = () => {
 
 export async function loader(args: LoaderFunctionArgs) {
   // Start fetching non-critical data without blocking time to first byte
-  
+
 
   // Await the critical data required to render initial state of the page
   const criticalData = await loadCriticalData(args);
@@ -31,7 +33,7 @@ async function loadCriticalData({ context }: LoaderFunctionArgs) {
 
   return {
     homeProducts: products.nodes,
-    metaobject: metaobject?.fields[0]
+    metaobject: metaobject
   };
 }
 
@@ -45,14 +47,23 @@ async function loadCriticalData({ context }: LoaderFunctionArgs) {
 export default function Homepage() {
   const data = useLoaderData<typeof loader>();
 
-  const carouselItems = data.metaobject?.references?.nodes.filter(Boolean);
+
+  const carouselMeta =  data.metaobject?.fields.find(field => Boolean(field.references))
+  const carouselItems = carouselMeta?.references?.nodes.filter(Boolean);
+  
+
+  const text = data.metaobject?.fields.find(field => field.type === 'rich_text_field')?.value;
+  const image = data.metaobject?.fields.find(field => field.type === 'file_reference')?.reference;
+
+  console.log({text})
 
   return (
     <div className="home">
 
       {carouselItems && <Carousel items={carouselItems} />}
       <Products items={data.homeProducts} />
-      
+      <LinkSection text="VIEW FULL COLLECTION" link="/products" />
+      {image && text && <AboutSection richtext={text} image={image} />}
     </div>
   );
 }
@@ -162,12 +173,16 @@ const HOME_VIDEOS_QUERY = `#graphql
       id
       fields {
         value
+        type
         references(first: 10){
           nodes {
             ...VideoObject
             ...ImageObject
           }
         }
+          reference {
+          ...ImageObject
+          }
       }
     }
   }

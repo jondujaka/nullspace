@@ -1,0 +1,81 @@
+.header {
+    align-items: center;
+    display: flex;
+    height: var(--header-height);
+    padding: 0 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--color-dark);
+
+    * {
+        font-family: "IBM Plex Mono";
+    }
+}
+
+.header-menu-mobile-toggle {
+    @media (min-width: 48em) {
+        display: none;
+    }
+}
+
+.headerMenuMobile {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 1rem;
+}
+
+.headerMenu {
+    display: none;
+    grid-gap: 1rem;
+
+    a,button {
+        color: var(--color-grey);
+        font-family: 'IBM Plex Mono';
+        text-transform: lowercase;
+        margin: 0;
+        padding: 0;
+        font-size: .875rem;
+        line-height: 1.5;
+
+    }
+
+    @media (min-width: 45em) {
+        display: flex;
+        justify-content: center;
+        grid-gap: 3rem;
+        margin-left: 3rem;
+        align-items: center;
+    }
+}
+
+.menuRight {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.menuLeft {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.headerMenuItem {
+    cursor: pointer;
+
+    svg {
+        height: 18px;
+    }
+
+    &:hover {
+        svg * {
+            fill: white;
+        }
+    }
+}
+
+.headerCtas {
+    align-items: center;
+    display: flex;
+    grid-gap: 1rem;
+    margin-left: auto;
+}
