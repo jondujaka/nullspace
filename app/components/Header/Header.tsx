@@ -93,7 +93,7 @@ function LeftMenu() {
         onClick={close}
         prefetch="intent"
         style={activeLinkStyle}
-        to={"/collections"}
+        to={"/products"}
       >
         Shop
       </NavLink>
@@ -113,6 +113,6 @@ function activeLinkStyle({
 }) {
   return {
     fontWeight: isActive ? 'bold' : undefined,
-    color: isActive ? 'white' : 'var(--color-grey)',
+    color: isActive ? 'black' : 'var(--color-grey)',
   };
 }

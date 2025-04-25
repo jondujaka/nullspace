@@ -2,16 +2,32 @@
     width: 100%;
     position: relative;
     height: auto;
+    max-height: 100%;
+    aspect-ratio: 16/9;
    
 
     >img,
-    >video {
+    >video,
+    .noImage {
         aspect-ratio: 16/9 !important;
         display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center;
     }
+
+    .noImage {
+        background-color: var(--color-grey);
+        color: white;
+        font-size: 1rem;
+        width: 1000px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'IBM Plex Mono';
+    }
+    
 }
 
 .controls {
@@ -32,10 +48,6 @@
         opacity: .75;
         transform: opacity .3s ease-in-out;
 
-
-
-        
-
         &:hover {
             opacity: 1;
         }
@@ -43,7 +55,7 @@
         img {
             width: 100%;
             height: 100%;
-            object-fit: fill;
+            object-fit: cover;
         }
     }
 

@@ -2,11 +2,11 @@
     align-items: center;
     display: flex;
     height: var(--header-height);
-    padding: 0 1rem;
+    padding: 0 2rem;
     position: sticky;
     top: 0;
     z-index: 1;
-    background: var(--color-dark);
+    background: var(--color-light);
 
     * {
         font-family: "IBM Plex Mono";
@@ -43,8 +43,7 @@
     @media (min-width: 45em) {
         display: flex;
         justify-content: center;
-        grid-gap: 3rem;
-        margin-left: 3rem;
+        grid-gap: 5rem;
         align-items: center;
     }
 }
@@ -68,7 +67,7 @@
 
     &:hover {
         svg * {
-            fill: white;
+            fill: var(--color-dark);
         }
     }
 }

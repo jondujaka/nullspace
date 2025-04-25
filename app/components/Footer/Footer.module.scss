@@ -1,6 +1,6 @@
 footer {
     height: 130px;
-    background: var(--color-dark);
+    background: var(--color-light);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,7 +27,7 @@ footer {
 .newsletterButton {
 
     a {
-        color: var(--color-dark);
+        color: var(--color-light);
         background: var(--color-grey);
         display: block;
         padding: .3rem .5rem;

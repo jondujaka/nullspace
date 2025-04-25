@@ -16,8 +16,12 @@ import { FOOTER_QUERY, HEADER_QUERY } from '~/lib/fragments';
 import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
 import { PageLayout } from './components/PageLayout';
-import ibmPlexSans from '@fontsource-variable/ibm-plex-sans?url';
-import ibmPlexMono from '@fontsource/ibm-plex-mono?url';
+// import ibmPlexSans from '@fontsource-variable/ibm-plex-sans?url';
+// import ibmPlexMono from '@fontsource/ibm-plex-mono?url';
+
+import "@fontsource/ibm-plex-mono";
+import "@fontsource/ibm-plex-mono/300.css";
+import "@fontsource-variable/ibm-plex-sans";
 export type RootLoader = typeof loader;
 
 /**
@@ -156,8 +160,8 @@ export function Layout({ children }: { children?: React.ReactNode }) {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <link rel="stylesheet" href={resetStyles}></link>
         <link rel="stylesheet" href={appStyles}></link>
-        <link rel="stylesheet" href={ibmPlexSans} />
-        <link rel="stylesheet" href={ibmPlexMono} />
+        {/* <link rel="stylesheet" href={ibmPlexSans} /> */}
+        {/* <link rel="stylesheet" href={ibmPlexMono} /> */}
         <title>NullSpace</title>
         <Meta />
         <Links />

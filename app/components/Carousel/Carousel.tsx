@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { ImageObjectFragment } from 'storefrontapi.generated';
 
 
-const HomeVideos = ({ items }: { items: (VideoType | ImageObjectFragment)[] }) => {
+const Carousel = ({ items }: { items: (VideoType | ImageObjectFragment)[] }) => {
 
     const [active, setActive] = useState(0)
 
@@ -32,13 +32,15 @@ const HomeVideos = ({ items }: { items: (VideoType | ImageObjectFragment)[] }) =
 
     return <>
         <div className={styles.carousel}>
+
+            {!Boolean(items.length) && <div className={styles.noImage}>[ No image ]</div>}
             {items.map((item, i) => {
 
                 if (!item || i !== active) {
                     return null;
                 }
                 if (item.__typename === 'MediaImage' && item.image) {
-                    return <Image key={item.id}  data={item.image} />
+                    return <Image key={item.id} data={item.image} />
                 }
 
                 if (item.__typename === 'Video') {
@@ -56,4 +58,4 @@ const HomeVideos = ({ items }: { items: (VideoType | ImageObjectFragment)[] }) =
     </>
 }
 
-export default HomeVideos
+export default Carousel

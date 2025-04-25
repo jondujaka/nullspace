@@ -2,15 +2,20 @@ import styles from './Products.module.scss'
 
 import { Link } from "@remix-run/react";
 import { Image, Money } from "@shopify/hydrogen";
-import { ProductItemFragment } from "storefrontapi.generated";
+import { ProductItemFragment } from 'storefrontapi.generated';
 import { useVariantUrl } from "~/lib/variants";
 
 export default function Products({ items }: { items: ProductItemFragment[] }) {
+
 
     return <div className={styles.products}>{items.map(product => {
 
 
         const variantUrl = useVariantUrl(product.handle);
+
+
+        // @ts-expect-error codegen ???
+        const featuredImage = product.metafield.reference.image;
 
         return <div className={styles.productItem}
             key={product.id}>
@@ -19,13 +24,13 @@ export default function Products({ items }: { items: ProductItemFragment[] }) {
                 prefetch="intent"
                 to={variantUrl}
             >
-                {product.featuredImage && (
+                {featuredImage && (
                     <Image
-                        alt={product.featuredImage.altText || product.title}
+                        alt={featuredImage.altText || product.title}
                         aspectRatio="1/1"
-                        data={product.featuredImage}
+                        data={featuredImage}
                         // loading={loading}
-                        sizes="(min-width: 45em) 400px, 100vw"
+                        sizes="(min-width: 45em) 1200px, 100vw"
                     />
                 )}
 

@@ -91,6 +91,24 @@ const HOME_PRODUCTS = `#graphql
       width
       height
     }
+    metafield(key: "featured_image", namespace: "custom") {
+      id
+      reference {
+        ... on MediaImage {
+          id
+          image {
+            originalSrc
+            src
+            transformedSrc
+            width
+            url
+            height
+            id
+            altText
+          }
+        }
+      }
+    }
   }
 
   query HomeProducts($country: CountryCode, $language: LanguageCode)

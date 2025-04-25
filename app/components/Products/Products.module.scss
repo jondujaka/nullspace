@@ -3,8 +3,6 @@
     display: grid;
     
     grid-template-columns: repeat(auto-fit, minmax(var(--grid-item-width), 1fr));
-    
-
 
 }
 
@@ -41,6 +39,6 @@
     background-color: rgba(54, 69, 83, 0.4);
 
     * {
-        color: white;   
+        color: var(--color-grey);   
     }
 }
