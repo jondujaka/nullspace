@@ -18,7 +18,7 @@ export default async function handleRequest(
     },
     mediaSrc: ["https://checkout.null-space.eu"],
     styleSrc: ["https://fonts.googleapis.com"],
-    fontSrc: ["https://fonts.gstatic.com", "http://localhost:3000", "https://*.myshopify.dev"]
+    fontSrc: ["https://fonts.gstatic.com", "http://localhost:3000", "https://cdn.shopify.com/"]
   });
 
   const body = await renderToReadableStream(
