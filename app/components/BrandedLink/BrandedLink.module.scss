@@ -1,0 +1,44 @@
+.wrapper {
+    position: relative;
+    cursor: pointer;
+
+    .leftBracket,
+    .rightBracket {
+        position: absolute;
+        top: 0;
+        transition: all .2s ease-in-out;
+        pointer-events: none;
+        opacity: 0;
+    }
+
+
+    .leftBracket {
+        left: -.6em;
+        transform: translateX(-.5em);
+
+
+
+    }
+
+    .rightBracket {
+        right: -.6em;
+        transform: translateX(.5em);
+
+
+
+    }
+
+    &:hover,
+    &.isActive {
+        .leftBracket {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .rightBracket {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+}

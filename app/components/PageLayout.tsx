@@ -8,7 +8,7 @@ import type {
 import {Aside} from '~/components/Aside';
 import Footer from '~/components/Footer/Footer';
 import Header from '~/components/Header/Header';
-import {CartMain} from '~/components/CartMain';
+import {CartMain} from '~/components/CartMain/CartMain';
 import {
   SEARCH_ENDPOINT,
   SearchFormPredictive,

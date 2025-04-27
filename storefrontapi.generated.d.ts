@@ -672,6 +672,96 @@ export type BlogsQuery = {
   };
 };
 
+export type JournalMetaObjectsQueryVariables = StorefrontAPI.Exact<{
+  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+}>;
+
+export type JournalMetaObjectsQuery = {
+  metaobject?: StorefrontAPI.Maybe<
+    Pick<StorefrontAPI.Metaobject, 'id'> & {
+      fields: Array<
+        Pick<StorefrontAPI.MetaobjectField, 'value' | 'type'> & {
+          references?: StorefrontAPI.Maybe<{
+            nodes: Array<
+              {__typename: 'MediaImage'} & Pick<
+                StorefrontAPI.MediaImage,
+                'id' | 'mediaContentType' | 'alt'
+              > & {
+                  image?: StorefrontAPI.Maybe<
+                    Pick<
+                      StorefrontAPI.Image,
+                      | 'originalSrc'
+                      | 'src'
+                      | 'transformedSrc'
+                      | 'width'
+                      | 'url'
+                      | 'height'
+                      | 'id'
+                      | 'altText'
+                    >
+                  >;
+                  previewImage?: StorefrontAPI.Maybe<
+                    Pick<
+                      StorefrontAPI.Image,
+                      | 'originalSrc'
+                      | 'src'
+                      | 'transformedSrc'
+                      | 'width'
+                      | 'url'
+                      | 'height'
+                      | 'id'
+                      | 'altText'
+                    >
+                  >;
+                  presentation?: StorefrontAPI.Maybe<
+                    Pick<StorefrontAPI.MediaPresentation, 'id'>
+                  >;
+                }
+            >;
+          }>;
+          reference?: StorefrontAPI.Maybe<
+            {__typename: 'MediaImage'} & Pick<
+              StorefrontAPI.MediaImage,
+              'id' | 'mediaContentType' | 'alt'
+            > & {
+                image?: StorefrontAPI.Maybe<
+                  Pick<
+                    StorefrontAPI.Image,
+                    | 'originalSrc'
+                    | 'src'
+                    | 'transformedSrc'
+                    | 'width'
+                    | 'url'
+                    | 'height'
+                    | 'id'
+                    | 'altText'
+                  >
+                >;
+                previewImage?: StorefrontAPI.Maybe<
+                  Pick<
+                    StorefrontAPI.Image,
+                    | 'originalSrc'
+                    | 'src'
+                    | 'transformedSrc'
+                    | 'width'
+                    | 'url'
+                    | 'height'
+                    | 'id'
+                    | 'altText'
+                  >
+                >;
+                presentation?: StorefrontAPI.Maybe<
+                  Pick<StorefrontAPI.MediaPresentation, 'id'>
+                >;
+              }
+          >;
+        }
+      >;
+    }
+  >;
+};
+
 export type PageQueryVariables = StorefrontAPI.Exact<{
   language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
   country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
@@ -1408,6 +1498,10 @@ interface GeneratedQueryTypes {
   '#graphql\n  query Blogs(\n    $country: CountryCode\n    $endCursor: String\n    $first: Int\n    $language: LanguageCode\n    $last: Int\n    $startCursor: String\n  ) @inContext(country: $country, language: $language) {\n    blogs(\n      first: $first,\n      last: $last,\n      before: $startCursor,\n      after: $endCursor\n    ) {\n      pageInfo {\n        hasNextPage\n        hasPreviousPage\n        startCursor\n        endCursor\n      }\n      nodes {\n        title\n        handle\n        seo {\n          title\n          description\n        }\n      }\n    }\n  }\n': {
     return: BlogsQuery;
     variables: BlogsQueryVariables;
+  };
+  '#graphql \n\n  fragment ImageObject on MediaImage {\n    id\n    __typename\n    \n    image {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    previewImage {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    presentation {\n      id\n    }\n    mediaContentType\n    alt\n  }\n\n  query JournalMetaObjects($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    metaobject(handle: {handle: "journal-6dwwqnuc", type: "journal"}) {\n      id\n      fields {\n        value\n        type\n        references(first: 10){\n          nodes {\n            ...ImageObject\n          }\n        }\n          reference {\n          ...ImageObject\n          }\n      }\n    }\n  }\n    \n  \n  ': {
+    return: JournalMetaObjectsQuery;
+    variables: JournalMetaObjectsQueryVariables;
   };
   '#graphql\n  query Page(\n    $language: LanguageCode,\n    $country: CountryCode,\n    $handle: String!\n  )\n  @inContext(language: $language, country: $country) {\n    page(handle: $handle) {\n      id\n      title\n      body\n      seo {\n        description\n        title\n      }\n    }\n  }\n': {
     return: PageQuery;

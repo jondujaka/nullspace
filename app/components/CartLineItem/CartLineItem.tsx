@@ -1,10 +1,12 @@
+import styles from './CartLineItem.module.scss'
+
 import type {CartLineUpdateInput} from '@shopify/hydrogen/storefront-api-types';
-import type {CartLayout} from '~/components/CartMain';
+import type {CartLayout} from '~/components/CartMain/CartMain';
 import {CartForm, Image, type OptimisticCartLine} from '@shopify/hydrogen';
 import {useVariantUrl} from '~/lib/variants';
 import {Link} from '@remix-run/react';
-import {ProductPrice} from './ProductPrice';
-import {useAside} from './Aside';
+import {ProductPrice} from '../ProductPrice/ProductPrice';
+import {useAside} from '../Aside';
 import type {CartApiQueryFragment} from 'storefrontapi.generated';
 
 type CartLine = OptimisticCartLine<CartApiQueryFragment>;
@@ -26,19 +28,19 @@ export function CartLineItem({
   const {close} = useAside();
 
   return (
-    <li key={id} className="cart-line">
+    <li key={id} className={styles.cartLine}>
       {image && (
         <Image
           alt={title}
           aspectRatio="1/1"
           data={image}
-          height={100}
+          height={250}
           loading="lazy"
-          width={100}
+          width={250}
         />
       )}
 
-      <div>
+      <div className={styles.content}>
         <Link
           prefetch="intent"
           to={lineItemUrl}
@@ -48,8 +50,8 @@ export function CartLineItem({
             }
           }}
         >
-          <p>
-            <strong>{product.title}</strong>
+          <p className={styles.title}>
+            {product.title}
           </p>
         </Link>
         <ProductPrice price={line?.cost?.totalAmount} />

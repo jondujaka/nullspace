@@ -40,7 +40,7 @@ const Carousel = ({ items }: { items: (VideoType | ImageObjectFragment)[] }) => 
                     return null;
                 }
                 if (item.__typename === 'MediaImage' && item.image) {
-                    return <Image key={item.id} data={item.image} />
+                    return <Image key={item.id} data={item.image} width={item.image.width ?? "auto"} height={item.image.height ?? "auto"}/>
                 }
 
                 if (item.__typename === 'Video') {
@@ -52,7 +52,7 @@ const Carousel = ({ items }: { items: (VideoType | ImageObjectFragment)[] }) => 
             }
             )}
 
-            <Controls callback={handleSwitch} items={thumbnails} classes={styles.controls} />
+            <Controls activeIndex={active} callback={handleSwitch} items={thumbnails} classes={styles.controls} />
         </div>
 
     </>

@@ -22,15 +22,16 @@ body a{
   color: var(--color-grey);
   box-sizing: border-box;
 }
+
+body img {
+  display: block;
+}
 /*
 * --------------------------------------------------
 * Non anchor links
 * --------------------------------------------------
 */
-.link:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
+
 
 /*
 * --------------------------------------------------
@@ -185,6 +186,23 @@ button.reset:hover:not(:has(> *)) {
   color: var(--color-light);
 }
 
+.active svg * {
+  fill: black;
+}
+
+.cart {
+  max-width: 1200px;
+  margin: 0 auto;
+
+}
+
+.cart h1 {
+  font-family: "IBM Plex Sans Variable", sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--color-grey);
+}
+
 /*
 * --------------------------------------------------
 * components/Cart
@@ -199,17 +217,6 @@ button.reset:hover:not(:has(> *)) {
 
 .cart-main.with-discount {
   max-height: calc(100vh - var(--cart-aside-summary-height-with-discount));
-}
-
-.cart-line {
-  display: flex;
-  padding: 0.75rem 0;
-}
-
-.cart-line img {
-  height: 100%;
-  display: block;
-  margin-right: 0.75rem;
 }
 
 .cart-summary-page {

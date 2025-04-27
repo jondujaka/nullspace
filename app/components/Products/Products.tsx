@@ -4,6 +4,7 @@ import { Link } from "@remix-run/react";
 import { Image, Money } from "@shopify/hydrogen";
 import { ProductItemFragment } from 'storefrontapi.generated';
 import { useVariantUrl } from "~/lib/variants";
+import BrandedLink from '../BrandedLink/BrandedLink';
 
 export default function Products({ items }: { items: ProductItemFragment[] }) {
 
@@ -35,10 +36,7 @@ export default function Products({ items }: { items: ProductItemFragment[] }) {
                 )}
 
                 <div className={styles.productInfo}>
-                <h4>{product.title}</h4>
-                <small>
-                    <Money data={product.priceRange.minVariantPrice} />
-                </small>
+                    <div className={styles.textWrapper}><BrandedLink isActive text={product.title} /></div>
                 </div>
             </Link>
         </div>

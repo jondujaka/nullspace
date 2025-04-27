@@ -9,6 +9,7 @@ import {
 import { useAside } from '../Aside';
 import CartButton from './CartButton';
 import Logo from '../Logo';
+import BrandedLink from '../BrandedLink/BrandedLink';
 
 interface HeaderProps {
   header: HeaderQuery;
@@ -34,7 +35,6 @@ export default function Header({
         end
         onClick={close}
         prefetch="intent"
-        style={activeLinkStyle}
         to={"/"}
       >
         <Logo />
@@ -60,10 +60,12 @@ function RightMenu({ cart }: Pick<HeaderProps, 'cart'>) {
         end
         onClick={close}
         prefetch="intent"
-        style={activeLinkStyle}
         to={"/journal"}
       >
-        Journal
+        {({ isActive }) => (
+
+          <BrandedLink text="Journal" isActive={isActive} />
+        )}
       </NavLink>
 
       <NavLink
@@ -71,10 +73,14 @@ function RightMenu({ cart }: Pick<HeaderProps, 'cart'>) {
         end
         onClick={close}
         prefetch="intent"
-        style={activeLinkStyle}
         to={"/about"}
       >
-        About
+
+        {({ isActive }) => (
+
+          <BrandedLink text="About" isActive={isActive} />
+        )}
+
       </NavLink>
 
       <CartButton cart={cart} />
@@ -92,27 +98,17 @@ function LeftMenu() {
         end
         onClick={close}
         prefetch="intent"
-        style={activeLinkStyle}
         to={"/products"}
       >
-        Shop
+        {({ isActive, isPending }) => (
+
+          <BrandedLink text="Shop" isActive={isActive} />
+        )}
+
       </NavLink>
       <button className="reset" onClick={() => open('search')}>
-        Search
+        <BrandedLink text="Search" />
       </button>
     </nav>
   )
-}
-
-function activeLinkStyle({
-  isActive,
-  isPending,
-}: {
-  isActive: boolean;
-  isPending: boolean;
-}) {
-  return {
-    fontWeight: isActive ? 'bold' : undefined,
-    color: isActive ? 'black' : 'var(--color-grey)',
-  };
 }

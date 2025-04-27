@@ -4,8 +4,9 @@ import { Await, NavLink, useAsyncValue } from '@remix-run/react';
 import { useAside } from '../Aside';
 import { CartViewPayload, useAnalytics, useOptimisticCart } from '@shopify/hydrogen';
 import { CartApiQueryFragment } from 'storefrontapi.generated';
+import BrandedLink from '../BrandedLink/BrandedLink';
 
-export default function CartButton({ cart }: {cart: Promise<CartApiQueryFragment | null>}) {
+export default function CartButton({ cart }: { cart: Promise<CartApiQueryFragment | null> }) {
     return (
         <Suspense fallback={<CartBadge count={null} />}>
             <Await resolve={cart}>
@@ -33,7 +34,7 @@ function CartBadge({ count }: { count: number | null }) {
                 } as CartViewPayload);
             }}
         >
-            Cart {count === null ? <span>&nbsp;</span> : `(${count})`}
+            <BrandedLink text={`cart ${count === null ? `&nbsp` : `(${count})`}`} />
         </a>
     );
 }

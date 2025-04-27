@@ -65,7 +65,9 @@
         height: 18px;
     }
 
-    &:hover {
+   
+    &:hover,
+    &.active {
         svg * {
             fill: var(--color-dark);
         }

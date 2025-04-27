@@ -1,0 +1,20 @@
+.cartLine {
+    display: flex;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-grey);
+    
+
+    img {
+        height: 100%;
+        display: block;
+        margin-right: 0.75rem;
+    }
+}
+
+.content {
+    margin-left: 2rem;
+}
+.title {
+    font-size: 1.2rem;
+    font-family: "IBM Plex Sans Variable", sans-serif;
+}

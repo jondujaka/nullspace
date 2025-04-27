@@ -1,0 +1,42 @@
+.wrapper {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+    max-width: 1600px;
+    margin: 0 auto;
+
+
+    img {
+        height: auto;
+        display: inline-block // max-width: 100%;
+    }
+
+    >div {
+        margin: 2rem 0;
+    }
+
+
+
+    .row {
+        display: flex;
+        align-items: flex-end;
+        gap: 2rem;
+
+
+        >img {
+            width: 50%;
+        }
+    }
+
+    > :nth-child(2n + 1) {
+        margin-right: 0;
+        margin-left: auto;
+        width: 100%;
+        text-align: right;
+    }
+
+
+
+}
