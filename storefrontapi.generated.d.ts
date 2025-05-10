@@ -295,6 +295,63 @@ export type StoreRobotsQueryVariables = StorefrontAPI.Exact<{
 
 export type StoreRobotsQuery = {shop: Pick<StorefrontAPI.Shop, 'id'>};
 
+export type ImagesSetionImageFragment = Pick<StorefrontAPI.MediaImage, 'id'> & {
+  image?: StorefrontAPI.Maybe<
+    Pick<
+      StorefrontAPI.Image,
+      | 'originalSrc'
+      | 'src'
+      | 'transformedSrc'
+      | 'width'
+      | 'url'
+      | 'height'
+      | 'id'
+      | 'altText'
+    >
+  >;
+};
+
+export type ImagesSetionProductFragment = Pick<
+  StorefrontAPI.Product,
+  'id' | 'title' | 'handle'
+>;
+
+export type HomeImagesSectionQueryVariables = StorefrontAPI.Exact<{
+  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+}>;
+
+export type HomeImagesSectionQuery = {
+  metaobjects: {
+    nodes: Array<
+      Pick<StorefrontAPI.Metaobject, 'id'> & {
+        fields: Array<
+          Pick<StorefrontAPI.MetaobjectField, 'type' | 'value'> & {
+            reference?: StorefrontAPI.Maybe<
+              | (Pick<StorefrontAPI.MediaImage, 'id'> & {
+                  image?: StorefrontAPI.Maybe<
+                    Pick<
+                      StorefrontAPI.Image,
+                      | 'originalSrc'
+                      | 'src'
+                      | 'transformedSrc'
+                      | 'width'
+                      | 'url'
+                      | 'height'
+                      | 'id'
+                      | 'altText'
+                    >
+                  >;
+                })
+              | Pick<StorefrontAPI.Product, 'id' | 'title' | 'handle'>
+            >;
+          }
+        >;
+      }
+    >;
+  };
+};
+
 export type HomeProductsFragment = Pick<
   StorefrontAPI.Product,
   'id' | 'title' | 'handle'
@@ -1122,6 +1179,27 @@ export type ProductItemFragment = Pick<
   featuredImage?: StorefrontAPI.Maybe<
     Pick<StorefrontAPI.Image, 'id' | 'altText' | 'url' | 'width' | 'height'>
   >;
+  metafield?: StorefrontAPI.Maybe<
+    Pick<StorefrontAPI.Metafield, 'id'> & {
+      reference?: StorefrontAPI.Maybe<
+        Pick<StorefrontAPI.MediaImage, 'id'> & {
+          image?: StorefrontAPI.Maybe<
+            Pick<
+              StorefrontAPI.Image,
+              | 'originalSrc'
+              | 'src'
+              | 'transformedSrc'
+              | 'width'
+              | 'url'
+              | 'height'
+              | 'id'
+              | 'altText'
+            >
+          >;
+        }
+      >;
+    }
+  >;
   variants: {
     nodes: Array<
       Pick<
@@ -1164,6 +1242,27 @@ export type ShopProductsQuery = {
             StorefrontAPI.Image,
             'id' | 'altText' | 'url' | 'width' | 'height'
           >
+        >;
+        metafield?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.Metafield, 'id'> & {
+            reference?: StorefrontAPI.Maybe<
+              Pick<StorefrontAPI.MediaImage, 'id'> & {
+                image?: StorefrontAPI.Maybe<
+                  Pick<
+                    StorefrontAPI.Image,
+                    | 'originalSrc'
+                    | 'src'
+                    | 'transformedSrc'
+                    | 'width'
+                    | 'url'
+                    | 'height'
+                    | 'id'
+                    | 'altText'
+                  >
+                >;
+              }
+            >;
+          }
         >;
         variants: {
           nodes: Array<
@@ -1479,6 +1578,10 @@ interface GeneratedQueryTypes {
     return: StoreRobotsQuery;
     variables: StoreRobotsQueryVariables;
   };
+  '#graphql\n\n\n  fragment ImagesSetionImage on MediaImage {\n    id\n    image {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n  }\n\n  fragment ImagesSetionProduct on Product {\n    id\n    title\n    handle\n  }\n\n  query HomeImagesSection($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n      metaobjects(type: "home_page_second_section", first: 10) {\n        nodes {\n          id\n          fields {\n            type\n            value\n            reference {\n              ...ImagesSetionImage\n              ...ImagesSetionProduct\n            }\n          }\n        }\n      }\n  }\n  \n': {
+    return: HomeImagesSectionQuery;
+    variables: HomeImagesSectionQueryVariables;
+  };
   '#graphql\n  fragment HomeProducts on Product {\n    id\n    title\n    handle\n    priceRange {\n      minVariantPrice {\n        amount\n        currencyCode\n      }\n        maxVariantPrice {\n        amount\n        currencyCode\n      }\n    }\n    featuredImage {\n      id\n      altText\n      url\n      width\n      height\n    }\n    metafield(key: "featured_image", namespace: "custom") {\n      id\n      reference {\n        ... on MediaImage {\n          id\n          image {\n            originalSrc\n            src\n            transformedSrc\n            width\n            url\n            height\n            id\n            altText\n          }\n        }\n      }\n    }\n  }\n\n  query HomeProducts($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    products(first: 2, sortKey: UPDATED_AT, reverse: true) {\n      nodes {\n        ...HomeProducts\n      }\n    }\n  }\n': {
     return: HomeProductsQuery;
     variables: HomeProductsQueryVariables;
@@ -1519,7 +1622,7 @@ interface GeneratedQueryTypes {
     return: ProductQuery;
     variables: ProductQueryVariables;
   };
-  '#graphql\n  #graphql\n\n  \n\n  fragment ProductItem on Product {\n    id\n    handle\n    title\n    featuredImage {\n      id\n      altText\n      url\n      width\n      height\n    }\n    variants(first: 10) {\n      nodes {\n        ...ProductVariant\n      }\n    }\n  }\n  #graphql\n\n  fragment ProductVariant on ProductVariant {\n    availableForSale\n    compareAtPrice {\n      amount\n      currencyCode\n    }\n    id\n    image {\n      __typename\n      id\n      url\n      altText\n      width\n      height\n    }\n    price {\n      amount\n      currencyCode\n    }\n    product {\n      title\n      handle\n    }\n    selectedOptions {\n      name\n      value\n    }\n    sku\n    title\n    unitPrice {\n      amount\n      currencyCode\n    }\n  }\n\n\n  query ShopProducts($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    products(first: 20, sortKey: TITLE) {\n      nodes {\n        ...ProductItem\n      }\n    }\n  }\n': {
+  '#graphql\n  #graphql\n\n  \n\n  fragment ProductItem on Product {\n    id\n    handle\n    title\n    featuredImage {\n      id\n      altText\n      url\n      width\n      height\n    }\n    metafield(key: "thumbnail", namespace: "custom") {\n      id\n      reference {\n        ... on MediaImage {\n          id\n          image {\n            originalSrc\n            src\n            transformedSrc\n            width\n            url\n            height\n            id\n            altText\n          }\n        }\n      }\n    }\n    variants(first: 1) {\n      nodes {\n        ...ProductVariant\n      }\n    }\n  }\n  #graphql\n\n  fragment ProductVariant on ProductVariant {\n    availableForSale\n    compareAtPrice {\n      amount\n      currencyCode\n    }\n    id\n    image {\n      __typename\n      id\n      url\n      altText\n      width\n      height\n    }\n    price {\n      amount\n      currencyCode\n    }\n    product {\n      title\n      handle\n    }\n    selectedOptions {\n      name\n      value\n    }\n    sku\n    title\n    unitPrice {\n      amount\n      currencyCode\n    }\n  }\n\n\n  query ShopProducts($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    products(first: 20, sortKey: TITLE) {\n      nodes {\n        ...ProductItem\n      }\n    }\n  }\n': {
     return: ShopProductsQuery;
     variables: ShopProductsQueryVariables;
   };

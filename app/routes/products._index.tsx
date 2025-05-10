@@ -59,19 +59,13 @@ function loadDeferredData({ context }: LoaderFunctionArgs) {
 
 export default function Products() {
   const { products, metaobject } = useLoaderData<typeof loader>();
-
-  console.log({ products })
-
-  const variants = products.flatMap(product => product.variants.nodes)
-
   const headerMeta = metaobject?.fields[0].reference;
 
-  console.log({variants})
   return (
     <div className="collection">
 
       {headerMeta && <ShopImage image={headerMeta} />}
-      <ShopProducts variants={variants} />
+      <ShopProducts products={products} />
 
       {/* <Analytics.CollectionView
                 data={{
@@ -139,7 +133,25 @@ const PRODUCT_ITEM_FRAGMENT = `#graphql
       width
       height
     }
-    variants(first: 10) {
+    metafield(key: "thumbnail", namespace: "custom") {
+      id
+      reference {
+        ... on MediaImage {
+          id
+          image {
+            originalSrc
+            src
+            transformedSrc
+            width
+            url
+            height
+            id
+            altText
+          }
+        }
+      }
+    }
+    variants(first: 1) {
       nodes {
         ...ProductVariant
       }

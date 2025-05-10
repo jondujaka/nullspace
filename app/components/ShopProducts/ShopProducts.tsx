@@ -6,34 +6,36 @@ import { ShopProductsQuery } from "storefrontapi.generated";
 import { useVariantUrl } from "~/lib/variants";
 
 
-type Variant = ShopProductsQuery['products']['nodes'][0]['variants']['nodes'][0];
+type Product = ShopProductsQuery['products']['nodes'][0]
 
-export default function ShopProducts({ variants }: { variants: Variant[] }) {
-    return <div className={styles.productsWrapper}>{variants.map(variant => <ProductItem variant={variant} />)} </div>
+export default function ShopProducts({ products }: { products: ShopProductsQuery['products']['nodes'] }) {
+    
+    return <div className={styles.productsWrapper}>{products.map(product => <ProductItem key={product.id} product={product} />)} </div>
 }
 
 
 
 function ProductItem({
-    variant,
+    product,
 }: {
-    variant: Variant;
+    product: Product;
 }) {
 
-    const variantUrl = useVariantUrl(variant.product.handle, variant.selectedOptions);
+    
+    const productUrl = `/products/${product.handle}`
+    const variant = product.variants.nodes[0];
 
-    const thumbnail = variant.image;
+    const thumbnail = product.metafield?.reference?.image
 
     return (
         <Link
             className={styles.product}
-            key={variant.id}
             prefetch="intent"
-            to={variantUrl}
+            to={productUrl}
         >
             {thumbnail && (
                 <Image
-                    alt={thumbnail.altText || variant.title}
+                    alt={thumbnail.altText || product.title}
                     aspectRatio="465/581"
                     data={thumbnail}
                     loading="eager"
@@ -42,7 +44,7 @@ function ProductItem({
             )}
 
             <div className={styles.productInfo}>
-                <h4>{variant.product.title}({variant.title})</h4>
+                <h4>{product.title}</h4>
                 <Money data={variant.price} withoutTrailingZeros />
 
             </div>

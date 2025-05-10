@@ -2,7 +2,7 @@ import { type LoaderFunctionArgs } from '@shopify/remix-oxygen';
 import { useLoaderData, type MetaFunction } from '@remix-run/react';
 
 import Carousel from '~/components/Carousel/Carousel';
-import Products from '~/components/Products/Products';
+import ImagesSection from '~/components/Products/ImagesSection';
 import LinkSection from '~/components/LinkSection/LinkSection';
 import AboutSection from '~/components/AboutSection/AboutSection';
 
@@ -25,15 +25,19 @@ export async function loader(args: LoaderFunctionArgs) {
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  */
 async function loadCriticalData({ context }: LoaderFunctionArgs) {
-  const [{ products }, { metaobject }] = await Promise.all([
+  const [{ products }, { metaobject }, {metaobjects}] = await Promise.all([
     context.storefront.query(HOME_PRODUCTS),
-    context.storefront.query(HOME_VIDEOS_QUERY)
+    context.storefront.query(HOME_VIDEOS_QUERY),
+    context.storefront.query(HOME_IMAGES_SECTION)
     // Add other queries here, so that they are loaded in parallel
   ]);
 
+  console.log(metaobjects)
+
   return {
     homeProducts: products.nodes,
-    metaobject: metaobject
+    metaobject: metaobject,
+    imagesSection: metaobjects.nodes
   };
 }
 
@@ -61,13 +65,56 @@ export default function Homepage() {
     <div className="home">
 
       {carouselItems && <Carousel items={carouselItems} />}
-      <Products items={data.homeProducts} />
+      <ImagesSection items={data.imagesSection} />
       <LinkSection text="VIEW FULL COLLECTION" link="/products" />
       {image && text && <AboutSection richtext={text} image={image} />}
     </div>
   );
 }
 
+
+
+const HOME_IMAGES_SECTION = `#graphql
+
+
+  fragment ImagesSetionImage on MediaImage {
+    id
+    image {
+      originalSrc
+      src
+      transformedSrc
+      width
+      url
+      height
+      id
+      altText
+    }
+  }
+
+  fragment ImagesSetionProduct on Product {
+    id
+    title
+    handle
+  }
+
+  query HomeImagesSection($country: CountryCode, $language: LanguageCode)
+    @inContext(country: $country, language: $language) {
+      metaobjects(type: "home_page_second_section", first: 10) {
+        nodes {
+          id
+          fields {
+            type
+            value
+            reference {
+              ...ImagesSetionImage
+              ...ImagesSetionProduct
+            }
+          }
+        }
+      }
+  }
+  
+` as const;
 
 const HOME_PRODUCTS = `#graphql
   fragment HomeProducts on Product {
