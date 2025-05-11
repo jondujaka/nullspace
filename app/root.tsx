@@ -19,10 +19,6 @@ import { PageLayout } from './components/PageLayout';
 // import ibmPlexSans from '@fontsource-variable/ibm-plex-sans?url';
 // import ibmPlexMono from '@fontsource/ibm-plex-mono?url';
 
-import "@fontsource/ibm-plex-mono";
-import "@fontsource/ibm-plex-mono/300.css";
-import "@fontsource-variable/ibm-plex-sans";
-
 import '@fontsource/gruppo';
 import '@fontsource-variable/nunito-sans';
 import '@fontsource/courier-prime/400.css';

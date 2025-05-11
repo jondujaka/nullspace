@@ -192,7 +192,7 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .cart h1 {
-  font-family: "IBM Plex Sans Variable", sans-serif;
+  font-family: 'Nunito Sans Variable', sans-serif;
   font-weight: 400;
   font-size: 1.5rem;
   color: var(--color-grey);
