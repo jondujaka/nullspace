@@ -64,6 +64,24 @@
         position: relative;
         background: white;
 
+        @media screen and (min-width: 960px) {
+
+            width: 70px;
+            height: 70px;
+        }
+
+        @media screen and (min-width: 1140px) {
+
+            width: 75px;
+            height: 75px;
+        }
+
+        @media screen and (min-width: 1440px) {
+
+            width: 100px;
+            height: 100px;
+        }
+
 
         // &:hover {
         //     &::before,
