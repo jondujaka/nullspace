@@ -1,6 +1,6 @@
 .wrapper {
     width: 100%;
-    padding: 0 1rem;
+    padding: 4rem 1rem;
     display: flex;
     flex-direction: column;
 }
@@ -17,6 +17,7 @@
     width: 100%;
     max-width: 1600px;
 }
+
 .description {
     width: 350px;
     flex-shrink: 0;
@@ -53,12 +54,12 @@
         }
 
         h1 {
-            font-family: 'IBM Plex Sans Variable', sans-serif;
+            font-family: 'Gruppo', sans-serif;
 
         }
 
         .variantPrice {
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: 'Nunito Sans Variable', sans-serif;
         }
     }
 
@@ -84,8 +85,8 @@
             font-size: 1.25rem;
             display: block;
             background: var(--color-dark);
-            font-family: 'IBM Plex Sans Variable', sans-serif;
-            font-weight: 400;
+            font-family: 'Nunito Sans Variable', sans-serif;
+            font-weight: 300;
             color: white;
             border: none;
             appearance: none;
@@ -95,16 +96,109 @@
     }
 }
 
+.lensDescription {
+    margin-bottom: 4rem;
+
+    * {
+        font-family: 'Courier Prime', monospace;
+        // font-weight: 300;
+        // color: black;
+        font-size: 1rem;
+        font-weight: 400;
+    }
+
+    .category {
+        font-size: .875em;
+        margin-left: 1em;
+    }
+
+    h3 {
+        display: inline;
+        font-weight: 700;
+
+        &:before {
+            // color: black;
+            content: "["
+        }
+
+        &:after {
+            content: "]"
+        }
+    }
+
+    strong {
+        font-weight: 700;
+
+        &:before {
+            // color: black;
+            content: "["
+        }
+
+        &:after {
+            // color: black;
+            content: "]"
+        }
+    }
+}
+
+.richText {
+    margin-top: 1rem;
+
+    p {
+        margin-bottom: 1em;
+    }
+
+    li {
+        line-height: 1;
+        margin-top: 1em;
+    }
+}
+
 
 .longDescription {
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
+
     span {
 
-        font-family: 'IBM Plex Mono', monospace;
-        font-weight: 300;
+        font-family: 'Courier Prime', monospace;
+        color: var(--color-grey) !important;
+        font-size: 1rem !important;
 
-        strong {
-            font-weight: 400;
+
+    }
+
+    h2 {
+
+        span {
+            font-family: 'Courier Prime', monospace !important;
+            font-weight: 700 !important;
+        }
+
+        &:before {
+            font-family: 'Courier Prime', monospace !important;
+            font-weight: 700 !important;
+            content: "["
+        }
+
+        &:after {
+            font-family: 'Courier Prime', monospace !important;
+            font-weight: 700 !important;
+            content: "]"
+        }
+    }
+
+    ul {
+        padding-inline-start: 0 !important;
+        margin: 0;
+
+        li {
+            list-style-type: none !important;
+            white-space: inherit !important;
+
+            p {
+                margin: 0 !important;
+                line-height: 1 !important;
+            }
         }
     }
 }

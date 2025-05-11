@@ -5,7 +5,7 @@ const Logo = () => (
     </g>
     <defs>
       <clipPath id="a">
-        <path fill="#fff" d="M.01 0H102v11.859H.01z"></path>
+        <path fill="#7F7F7F" d="M.01 0H102v11.859H.01z"></path>
       </clipPath>
     </defs>
   </svg>

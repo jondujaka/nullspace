@@ -22,6 +22,11 @@ import { PageLayout } from './components/PageLayout';
 import "@fontsource/ibm-plex-mono";
 import "@fontsource/ibm-plex-mono/300.css";
 import "@fontsource-variable/ibm-plex-sans";
+
+import '@fontsource/gruppo';
+import '@fontsource-variable/nunito-sans';
+import '@fontsource/courier-prime/400.css';
+import '@fontsource/courier-prime/700.css';
 export type RootLoader = typeof loader;
 
 /**
@@ -160,8 +165,6 @@ export function Layout({ children }: { children?: React.ReactNode }) {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <link rel="stylesheet" href={resetStyles}></link>
         <link rel="stylesheet" href={appStyles}></link>
-        {/* <link rel="stylesheet" href={ibmPlexSans} /> */}
-        {/* <link rel="stylesheet" href={ibmPlexMono} /> */}
         <title>NullSpace</title>
         <Meta />
         <Links />

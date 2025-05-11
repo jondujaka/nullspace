@@ -4,27 +4,57 @@
     display: flex;
     justify-content: flex-start;
     margin-bottom: 4rem;
- 
-   
+    margin-top: 2rem;
+
+    position: relative;
+    * {
+
+        font-family: 'Nunito Sans', sans-serif;
+    }
+
     .text {
-        p, a {
+        display: flex;
+        flex-direction: column;
+
+        a {
+            color: #22dbc9;
+            text-transform: uppercase;
+        }
+
+        p {
             color: var(--color-grey);
         }
 
         p {
             margin-bottom: 1rem;
         }
+
         padding: 1rem;
+
+        .extraText {
+            margin-top: 6rem;
+        }
     }
 
 
     .image {
+        position: absolute;
+        @media screen and (min-width: 768px) {
+            position: relative;
+        }
         img {
             max-width: 100%;
             height: auto;
         }
     }
-    > div {
-        width: 50%;
+
+    >div {
+
+        padding: 2rem;
+        width: 100%;
+
+        @media screen and (min-width: 768px) {
+            width: 50%;
+        }
     }
 }

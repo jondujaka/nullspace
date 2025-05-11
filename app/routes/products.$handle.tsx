@@ -98,7 +98,6 @@ export default function Product() {
 
   const carouselItems = product.media.nodes;
   
-  console.log({selectedVariant})
 
 
   return (
@@ -173,6 +172,19 @@ const PRODUCT_FRAGMENT = `#graphql
             id
             height
             altText
+          }
+        }
+      }
+    }
+    metafield(key: "lens", namespace: "custom") {
+      id
+      value
+      reference {
+        ... on Metaobject {
+          id
+          fields {
+            value
+            key
           }
         }
       }

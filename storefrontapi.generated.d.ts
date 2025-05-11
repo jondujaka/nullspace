@@ -437,6 +437,77 @@ export type HomeProductsQuery = {
   };
 };
 
+export type HomeAllProductsItemFragment = Pick<
+  StorefrontAPI.Product,
+  'id' | 'handle' | 'title'
+> & {
+  featuredImage?: StorefrontAPI.Maybe<
+    Pick<StorefrontAPI.Image, 'id' | 'altText' | 'url' | 'width' | 'height'>
+  >;
+  metafield?: StorefrontAPI.Maybe<
+    Pick<StorefrontAPI.Metafield, 'id'> & {
+      reference?: StorefrontAPI.Maybe<
+        Pick<StorefrontAPI.MediaImage, 'id'> & {
+          image?: StorefrontAPI.Maybe<
+            Pick<
+              StorefrontAPI.Image,
+              | 'originalSrc'
+              | 'src'
+              | 'transformedSrc'
+              | 'width'
+              | 'url'
+              | 'height'
+              | 'id'
+              | 'altText'
+            >
+          >;
+        }
+      >;
+    }
+  >;
+};
+
+export type HomeAllProductsQueryVariables = StorefrontAPI.Exact<{
+  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+}>;
+
+export type HomeAllProductsQuery = {
+  products: {
+    nodes: Array<
+      Pick<StorefrontAPI.Product, 'id' | 'handle' | 'title'> & {
+        featuredImage?: StorefrontAPI.Maybe<
+          Pick<
+            StorefrontAPI.Image,
+            'id' | 'altText' | 'url' | 'width' | 'height'
+          >
+        >;
+        metafield?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.Metafield, 'id'> & {
+            reference?: StorefrontAPI.Maybe<
+              Pick<StorefrontAPI.MediaImage, 'id'> & {
+                image?: StorefrontAPI.Maybe<
+                  Pick<
+                    StorefrontAPI.Image,
+                    | 'originalSrc'
+                    | 'src'
+                    | 'transformedSrc'
+                    | 'width'
+                    | 'url'
+                    | 'height'
+                    | 'id'
+                    | 'altText'
+                  >
+                >;
+              }
+            >;
+          }
+        >;
+      }
+    >;
+  };
+};
+
 export type VideoObjectFragment = {__typename: 'Video'} & Pick<
   StorefrontAPI.Video,
   'id' | 'mediaContentType' | 'alt'
@@ -509,7 +580,7 @@ export type HomePageMetaObjectsQuery = {
   metaobject?: StorefrontAPI.Maybe<
     Pick<StorefrontAPI.Metaobject, 'id'> & {
       fields: Array<
-        Pick<StorefrontAPI.MetaobjectField, 'value' | 'type'> & {
+        Pick<StorefrontAPI.MetaobjectField, 'value' | 'type' | 'key'> & {
           references?: StorefrontAPI.Maybe<{
             nodes: Array<
               | ({__typename: 'MediaImage'} & Pick<
@@ -615,6 +686,37 @@ export type HomePageMetaObjectsQuery = {
       >;
     }
   >;
+};
+
+export type AboutPageQueryVariables = StorefrontAPI.Exact<{
+  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+}>;
+
+export type AboutPageQuery = {
+  metaobject?: StorefrontAPI.Maybe<{
+    fields: Array<
+      Pick<StorefrontAPI.MetaobjectField, 'value' | 'type'> & {
+        reference?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.MediaImage, 'id'> & {
+            image?: StorefrontAPI.Maybe<
+              Pick<
+                StorefrontAPI.Image,
+                | 'originalSrc'
+                | 'src'
+                | 'transformedSrc'
+                | 'width'
+                | 'url'
+                | 'height'
+                | 'id'
+                | 'altText'
+              >
+            >;
+          }
+        >;
+      }
+    >;
+  }>;
 };
 
 export type ArticleQueryVariables = StorefrontAPI.Exact<{
@@ -727,6 +829,19 @@ export type BlogsQuery = {
       }
     >;
   };
+};
+
+export type FaqPageQueryVariables = StorefrontAPI.Exact<{
+  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+}>;
+
+export type FaqPageQuery = {
+  metaobject?: StorefrontAPI.Maybe<{
+    fields: Array<
+      Pick<StorefrontAPI.MetaobjectField, 'value' | 'type' | 'key'>
+    >;
+  }>;
 };
 
 export type JournalMetaObjectsQueryVariables = StorefrontAPI.Exact<{
@@ -946,6 +1061,15 @@ export type ProductFragment = Pick<
         }
     >;
   };
+  metafield?: StorefrontAPI.Maybe<
+    Pick<StorefrontAPI.Metafield, 'id' | 'value'> & {
+      reference?: StorefrontAPI.Maybe<
+        Pick<StorefrontAPI.Metaobject, 'id'> & {
+          fields: Array<Pick<StorefrontAPI.MetaobjectField, 'value' | 'key'>>;
+        }
+      >;
+    }
+  >;
   options: Array<
     Pick<StorefrontAPI.ProductOption, 'name'> & {
       optionValues: Array<
@@ -1078,6 +1202,17 @@ export type ProductQuery = {
             }
         >;
       };
+      metafield?: StorefrontAPI.Maybe<
+        Pick<StorefrontAPI.Metafield, 'id' | 'value'> & {
+          reference?: StorefrontAPI.Maybe<
+            Pick<StorefrontAPI.Metaobject, 'id'> & {
+              fields: Array<
+                Pick<StorefrontAPI.MetaobjectField, 'value' | 'key'>
+              >;
+            }
+          >;
+        }
+      >;
       options: Array<
         Pick<StorefrontAPI.ProductOption, 'name'> & {
           optionValues: Array<
@@ -1565,6 +1700,19 @@ export type PredictiveSearchQuery = {
   }>;
 };
 
+export type TocoPageQueryVariables = StorefrontAPI.Exact<{
+  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+}>;
+
+export type TocoPageQuery = {
+  metaobject?: StorefrontAPI.Maybe<{
+    fields: Array<
+      Pick<StorefrontAPI.MetaobjectField, 'value' | 'type' | 'key'>
+    >;
+  }>;
+};
+
 interface GeneratedQueryTypes {
   '#graphql\n  fragment Shop on Shop {\n    id\n    name\n    description\n    primaryDomain {\n      url\n    }\n    brand {\n      logo {\n        image {\n          url\n        }\n      }\n    }\n  }\n  query Header(\n    $country: CountryCode\n    $headerMenuHandle: String!\n    $language: LanguageCode\n  ) @inContext(language: $language, country: $country) {\n    shop {\n      ...Shop\n    }\n    menu(handle: $headerMenuHandle) {\n      ...Menu\n    }\n  }\n  #graphql\n  fragment MenuItem on MenuItem {\n    id\n    resourceId\n    tags\n    title\n    type\n    url\n  }\n  fragment ChildMenuItem on MenuItem {\n    ...MenuItem\n  }\n  fragment ParentMenuItem on MenuItem {\n    ...MenuItem\n    items {\n      ...ChildMenuItem\n    }\n  }\n  fragment Menu on Menu {\n    id\n    items {\n      ...ParentMenuItem\n    }\n  }\n\n': {
     return: HeaderQuery;
@@ -1586,9 +1734,17 @@ interface GeneratedQueryTypes {
     return: HomeProductsQuery;
     variables: HomeProductsQueryVariables;
   };
-  '#graphql\n\n\n  fragment VideoObject on Video {\n    id\n    __typename\n    sources {\n      url\n      width\n      mimeType\n      height\n      format\n    }\n    previewImage {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    presentation {\n      id\n    }\n   \n    mediaContentType\n    alt\n  }\n\n  fragment ImageObject on MediaImage {\n    id\n    __typename\n    \n    image {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    previewImage {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    presentation {\n      id\n    }\n    mediaContentType\n    alt\n  }\n\n\n  query HomePageMetaObjects($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    metaobject(handle: {handle: "home-page-ubjrgxn5", type: "home_page"}) {\n      id\n      fields {\n        value\n        type\n        references(first: 10){\n          nodes {\n            ...VideoObject\n            ...ImageObject\n          }\n        }\n          reference {\n          ...ImageObject\n          }\n      }\n    }\n  }\n': {
+  '#graphql\n\n  \n\n  fragment HomeAllProductsItem on Product {\n    id\n    handle\n    title\n    featuredImage {\n      id\n      altText\n      url\n      width\n      height\n    }\n    metafield(key: "thumbnail", namespace: "custom") {\n      id\n      reference {\n        ... on MediaImage {\n          id\n          image {\n            originalSrc\n            src\n            transformedSrc\n            width\n            url\n            height\n            id\n            altText\n          }\n        }\n      }\n    }\n  }\n\n\n   query HomeAllProducts($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    products(first: 20, sortKey: TITLE) {\n      nodes {\n        ...HomeAllProductsItem\n      }\n    }\n  }\n': {
+    return: HomeAllProductsQuery;
+    variables: HomeAllProductsQueryVariables;
+  };
+  '#graphql\n\n\n  fragment VideoObject on Video {\n    id\n    __typename\n    sources {\n      url\n      width\n      mimeType\n      height\n      format\n    }\n    previewImage {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    presentation {\n      id\n    }\n   \n    mediaContentType\n    alt\n  }\n\n  fragment ImageObject on MediaImage {\n    id\n    __typename\n    \n    image {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    previewImage {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    presentation {\n      id\n    }\n    mediaContentType\n    alt\n  }\n\n\n  query HomePageMetaObjects($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    metaobject(handle: {handle: "home-page-ubjrgxn5", type: "home_page"}) {\n      id\n      fields {\n        value\n        type\n        key\n        references(first: 10){\n          nodes {\n            ...VideoObject\n            ...ImageObject\n          }\n        }\n          reference {\n          ...ImageObject\n          }\n      }\n    }\n  }\n': {
     return: HomePageMetaObjectsQuery;
     variables: HomePageMetaObjectsQueryVariables;
+  };
+  '#graphql\n\nquery AboutPage($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n        metaobject(handle: {handle: "about-page-description-zsw7daga", type: "about_page_description"}) {\n            fields {\n                value\n                reference {\n                    ... on MediaImage {\n                        id\n                        image {\n                            originalSrc\n                            src\n                            transformedSrc\n                            width\n                            url\n                            height\n                            id\n                            altText\n                        }\n                    }\n                }\n                type\n            }\n        }\n    }\n\n': {
+    return: AboutPageQuery;
+    variables: AboutPageQueryVariables;
   };
   '#graphql\n  query Article(\n    $articleHandle: String!\n    $blogHandle: String!\n    $country: CountryCode\n    $language: LanguageCode\n  ) @inContext(language: $language, country: $country) {\n    blog(handle: $blogHandle) {\n      articleByHandle(handle: $articleHandle) {\n        title\n        contentHtml\n        publishedAt\n        author: authorV2 {\n          name\n        }\n        image {\n          id\n          altText\n          url\n          width\n          height\n        }\n        seo {\n          description\n          title\n        }\n      }\n    }\n  }\n': {
     return: ArticleQuery;
@@ -1601,6 +1757,10 @@ interface GeneratedQueryTypes {
   '#graphql\n  query Blogs(\n    $country: CountryCode\n    $endCursor: String\n    $first: Int\n    $language: LanguageCode\n    $last: Int\n    $startCursor: String\n  ) @inContext(country: $country, language: $language) {\n    blogs(\n      first: $first,\n      last: $last,\n      before: $startCursor,\n      after: $endCursor\n    ) {\n      pageInfo {\n        hasNextPage\n        hasPreviousPage\n        startCursor\n        endCursor\n      }\n      nodes {\n        title\n        handle\n        seo {\n          title\n          description\n        }\n      }\n    }\n  }\n': {
     return: BlogsQuery;
     variables: BlogsQueryVariables;
+  };
+  '#graphql\n\nquery FaqPage($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n        metaobject(handle: {handle: "frequently-asked-questions-faq", type: "information_pages"}) {\n            fields {\n                value\n                type\n                key\n            }\n        }\n    }\n\n': {
+    return: FaqPageQuery;
+    variables: FaqPageQueryVariables;
   };
   '#graphql \n\n  fragment ImageObject on MediaImage {\n    id\n    __typename\n    \n    image {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    previewImage {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    presentation {\n      id\n    }\n    mediaContentType\n    alt\n  }\n\n  query JournalMetaObjects($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    metaobject(handle: {handle: "journal-6dwwqnuc", type: "journal"}) {\n      id\n      fields {\n        value\n        type\n        references(first: 10){\n          nodes {\n            ...ImageObject\n          }\n        }\n          reference {\n          ...ImageObject\n          }\n      }\n    }\n  }\n    \n  \n  ': {
     return: JournalMetaObjectsQuery;
@@ -1618,7 +1778,7 @@ interface GeneratedQueryTypes {
     return: PoliciesQuery;
     variables: PoliciesQueryVariables;
   };
-  '#graphql\n  query Product(\n    $country: CountryCode\n    $handle: String!\n    $language: LanguageCode\n    $selectedOptions: [SelectedOptionInput!]!\n  ) @inContext(country: $country, language: $language) {\n    product(handle: $handle) {\n      ...Product\n    }\n  }\n  #graphql\n  fragment Product on Product {\n    id\n    title\n    vendor\n    handle\n    descriptionHtml\n    description\n    encodedVariantExistence\n    encodedVariantAvailability\n    media(first: 10){\n      nodes {\n        ... on MediaImage {\n          id\n          __typename\n          previewImage {\n            width\n            url\n            id\n            height\n            altText\n          }\n          image {\n            width\n            url\n            id\n            height\n            altText\n          }\n        }\n      }\n    }\n    options {\n      name\n      optionValues {\n        name\n        firstSelectableVariant {\n          ...ProductVariant\n        }\n        swatch {\n          color\n          image {\n            previewImage {\n              url\n            }\n          }\n        }\n      }\n    }\n    selectedOrFirstAvailableVariant(selectedOptions: $selectedOptions, ignoreUnknownOptions: true, caseInsensitiveMatch: true) {\n      ...ProductVariant\n    }\n    adjacentVariants (selectedOptions: $selectedOptions) {\n      ...ProductVariant\n    }\n    seo {\n      description\n      title\n    }\n  }\n  #graphql\n\n  fragment ProductVariant on ProductVariant {\n    availableForSale\n    compareAtPrice {\n      amount\n      currencyCode\n    }\n    id\n    image {\n      __typename\n      id\n      url\n      altText\n      width\n      height\n    }\n    price {\n      amount\n      currencyCode\n    }\n    product {\n      title\n      handle\n    }\n    selectedOptions {\n      name\n      value\n    }\n    sku\n    title\n    unitPrice {\n      amount\n      currencyCode\n    }\n  }\n\n\n': {
+  '#graphql\n  query Product(\n    $country: CountryCode\n    $handle: String!\n    $language: LanguageCode\n    $selectedOptions: [SelectedOptionInput!]!\n  ) @inContext(country: $country, language: $language) {\n    product(handle: $handle) {\n      ...Product\n    }\n  }\n  #graphql\n  fragment Product on Product {\n    id\n    title\n    vendor\n    handle\n    descriptionHtml\n    description\n    encodedVariantExistence\n    encodedVariantAvailability\n    media(first: 10){\n      nodes {\n        ... on MediaImage {\n          id\n          __typename\n          previewImage {\n            width\n            url\n            id\n            height\n            altText\n          }\n          image {\n            width\n            url\n            id\n            height\n            altText\n          }\n        }\n      }\n    }\n    metafield(key: "lens", namespace: "custom") {\n      id\n      value\n      reference {\n        ... on Metaobject {\n          id\n          fields {\n            value\n            key\n          }\n        }\n      }\n    }\n    options {\n      name\n      optionValues {\n        name\n        firstSelectableVariant {\n          ...ProductVariant\n        }\n        swatch {\n          color\n          image {\n            previewImage {\n              url\n            }\n          }\n        }\n      }\n    }\n    selectedOrFirstAvailableVariant(selectedOptions: $selectedOptions, ignoreUnknownOptions: true, caseInsensitiveMatch: true) {\n      ...ProductVariant\n    }\n    adjacentVariants (selectedOptions: $selectedOptions) {\n      ...ProductVariant\n    }\n    seo {\n      description\n      title\n    }\n  }\n  #graphql\n\n  fragment ProductVariant on ProductVariant {\n    availableForSale\n    compareAtPrice {\n      amount\n      currencyCode\n    }\n    id\n    image {\n      __typename\n      id\n      url\n      altText\n      width\n      height\n    }\n    price {\n      amount\n      currencyCode\n    }\n    product {\n      title\n      handle\n    }\n    selectedOptions {\n      name\n      value\n    }\n    sku\n    title\n    unitPrice {\n      amount\n      currencyCode\n    }\n  }\n\n\n': {
     return: ProductQuery;
     variables: ProductQueryVariables;
   };
@@ -1637,6 +1797,10 @@ interface GeneratedQueryTypes {
   '#graphql\n  query PredictiveSearch(\n    $country: CountryCode\n    $language: LanguageCode\n    $limit: Int!\n    $limitScope: PredictiveSearchLimitScope!\n    $term: String!\n    $types: [PredictiveSearchType!]\n  ) @inContext(country: $country, language: $language) {\n    predictiveSearch(\n      limit: $limit,\n      limitScope: $limitScope,\n      query: $term,\n      types: $types,\n    ) {\n      articles {\n        ...PredictiveArticle\n      }\n      collections {\n        ...PredictiveCollection\n      }\n      pages {\n        ...PredictivePage\n      }\n      products {\n        ...PredictiveProduct\n      }\n      queries {\n        ...PredictiveQuery\n      }\n    }\n  }\n  #graphql\n  fragment PredictiveArticle on Article {\n    __typename\n    id\n    title\n    handle\n    blog {\n      handle\n    }\n    image {\n      url\n      altText\n      width\n      height\n    }\n    trackingParameters\n  }\n\n  #graphql\n  fragment PredictiveCollection on Collection {\n    __typename\n    id\n    title\n    handle\n    image {\n      url\n      altText\n      width\n      height\n    }\n    trackingParameters\n  }\n\n  #graphql\n  fragment PredictivePage on Page {\n    __typename\n    id\n    title\n    handle\n    trackingParameters\n  }\n\n  #graphql\n  fragment PredictiveProduct on Product {\n    __typename\n    id\n    title\n    handle\n    trackingParameters\n    selectedOrFirstAvailableVariant(\n      selectedOptions: []\n      ignoreUnknownOptions: true\n      caseInsensitiveMatch: true\n    ) {\n      id\n      image {\n        url\n        altText\n        width\n        height\n      }\n      price {\n        amount\n        currencyCode\n      }\n    }\n  }\n\n  #graphql\n  fragment PredictiveQuery on SearchQuerySuggestion {\n    __typename\n    text\n    styledText\n    trackingParameters\n  }\n\n': {
     return: PredictiveSearchQuery;
     variables: PredictiveSearchQueryVariables;
+  };
+  '#graphql\n\nquery TocoPage($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n        metaobject(handle: {handle: "terms-and-conditions", type: "information_pages"}) {\n            fields {\n                value\n                type\n                key\n            }\n        }\n    }\n\n': {
+    return: TocoPageQuery;
+    variables: TocoPageQueryVariables;
   };
 }
 

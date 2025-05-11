@@ -5,7 +5,7 @@ import type {
   FooterQuery,
   HeaderQuery,
 } from 'storefrontapi.generated';
-import {Aside} from '~/components/Aside';
+import {Aside} from '~/components/Aside/Aside';
 import Footer from '~/components/Footer/Footer';
 import Header from '~/components/Header/Header';
 import {CartMain} from '~/components/CartMain/CartMain';
@@ -80,11 +80,9 @@ function SearchAside() {
                 onFocus={fetchResults}
                 placeholder="Search"
                 ref={inputRef}
-                type="search"
+                type="text"
                 list={queriesDatalistId}
               />
-              &nbsp;
-              <button onClick={goToSearch}>Search</button>
             </>
           )}
         </SearchFormPredictive>
@@ -127,17 +125,6 @@ function SearchAside() {
                   closeSearch={closeSearch}
                   term={term}
                 />
-                {term.current && total ? (
-                  <Link
-                    onClick={closeSearch}
-                    to={`${SEARCH_ENDPOINT}?q=${term.current}`}
-                  >
-                    <p>
-                      View all results for <q>{term.current}</q>
-                      &nbsp; →
-                    </p>
-                  </Link>
-                ) : null}
               </>
             );
           }}

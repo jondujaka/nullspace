@@ -6,7 +6,7 @@ import {
   useAnalytics,
   useOptimisticCart,
 } from '@shopify/hydrogen';
-import { useAside } from '../Aside';
+import { useAside } from '../Aside/Aside';
 import CartButton from './CartButton';
 import Logo from '../Logo';
 import BrandedLink from '../BrandedLink/BrandedLink';

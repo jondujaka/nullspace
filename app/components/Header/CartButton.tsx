@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Await, NavLink, useAsyncValue } from '@remix-run/react';
 
-import { useAside } from '../Aside';
+import { useAside } from '../Aside/Aside';
 import { CartViewPayload, useAnalytics, useOptimisticCart } from '@shopify/hydrogen';
 import { CartApiQueryFragment } from 'storefrontapi.generated';
 import BrandedLink from '../BrandedLink/BrandedLink';
@@ -34,7 +34,7 @@ function CartBadge({ count }: { count: number | null }) {
                 } as CartViewPayload);
             }}
         >
-            <BrandedLink text={`cart ${count === null ? `&nbsp` : `(${count})`}`} />
+            <BrandedLink text={`cart ${count === null ? `&nbsp` : `[${count}]`}`} />
         </a>
     );
 }

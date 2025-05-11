@@ -33,17 +33,11 @@ export default function Footer() {
                 <NavLink
                     end
                     prefetch="intent"
-                    to={"/terms-conditions"}
+                    to={"/policies"}
                 >
-                    Terms & Conditions
+                    Policies
                 </NavLink>
-                <NavLink
-                    end
-                    prefetch="intent"
-                    to={"/prviacy"}
-                >
-                    Privacy
-                </NavLink>
+
                 <a href="https://instagram.com/jdujaka" rel="noopener noreferrer" target="_blank">
                     Instagram
                 </a>

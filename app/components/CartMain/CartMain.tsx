@@ -1,7 +1,7 @@
 import {useOptimisticCart} from '@shopify/hydrogen';
 import {Link} from '@remix-run/react';
 import type {CartApiQueryFragment} from 'storefrontapi.generated';
-import {useAside} from '~/components/Aside';
+import {useAside} from '~/components/Aside/Aside';
 import {CartLineItem} from '~/components/CartLineItem/CartLineItem';
 import {CartSummary} from '~/components/CartSummary/CartSummary';
 
@@ -60,8 +60,8 @@ function CartEmpty({
         started!
       </p>
       <br />
-      <Link to="/collections" onClick={close} prefetch="viewport">
-        Continue shopping →
+      <Link to="/products" onClick={close} prefetch="viewport">
+        See all products →
       </Link>
     </div>
   );

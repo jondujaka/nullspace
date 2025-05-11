@@ -5,9 +5,11 @@ import Carousel from '~/components/Carousel/Carousel';
 import ImagesSection from '~/components/Products/ImagesSection';
 import LinkSection from '~/components/LinkSection/LinkSection';
 import AboutSection from '~/components/AboutSection/AboutSection';
+import ShopProducts from '~/components/ShopProducts/ShopProducts';
+import { Image } from '@shopify/hydrogen';
 
 export const meta: MetaFunction = () => {
-  return [{ title: 'Hydrogen | Home' }];
+  return [{ title: 'NullSpace' }];
 };
 
 export async function loader(args: LoaderFunctionArgs) {
@@ -25,19 +27,20 @@ export async function loader(args: LoaderFunctionArgs) {
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  */
 async function loadCriticalData({ context }: LoaderFunctionArgs) {
-  const [{ products }, { metaobject }, {metaobjects}] = await Promise.all([
+  const [{ products }, { metaobject }, { metaobjects }, { products: allProducts }] = await Promise.all([
     context.storefront.query(HOME_PRODUCTS),
     context.storefront.query(HOME_VIDEOS_QUERY),
-    context.storefront.query(HOME_IMAGES_SECTION)
+    context.storefront.query(HOME_IMAGES_SECTION),
+    context.storefront.query(HOME_ALL_PRODUCTS),
     // Add other queries here, so that they are loaded in parallel
   ]);
 
-  console.log(metaobjects)
 
   return {
     homeProducts: products.nodes,
     metaobject: metaobject,
-    imagesSection: metaobjects.nodes
+    imagesSection: metaobjects.nodes,
+    allProducts: allProducts
   };
 }
 
@@ -52,21 +55,28 @@ export default function Homepage() {
   const data = useLoaderData<typeof loader>();
 
 
-  const carouselMeta =  data.metaobject?.fields.find(field => Boolean(field.references))
+  const carouselMeta = data.metaobject?.fields.find(field => field.key === 'home_page_videos')
   const carouselItems = carouselMeta?.references?.nodes.filter(Boolean);
-  
 
-  const text = data.metaobject?.fields.find(field => field.type === 'rich_text_field')?.value;
-  const image = data.metaobject?.fields.find(field => field.type === 'file_reference')?.reference;
 
-  console.log({text})
+  console.log(data.metaobject)
+
+
+  const text = data.metaobject?.fields.find(field => field.key === "home_page_text_section")?.value;
+  const image = data.metaobject?.fields.find(field => field.key === "home_page_image")?.reference;
+
+  const lastImage = data.metaobject?.fields.find(field => field.key === "last_image")?.reference;
+
+  const allproducts = data?.allProducts;
 
   return (
     <div className="home">
 
-      {carouselItems && <Carousel items={carouselItems} />}
+      {carouselItems && <div className="carousel-wrapper"><Carousel items={carouselItems} /></div>}
       <ImagesSection items={data.imagesSection} />
+      {allproducts?.nodes && <ShopProducts products={allproducts.nodes} isSmall />}
       <LinkSection text="VIEW FULL COLLECTION" link="/products" />
+      {lastImage?.image && <div className="image-wrapper"><Image data={lastImage.image} sizes="100vw" /></div>}
       {image && text && <AboutSection richtext={text} image={image} />}
     </div>
   );
@@ -169,6 +179,53 @@ const HOME_PRODUCTS = `#graphql
 ` as const;
 
 
+const HOME_ALL_PRODUCTS = `#graphql
+
+  
+
+  fragment HomeAllProductsItem on Product {
+    id
+    handle
+    title
+    featuredImage {
+      id
+      altText
+      url
+      width
+      height
+    }
+    metafield(key: "thumbnail", namespace: "custom") {
+      id
+      reference {
+        ... on MediaImage {
+          id
+          image {
+            originalSrc
+            src
+            transformedSrc
+            width
+            url
+            height
+            id
+            altText
+          }
+        }
+      }
+    }
+  }
+
+
+   query HomeAllProducts($country: CountryCode, $language: LanguageCode)
+    @inContext(country: $country, language: $language) {
+    products(first: 20, sortKey: TITLE) {
+      nodes {
+        ...HomeAllProductsItem
+      }
+    }
+  }
+` as const;
+
+
 const HOME_VIDEOS_QUERY = `#graphql
 
 
@@ -239,6 +296,7 @@ const HOME_VIDEOS_QUERY = `#graphql
       fields {
         value
         type
+        key
         references(first: 10){
           nodes {
             ...VideoObject

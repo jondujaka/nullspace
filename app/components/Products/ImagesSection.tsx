@@ -9,10 +9,7 @@ import BrandedLink from '../BrandedLink/BrandedLink';
 export default function ImagesSection({ items }: { items: HomeImagesSectionQuery['metaobjects']['nodes'] }) {
 
 
-    console.log({ items })
-
-
-
+ 
     return <div className={styles.products}>{items.map((item, i) => {
 
 
@@ -25,6 +22,8 @@ export default function ImagesSection({ items }: { items: HomeImagesSectionQuery
         const featuredImage = item.fields.find(field => field.type === 'file_reference')?.reference;
 
         const product = item.fields.find(field => field.type === 'product_reference');
+
+        const title = item.fields.find(field => field.type === 'single_line_text_field')?.value;
 
 
 
@@ -51,7 +50,7 @@ export default function ImagesSection({ items }: { items: HomeImagesSectionQuery
                 )}
 
                 <div className={styles.productInfo}>
-                    <div className={styles.textWrapper}><BrandedLink isActive text={product.reference?.title} /></div>
+                    <div className={styles.textWrapper}><BrandedLink isActive text={title ?? product.reference.title} /></div>
                 </div>
             </Link>
         </div>

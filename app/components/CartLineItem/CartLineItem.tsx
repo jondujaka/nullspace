@@ -6,7 +6,7 @@ import {CartForm, Image, type OptimisticCartLine} from '@shopify/hydrogen';
 import {useVariantUrl} from '~/lib/variants';
 import {Link} from '@remix-run/react';
 import {ProductPrice} from '../ProductPrice/ProductPrice';
-import {useAside} from '../Aside';
+import {useAside} from '../Aside/Aside';
 import type {CartApiQueryFragment} from 'storefrontapi.generated';
 
 type CartLine = OptimisticCartLine<CartApiQueryFragment>;
@@ -55,16 +55,9 @@ export function CartLineItem({
           </p>
         </Link>
         <ProductPrice price={line?.cost?.totalAmount} />
-        <ul>
-          {selectedOptions.map((option) => (
-            <li key={option.name}>
-              <small>
-                {option.name}: {option.value}
-              </small>
-            </li>
-          ))}
-        </ul>
+
         <CartLineQuantity line={line} />
+        <CartLineRemoveButton lineIds={[line.id]} disabled={!!line.isOptimistic} />
       </div>
     </li>
   );
@@ -106,7 +99,7 @@ function CartLineQuantity({line}: {line: CartLine}) {
         </button>
       </CartLineUpdateButton>
       &nbsp;
-      <CartLineRemoveButton lineIds={[lineId]} disabled={!!isOptimistic} />
+      
     </div>
   );
 }
@@ -129,7 +122,7 @@ function CartLineRemoveButton({
       action={CartForm.ACTIONS.LinesRemove}
       inputs={{lineIds}}
     >
-      <button disabled={disabled} type="submit">
+      <button disabled={disabled} type="submit" className={styles.removeButton}>
         Remove
       </button>
     </CartForm>

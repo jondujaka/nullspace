@@ -8,9 +8,13 @@ import { useVariantUrl } from "~/lib/variants";
 
 type Product = ShopProductsQuery['products']['nodes'][0]
 
-export default function ShopProducts({ products }: { products: ShopProductsQuery['products']['nodes'] }) {
-    
-    return <div className={styles.productsWrapper}>{products.map(product => <ProductItem key={product.id} product={product} />)} </div>
+export default function ShopProducts({ products, isSmall }: { products: ShopProductsQuery['products']['nodes'], isSmall?: boolean }) {
+
+
+    if (!products) {
+        return;
+    }
+    return <div className={`${styles.productsWrapper} ${isSmall ? styles.smallWrapper : ""}`}>{products.map(product => <ProductItem key={product.id} product={product} />)} </div>
 }
 
 
@@ -21,9 +25,9 @@ function ProductItem({
     product: Product;
 }) {
 
-    
+
     const productUrl = `/products/${product.handle}`
-    const variant = product.variants.nodes[0];
+    const variant = product.variants?.nodes[0];
 
     const thumbnail = product.metafield?.reference?.image
 
@@ -45,7 +49,7 @@ function ProductItem({
 
             <div className={styles.productInfo}>
                 <h4>{product.title}</h4>
-                <Money data={variant.price} withoutTrailingZeros />
+                {variant && <Money data={variant.price} withoutTrailingZeros />}
 
             </div>
         </Link>

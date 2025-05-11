@@ -3,13 +3,14 @@
     display: flex;
     height: var(--header-height);
     padding: 0 2rem;
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
-    z-index: 1;
-    background: var(--color-light);
+    z-index: 900;
+    background: transparent;
 
     * {
-        font-family: "IBM Plex Mono";
+        font-family: 'Gruppo', sans-serif;
     }
 }
 
@@ -31,11 +32,11 @@
 
     a,button {
         color: var(--color-grey);
-        font-family: 'IBM Plex Mono';
+        font-family: 'Gruppo', sans-serif;
         text-transform: lowercase;
         margin: 0;
         padding: 0;
-        font-size: .875rem;
+        font-size: 1.25rem;
         line-height: 1.5;
 
     }
@@ -69,7 +70,7 @@
     &:hover,
     &.active {
         svg * {
-            fill: var(--color-dark);
+            // fill: var(--color-dark);
         }
     }
 }
