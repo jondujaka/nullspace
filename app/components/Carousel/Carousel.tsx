@@ -42,7 +42,7 @@ const Carousel = ({ items = [] }: { items?: (VideoType | ImageObjectFragment)[] 
                 }
 
                 if (item.__typename === 'Video') {
-                    return <Video controls={false} preload='auto' key={item.id} data={item} autoPlay muted playsInline />
+                    return <Video loop controls={false} preload='auto' key={item.id} data={item} autoPlay muted playsInline />
                 }
 
 
