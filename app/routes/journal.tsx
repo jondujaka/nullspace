@@ -30,9 +30,6 @@ export default function Journal() {
 
     const data = useLoaderData<typeof loader>();
 
-    console.log({ data })
-
-    const metaObjects = data.media;
     const metaObject = data.media && data.media[0]
 
     const items = metaObject?.references?.nodes;

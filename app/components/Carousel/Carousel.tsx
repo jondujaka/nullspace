@@ -3,21 +3,32 @@ import styles from './Carousel.module.scss'
 import { Image, Video } from "@shopify/hydrogen";
 import type { MediaImage as ImageType, Video as VideoType } from "@shopify/hydrogen/storefront-api-types";
 import Controls from './Controls';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ImageObjectFragment } from 'storefrontapi.generated';
+import { useSnapCarousel } from 'react-snap-carousel';
 
 
-const Carousel = ({ items = [] }: { items?: (VideoType | ImageObjectFragment)[] }) => {
+const Carousel = ({ items = [], isHomepage = false }: { items?: (VideoType | MediaImage)[]; isHomepage: boolean }) => {
 
     const [active, setActive] = useState(0)
+    const {
+        scrollRef,
+        pages,
+        activePageIndex,
+        hasPrevPage,
+        hasNextPage,
+        prev,
+        next,
+        goTo,
+        snapPointIndexes
+    } = useSnapCarousel();
 
     const handleSwitch = (id: number) => {
         setActive(id)
     }
-
     const thumbnails = items?.map(item => {
 
-        if (item.__typename === 'MediaImage') {
+        if (item.type === 'MediaImage' || item.__typename === 'MediaImage') {
             return item.previewImage;
         }
 
@@ -28,15 +39,21 @@ const Carousel = ({ items = [] }: { items?: (VideoType | ImageObjectFragment)[] 
         }
     }).filter(Boolean)
 
-    return <>
-        <div className={styles.carousel}>
+    console.log({ items })
+
+
+    console.log({ thumbnails })
+
+    return <div className={styles.wrapper}>
+        <div className={`${styles.carousel} ${isHomepage ? styles.isHomepage : ""}`} ref={scrollRef}>
+
 
             {!Boolean(items.length) && <div className={styles.noImage}>[ No image ]</div>}
             {Boolean(items?.length) && items.map((item, i) => {
 
-                if (!item || i !== active) {
-                    return null;
-                }
+                // if (!item || i !== active) {
+                //     return null;
+                // }
                 if (item.__typename === 'MediaImage' && item.image) {
                     return <Image loading='eager' key={item.id} data={item.image} width={item.image.width ?? "auto"} height={item.image.height ?? "auto"} />
                 }
@@ -52,10 +69,10 @@ const Carousel = ({ items = [] }: { items?: (VideoType | ImageObjectFragment)[] 
 
             {/* <div className={styles.unmute} ><button onClick={() => setIsVideoMuted(false)}>unmute</button></div> */}
 
-            <Controls activeIndex={active} callback={handleSwitch} items={thumbnails} classes={styles.controls} />
-        </div>
 
-    </>
+        </div>
+        <Controls activeIndex={activePageIndex} callback={handleSwitch} items={thumbnails} goTo={goTo} classes={`${styles.controls} ${isHomepage ? styles.homepageControls : ''}`} />
+    </div>
 }
 
 export default Carousel

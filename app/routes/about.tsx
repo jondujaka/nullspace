@@ -30,8 +30,6 @@ export default function About() {
 
     const data = useLoaderData<typeof loader>();
 
-    console.log(data);
-
     if(!data?.metaobject){
         return null;
     }

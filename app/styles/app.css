@@ -106,7 +106,7 @@ aside li {
   transition: opacity 400ms ease-in-out;
   transition: opacity 400ms;
   visibility: hidden;
-  z-index: 10;
+  z-index: 1000;
 }
 
 .overlay .close-outside {
@@ -437,8 +437,13 @@ button.reset:hover:not(:has(> *)) {
 */
 .product {
   width: 100%;
-  padding: 0 1rem;
 
+}
+
+@media screen and (min-width: 960px) {
+  .product {
+    padding: 0 1rem;
+  }
 }
 
 /* .product h1 {
@@ -544,10 +549,21 @@ button.reset:hover:not(:has(> *)) {
 
 .content-wrapper,
 .cart {
-  padding: 4rem 2rem;
-  max-width: 960px;
+  padding: 4rem 1rem;
 
-  min-height: calc(100vh - var(--footer-height));
+}
+
+
+@media screen and (min-width: 960px) {
+
+  .content-wrapper,
+  .cart {
+    padding: 4rem 2rem;
+    max-width: 960px;
+  
+    min-height: calc(100vh - var(--footer-height));
+  }
+  
 }
 
 .content-wrapper h1,
@@ -596,7 +612,7 @@ button.reset:hover:not(:has(> *)) {
   border-radius: 0;
   width: 100%;
   color: black;
-  
+
   font-family: 'Nunito Sans Variable', sans-serif;
 }
 

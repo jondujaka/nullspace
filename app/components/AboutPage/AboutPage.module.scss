@@ -1,11 +1,21 @@
 .wrapper {
     width: 100%;
-    padding: 2rem;
+    
     position: relative;
-    min-height: calc(100vh - var(--footer-height));
     overflow: hidden;
     background: url("https://cdn.shopify.com/s/files/1/0891/8627/1565/files/ABOUT_IMAGE.png?v=1745601081") no-repeat top right;
     background-size: 50%;
+
+
+    padding: 1rem;
+    margin-top: 3rem;
+
+    @media screen and (min-width: 960px) {
+        
+    min-height: calc(100vh - var(--footer-height));
+        margin: 0;
+        padding: 2rem
+    }
 }
 
 .text {

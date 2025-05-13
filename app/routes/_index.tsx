@@ -72,7 +72,7 @@ export default function Homepage() {
   return (
     <div className="home">
 
-      {carouselItems && <div className="carousel-wrapper"><Carousel items={carouselItems} /></div>}
+      {carouselItems && <div className="carousel-wrapper"><Carousel items={carouselItems} isHomepage/></div>}
       <ImagesSection items={data.imagesSection} />
       {allproducts?.nodes && <ShopProducts products={allproducts.nodes} isSmall />}
       <LinkSection text="VIEW FULL COLLECTION" link="/products" />
