@@ -1,5 +1,9 @@
 footer {
   
+    @media screen and (min-width: 960px) {
+        height: 130px;
+        flex-direction: row;
+    }
     background: var(--color-light);
     display: flex;
     align-items: center;
@@ -9,10 +13,6 @@ footer {
     flex-direction: column;
     border-top: 1px solid var(--color-grey);
 
-    @media screen and (min-width: 960px) {
-        height: 130px;
-        flex-direction: row;
-    }
 
 }
 
@@ -39,12 +39,13 @@ footer {
 }
 
 .newsletterButton {
-
-    margin: 3rem 0;
     @media screen and (min-width: 960px) {
         margin: 0;
     }
 
+
+    margin: 3rem 0;
+   
     a {
         color: var(--color-light);
         background: var(--color-grey);

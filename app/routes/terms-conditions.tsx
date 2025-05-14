@@ -29,8 +29,6 @@ async function loadCriticalData({ context }: LoaderFunctionArgs) {
 export default function TOCPage() {
     const data = useLoaderData<typeof loader>();
 
-    console.log(data);
-
     if (!data?.metaobject) {
         return null;
     }

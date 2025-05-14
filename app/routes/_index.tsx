@@ -7,6 +7,8 @@ import LinkSection from '~/components/LinkSection/LinkSection';
 import AboutSection from '~/components/AboutSection/AboutSection';
 import ShopProducts from '~/components/ShopProducts/ShopProducts';
 import { Image } from '@shopify/hydrogen';
+import { Image as ImageType } from '@shopify/hydrogen/storefront-api-types';
+import useElementOnScreen from '~/hooks/useElementOnScreen';
 
 export const meta: MetaFunction = () => {
   return [{ title: 'NullSpace' }];
@@ -59,9 +61,6 @@ export default function Homepage() {
   const carouselItems = carouselMeta?.references?.nodes.filter(Boolean);
 
 
-  console.log(data.metaobject)
-
-
   const text = data.metaobject?.fields.find(field => field.key === "home_page_text_section")?.value;
   const image = data.metaobject?.fields.find(field => field.key === "home_page_image")?.reference;
 
@@ -72,14 +71,24 @@ export default function Homepage() {
   return (
     <div className="home">
 
-      {carouselItems && <div className="carousel-wrapper"><Carousel items={carouselItems} isHomepage/></div>}
+      {carouselItems && <div className="carousel-wrapper"><Carousel items={carouselItems} isHomepage /></div>}
       <ImagesSection items={data.imagesSection} />
       {allproducts?.nodes && <ShopProducts products={allproducts.nodes} isSmall />}
       <LinkSection text="VIEW FULL COLLECTION" link="/products" />
-      {lastImage?.image && <div className="image-wrapper"><Image data={lastImage.image} sizes="100vw" /></div>}
+      {lastImage?.image && <LastImage image={lastImage.image} />}
       {image && text && <AboutSection richtext={text} image={image} />}
     </div>
   );
+}
+
+function LastImage({ image }: { image: Partial<ImageType> }) {
+  const [containerRef, isVisible] = useElementOnScreen({
+    threshold: .2,
+  });
+
+
+
+  return <div ref={containerRef} className="image-wrapper on-scroll"><Image className={isVisible ? 'reveal' : ''} data={image} sizes="100vw" /></div>
 }
 
 

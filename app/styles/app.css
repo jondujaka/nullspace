@@ -544,6 +544,9 @@ button.reset:hover:not(:has(> *)) {
   background: #000;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
 
 /* CONTENT PAGES */
 
@@ -560,10 +563,10 @@ button.reset:hover:not(:has(> *)) {
   .cart {
     padding: 4rem 2rem;
     max-width: 960px;
-  
+
     min-height: calc(100vh - var(--footer-height));
   }
-  
+
 }
 
 .content-wrapper h1,
@@ -623,7 +626,19 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .image-wrapper img {
+
+
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: .5s ease-in-out;
+  transition-delay: .2s;
+
   display: block;
   width: 100%;
   height: auto;
+}
+
+.image-wrapper img.reveal {
+  opacity: 1;
+  transform: translateY(0);
 }

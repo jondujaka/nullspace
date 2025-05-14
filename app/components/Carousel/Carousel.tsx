@@ -39,10 +39,6 @@ const Carousel = ({ items = [], isHomepage = false }: { items?: (VideoType | Med
         }
     }).filter(Boolean)
 
-    console.log({ items })
-
-
-    console.log({ thumbnails })
 
     return <div className={styles.wrapper}>
         <div className={`${styles.carousel} ${isHomepage ? styles.isHomepage : ""}`} ref={scrollRef}>
