@@ -10,22 +10,17 @@ import { useSnapCarousel } from 'react-snap-carousel';
 
 const Carousel = ({ items = [], isHomepage = false }: { items?: (VideoType | MediaImage)[]; isHomepage: boolean }) => {
 
-    const [active, setActive] = useState(0)
+
     const {
         scrollRef,
-        pages,
+
         activePageIndex,
-        hasPrevPage,
-        hasNextPage,
-        prev,
-        next,
+
         goTo,
-        snapPointIndexes
+
     } = useSnapCarousel();
 
-    const handleSwitch = (id: number) => {
-        setActive(id)
-    }
+
     const thumbnails = items?.map(item => {
 
         if (item.type === 'MediaImage' || item.__typename === 'MediaImage') {
@@ -63,11 +58,10 @@ const Carousel = ({ items = [], isHomepage = false }: { items?: (VideoType | Med
             }
             )}
 
-            {/* <div className={styles.unmute} ><button onClick={() => setIsVideoMuted(false)}>unmute</button></div> */}
 
 
         </div>
-        <Controls activeIndex={activePageIndex} callback={handleSwitch} items={thumbnails} goTo={goTo} classes={`${styles.controls} ${isHomepage ? styles.homepageControls : ''}`} />
+        <Controls activeIndex={activePageIndex} items={thumbnails} goTo={goTo} classes={`${styles.controls} ${isHomepage ? styles.homepageControls : ''}`} />
     </div>
 }
 

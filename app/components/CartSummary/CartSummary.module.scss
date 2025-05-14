@@ -1,0 +1,25 @@
+.checkoutButton {
+    cursor: pointer;
+    // line-height: 1;
+    display: block;
+    background: var(--color-dark);
+    text-align: center;
+    padding: 1rem;
+
+    &.isDisabled {
+        pointer-events: none;
+        opacity: .7;
+    }
+
+    p {
+        font-family: 'Nunito Sans Variable', sans-serif !important;
+        font-weight: 300 !important;
+        color: white !important;
+
+        text-decoration: none !important;
+        font-size: 1.25rem;
+    }
+
+    // width: 100%;
+    // height: 100%;
+}

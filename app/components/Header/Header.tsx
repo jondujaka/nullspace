@@ -32,7 +32,7 @@ function MobileHeader({
 
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  console.log({ isMenuOpen })
+  
   return (
     <header className={styles.mobileHeader}>
 
