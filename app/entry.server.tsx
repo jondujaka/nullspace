@@ -16,7 +16,7 @@ export default async function handleRequest(
       checkoutDomain: context.env.PUBLIC_CHECKOUT_DOMAIN,
       storeDomain: context.env.PUBLIC_STORE_DOMAIN,
     },
-    scriptSrcElem: ["https://*.klaviyo.com"],
+    scriptSrcElem: ["https://static-tracking.klaviyo.com"],
   });
 
   const body = await renderToReadableStream(
