@@ -1,7 +1,7 @@
 .header {
 
     align-items: center;
-    display: flex;
+    
     height: var(--header-height);
     padding: 0 2rem;
     position: fixed;
@@ -17,12 +17,22 @@
 
     display: none;
 
+    @media screen and (min-width: 960px){
+        display: flex;
+    }
+
 
 }
 
 
 .mobileHeader {
     align-items: center;
+
+    display: flex;
+
+    @media screen and (min-width: 960px){
+        display: none;
+    }
 }
 
 .navWrapper {
@@ -74,8 +84,8 @@
     z-index: 10;
     padding: 1rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 
   .headerMenuItem span {
         color: var(--color-grey);
@@ -118,7 +128,7 @@
 
     }
 
-    @media (min-width: 45em) {
+    @media (min-width: 960px) {
         display: flex;
         justify-content: center;
         grid-gap: 5rem;

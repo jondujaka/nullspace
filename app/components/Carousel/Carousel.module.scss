@@ -43,6 +43,7 @@
         object-fit: cover;
         object-position: center;
         scroll-snap-align: start;
+        flex-shrink: 0;
 
     }
 
