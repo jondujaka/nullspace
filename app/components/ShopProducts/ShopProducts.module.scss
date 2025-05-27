@@ -50,6 +50,18 @@
     // width: 25%
     height: auto;
     display: block;
+    position: relative;
+
+
+    .color {
+        position: absolute;
+        top: 0;
+        right: 1em;
+        color: var(--color-turqoise);
+
+        font-family: 'Courier Prime', monospace;
+        font-weight: 400;
+    }
 
 
     img {

@@ -151,6 +151,24 @@ const PRODUCT_ITEM_FRAGMENT = `#graphql
         }
       }
     }
+    metafield(key: "thumbnail_side", namespace: "custom") {
+      id
+      reference {
+        ... on MediaImage {
+          id
+          image {
+            originalSrc
+            src
+            transformedSrc
+            width
+            url
+            height
+            id
+            altText
+          }
+        }
+      }
+    }
     variants(first: 1) {
       nodes {
         ...ProductVariant

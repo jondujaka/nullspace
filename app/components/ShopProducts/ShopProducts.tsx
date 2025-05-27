@@ -29,7 +29,11 @@ function ProductItem({
     const productUrl = `/products/${product.handle}`
     const variant = product.variants?.nodes[0];
 
-    const thumbnail = product.metafield?.reference?.image
+    const thumbnail = product.metafield?.reference?.image;
+
+    const [productTitle, color] = product.title.split(" ")
+
+    console.log({product })
 
     return (
         <Link
@@ -37,6 +41,8 @@ function ProductItem({
             prefetch="intent"
             to={productUrl}
         >
+
+            <h5 className={styles.color}>{color}</h5>
             {thumbnail && (
                 <Image
                     alt={thumbnail.altText || product.title}
@@ -48,7 +54,7 @@ function ProductItem({
             )}
 
             <div className={styles.productInfo}>
-                <h4>{product.title}</h4>
+                <h4>{productTitle}</h4>
                 {variant && <Money data={variant.price} withoutTrailingZeros />}
 
             </div>

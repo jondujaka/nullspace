@@ -146,6 +146,11 @@
     margin-right: auto;
 }
 
+.desktopLogo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
 .headerMenuItem {
     cursor: pointer;
 

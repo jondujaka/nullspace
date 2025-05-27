@@ -75,7 +75,7 @@ export default function Header({
       <header className={styles.header}>
         <LeftMenu />
         <NavLink
-          className={styles.headerMenuItem}
+          className={`${styles.headerMenuItem} ${styles.desktopLogo}`}
           end
           onClick={close}
           prefetch="intent"

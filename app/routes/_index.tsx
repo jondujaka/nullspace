@@ -190,7 +190,40 @@ const HOME_PRODUCTS = `#graphql
 
 const HOME_ALL_PRODUCTS = `#graphql
 
-  
+  fragment HomeProductVariant on ProductVariant {
+    availableForSale
+    compareAtPrice {
+      amount
+      currencyCode
+    }
+    id
+    image {
+      __typename
+      id
+      url
+      altText
+      width
+      height
+    }
+    price {
+      amount
+      currencyCode
+    }
+    product {
+      title
+      handle
+    }
+    selectedOptions {
+      name
+      value
+    }
+    sku
+    title
+    unitPrice {
+      amount
+      currencyCode
+    }
+  }
 
   fragment HomeAllProductsItem on Product {
     id
@@ -202,6 +235,11 @@ const HOME_ALL_PRODUCTS = `#graphql
       url
       width
       height
+    }
+    variants(first: 1) {
+      nodes {
+        ...HomeProductVariant
+      }
     }
     metafield(key: "thumbnail", namespace: "custom") {
       id
