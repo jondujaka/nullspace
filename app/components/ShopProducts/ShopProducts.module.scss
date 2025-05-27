@@ -1,12 +1,12 @@
 .productsWrapper {
 
 
-    width: calc(100% - 2rem);
+    width: 100%;;
     display: grid;
-    grid-gap: 1em;
+    grid-gap: 1.5em;
 
     grid-auto-columns: 1fr;
-    margin: 20vh 1rem 0 1rem;
+    margin: 20vh 0 0 0;
     position: relative;
     z-index: 1;
     background-color: var(--color-light);
@@ -31,6 +31,36 @@
 
 
     &.smallWrapper {
+
+
+        display: flex;
+        flex-wrap: nowrap;
+        width: 100%;
+        overflow-x: auto;
+        margin: 0;
+
+        .product {
+            width: 30%;
+            flex-shrink: 0;
+        }
+
+        @media screen and (min-width: 768px) {
+            width: 100%;
+            display: grid;
+            grid-gap: 1.5em;
+
+            grid-auto-columns: 1fr;
+            margin: 20vh 0 0 0;
+            position: relative;
+            z-index: 1;
+            background-color: var(--color-light);
+
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+
+            .product {
+                width: auto;
+            }
+        }
 
         @media screen and (min-width: 1140px) {
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -58,6 +88,7 @@
         top: 0;
         right: 1em;
         color: var(--color-turqoise);
+        z-index: 10;
 
         font-family: 'Courier Prime', monospace;
         font-weight: 400;
@@ -68,22 +99,51 @@
         height: auto;
         width: 100%;
     }
+
+
+    &:hover {
+        .productInfo {
+            opacity: .7;
+        }
+    }
+
+
+    &.productWithSideImage {
+        &:hover {
+            .secondImage {
+                opacity: 1;
+            }
+        }
+    }
+
+    .image {
+        position: relative;
+
+        .secondImage {
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: .15s ease-in-out opacity;
+        }
+    }
 }
 
 .productInfo {
     display: flex;
     justify-content: space-between;
-    margin-top: 1rem;
     font-family: 'Courier Prime', monospace;
-    padding-bottom: 5rem;
     align-items: center;
+    padding: 12px;
 
     * {
-        color: var(--color-grey);
+        color: #000;
         font-size: 1rem;
     }
 
     h4 {
+        margin: 0;
         font-weight: normal;
         text-transform: uppercase;
     }

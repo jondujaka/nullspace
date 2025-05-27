@@ -3,11 +3,19 @@
     background: var(--color-light);
     padding: 0;
     text-align: center;
+    z-index: 999;
+    position: relative;
+
+    &:hover {
+        a {
+            opacity: .7;
+        }
+    }
 
     a {
 
         font-family: 'Courier Prime', monospace;
-        color: var(--color-grey);
+        color: #000;
         display: block;
         padding: 2rem;
     }

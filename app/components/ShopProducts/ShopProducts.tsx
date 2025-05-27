@@ -28,22 +28,24 @@ function ProductItem({
 
     const productUrl = `/products/${product.handle}`
     const variant = product.variants?.nodes[0];
+    const metafields = product.metafields;
 
-    const thumbnail = product.metafield?.reference?.image;
+
+    const thumbnail = metafields?.find(meta => meta?.key === "thumbnail")?.reference?.image;
+    const thumbnailSide = metafields?.find(meta => meta?.key === "thumbnail_side")?.reference?.image;
+    
 
     const [productTitle, color] = product.title.split(" ")
 
-    console.log({product })
-
     return (
         <Link
-            className={styles.product}
+            className={`${styles.product} ${true && styles.productWithSideImage} `}
             prefetch="intent"
             to={productUrl}
         >
 
-            <h5 className={styles.color}>{color}</h5>
-            {thumbnail && (
+            <h5 className={styles.color}>#{color}</h5>
+            <div className={styles.image}>{thumbnail && (
                 <Image
                     alt={thumbnail.altText || product.title}
                     aspectRatio="465/581"
@@ -52,6 +54,17 @@ function ProductItem({
                     sizes="(min-width: 45em) 800px, 100vw"
                 />
             )}
+
+                {thumbnailSide && (
+                    <Image
+                        alt={thumbnailSide.altText || product.title}
+                        aspectRatio="465/581"
+                        data={thumbnailSide}
+                        className={styles.secondImage}
+                        loading="eager"
+                        sizes="(min-width: 45em) 800px, 100vw"
+                    />
+                )}</div>
 
             <div className={styles.productInfo}>
                 <h4>{productTitle}</h4>

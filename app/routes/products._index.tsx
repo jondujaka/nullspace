@@ -133,26 +133,12 @@ const PRODUCT_ITEM_FRAGMENT = `#graphql
       width
       height
     }
-    metafield(key: "thumbnail", namespace: "custom") {
+    metafields(identifiers: [
+          { namespace: "custom", key: "thumbnail" },
+          { namespace: "custom", key: "thumbnail_side" }
+        ]) {
       id
-      reference {
-        ... on MediaImage {
-          id
-          image {
-            originalSrc
-            src
-            transformedSrc
-            width
-            url
-            height
-            id
-            altText
-          }
-        }
-      }
-    }
-    metafield(key: "thumbnail_side", namespace: "custom") {
-      id
+      key
       reference {
         ... on MediaImage {
           id

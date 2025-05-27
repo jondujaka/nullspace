@@ -19,7 +19,7 @@ export default function AboutSection({ richtext, image }: { richtext: string, im
 
             <div className={styles.extraText}>
                 <p>
-                    TO REDEFINE EYEWEAR AS A FUSION OF FUTURE TECH AND TIMELESS DESIGN, CREATING PIECES THAT UNLOCK NEW DIMENSIONS OF STYLE, FUNCTIONALITY, AND CREATIVITY.
+                    To redefine eyewear as a fusion of future tech and timeless design, creating pieces that unlock new dimensions of style, functionality, and creativity.
                 </p>
             </div>
         </div>
@@ -30,3 +30,4 @@ export default function AboutSection({ richtext, image }: { richtext: string, im
 
     </div>
 }
+

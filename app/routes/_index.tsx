@@ -241,8 +241,13 @@ const HOME_ALL_PRODUCTS = `#graphql
         ...HomeProductVariant
       }
     }
-    metafield(key: "thumbnail", namespace: "custom") {
+
+    metafields(identifiers: [
+          { namespace: "custom", key: "thumbnail" },
+          { namespace: "custom", key: "thumbnail_side" }
+        ]) {
       id
+      key
       reference {
         ... on MediaImage {
           id
