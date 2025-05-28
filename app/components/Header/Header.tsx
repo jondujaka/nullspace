@@ -32,6 +32,13 @@ function MobileHeader({
 
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  
+  
+  const handleToggleMenu = () => {
+    
+    console.log("handleClick")
+  }
   
   return (
     <header className={styles.mobileHeader}>
@@ -47,15 +54,15 @@ function MobileHeader({
           <Logo />
         </NavLink>
 
-        <div className={styles.headerMenuItem} onClick={() => setIsMenuOpen(prev => !prev)}><BrandedLink text="menu" isActive={isMenuOpen} /></div>
+        <div className={styles.headerMenuItem} onClick={handleToggleMenu}><BrandedLink text="menu" isActive={isMenuOpen} /></div>
       </div>
 
-      <div className={`${styles.navWrapper} ${isMenuOpen ? styles.isOpen : ""} `}>
+      {/* <div className={`${styles.navWrapper} ${isMenuOpen ? styles.isOpen : ""} `}>
 
         <LeftMenu closeMenu={() => setIsMenuOpen(false)} />
 
         <RightMenu cart={cart} closeMenu={() => setIsMenuOpen(false)} />
-      </div>
+      </div> */}
     </header>
   );
 }

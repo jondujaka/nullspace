@@ -49,9 +49,10 @@
 .shoppingInfo {
     margin: 5rem 0;
     display: flex;
-    align-items: stretch;
+    align-items: center;
     height: 3rem;
     padding: 0 1rem;
+    flex-wrap: wrap;
 
     @media screen and (min-width: 960px) {
         padding: 0;
@@ -69,6 +70,12 @@
         display: flex;
         align-items: center;
         flex-grow: 1;
+
+        width: 100%;
+
+        @media screen and (min-width: 960px) {
+            width: auto;
+        }
 
 
         h1,
@@ -88,15 +95,22 @@
 
         .variantPrice {
             font-family: 'Nunito Sans Variable', sans-serif;
+            text-align: right;
+
+            @media screen and (min-width: 960px) {
+                margin-right: 2rem;
+            }
         }
     }
 
 
     .buttons {
-        height: auto;
+        height: 45px;
+        width: 100%;
+        margin-top: 1rem;
 
         @media screen and (min-width: 960px) {
-
+            margin: 0;
             width: 50%;
 
             .button {
