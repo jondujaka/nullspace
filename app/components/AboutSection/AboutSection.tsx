@@ -9,14 +9,14 @@ export default function AboutSection({ richtext, image, richtextUnder }: { richt
 
     const [containerRef, isVisible] = useElementOnScreen({
         threshold: 0.5,
-        reappear: true,
+        reappear: false,
       });
 
 
     return <div className={styles.aboutSection}>
         <div className={`${styles.text} ${isVisible ? styles.isVisible : ''}`} ref={containerRef}>
             <RichText data={richtext} />
-            <Link to="/about"> #read more</Link>
+            <Link to="/about">(READ MORE)</Link>
 
            {richtextUnder &&<RichText className={styles.extraText} data={richtextUnder} />}
 

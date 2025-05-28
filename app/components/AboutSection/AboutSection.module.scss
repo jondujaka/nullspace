@@ -16,14 +16,20 @@
 
     .text {
 
-        max-width: 1800px;
+        max-width: 1400px;
         margin: 0 auto;
+        padding: 1rem .5rem;
         opacity: 0;
         transform: translateY(-10px);
         transition: .5s ease-in-out;
         transition-delay: .2s;
         position: relative;
         z-index: 1;
+
+
+        @media screen and (min-width: 768px){
+            padding: 1rem 6rem;
+        }
 
         &.isVisible {
             opacity: 1;
@@ -49,7 +55,7 @@
 
         p {
             
-    text-shadow: 1px 1px 1px #fff;
+            text-shadow: 1px 1px 1px #fff;
             color: #000;
         }
 
@@ -57,7 +63,6 @@
             margin-bottom: 1rem;
         }
 
-        padding: 1rem;
 
         .extraText {
             margin-top: 6rem;
