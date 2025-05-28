@@ -5,24 +5,27 @@
     .leftBracket,
     .rightBracket {
         position: absolute;
-        // top: 0;
+        top: 0;
         transition: all .2s ease-in-out;
         pointer-events: none;
         opacity: 0;
+        line-height: 1;
+        font-size: inherit;
+        
     }
 
 
     .leftBracket {
-        left: -.6rem;
-        transform: translateX(-.5rem);
+        left: -.4em;
+        transform: translateX(-.5em);
 
 
 
     }
 
     .rightBracket {
-        right: -.6rem;
-        transform: translateX(.5rem);
+        right: -.4em;
+        transform: translateX(.5em);
 
 
 

@@ -34,7 +34,7 @@ function CartBadge({ count }: { count: number | null }) {
                 } as CartViewPayload);
             }}
         >
-            <BrandedLink text={`cart ${count === null ? `&nbsp` : `[${count}]`}`} />
+            <BrandedLink text={`cart ${count === null ? `&nbsp` : `(${count})`}`} />
         </a>
     );
 }
