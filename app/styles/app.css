@@ -630,7 +630,6 @@ button.reset:hover:not(:has(> *)) {
 
 
   opacity: 0;
-  transform: translateY(-10px);
   transition: .5s ease-in-out;
   transition-delay: .2s;
 
@@ -641,5 +640,5 @@ button.reset:hover:not(:has(> *)) {
 
 .image-wrapper img.reveal {
   opacity: 1;
-  transform: translateY(0);
+  
 }

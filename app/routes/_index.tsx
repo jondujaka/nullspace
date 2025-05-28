@@ -66,6 +66,7 @@ export default function Homepage() {
   const image = data.metaobject?.fields.find(field => field.key === "home_page_image")?.reference;
 
   const lastImage = data.metaobject?.fields.find(field => field.key === "last_image")?.reference;
+  const mainImage = data.metaobject?.fields.find(field => field.key === "main_image")?.reference;
 
   const allproducts = data?.allProducts;
 
@@ -73,7 +74,8 @@ export default function Homepage() {
     <div className="home">
 
       {carouselItems && <div className="carousel-wrapper"><Carousel items={carouselItems} isHomepage /></div>}
-      <ImagesSection items={data.imagesSection} />
+      
+      {mainImage?.image && <LastImage image={mainImage.image} />}
       {allproducts?.nodes && <ShopProducts products={allproducts.nodes} isSmall />}
       <LinkSection text="VIEW FULL COLLECTION" link="/products" />
       {lastImage?.image && <LastImage image={lastImage.image} />}
