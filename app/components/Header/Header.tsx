@@ -33,19 +33,12 @@ function MobileHeader({
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  
-  
-  const handleToggleMenu = () => {
-    
-    console.log("handleClick")
-  }
-  
   return (
     <header className={styles.mobileHeader}>
 
       <div className={styles.navController}>
         <NavLink
-          className={styles.headerMenuItem}
+          className={`${styles.headerMenuItem} ${styles.mobileLogo}`}
           end
           onClick={close}
           prefetch="intent"
@@ -54,15 +47,92 @@ function MobileHeader({
           <Logo />
         </NavLink>
 
-        <div className={styles.headerMenuItem} onClick={handleToggleMenu}><BrandedLink text="menu" isActive={isMenuOpen} /></div>
+        <div className={styles.headerMenuItem} onClick={() => {
+
+          console.log("CLICK")
+          setIsMenuOpen(prev => !prev)
+        }}><BrandedLink text="menu" isActive={isMenuOpen} /></div>
       </div>
 
-      {/* <div className={`${styles.navWrapper} ${isMenuOpen ? styles.isOpen : ""} `}>
+      <div className={`${styles.navWrapper} ${isMenuOpen ? styles.isOpen : ""} `}>
 
-        <LeftMenu closeMenu={() => setIsMenuOpen(false)} />
+        <NavLink
+          className={styles.headerMenuItem}
+          end
+          onClick={() => {
+            close();
 
-        <RightMenu cart={cart} closeMenu={() => setIsMenuOpen(false)} />
-      </div> */}
+            setIsMenuOpen(false)
+          }}
+          prefetch="intent"
+          to={"/products"}
+        >
+          {({ isActive, isPending }) => (
+
+            <BrandedLink text="Shop" isActive={isActive} />
+          )}
+
+        </NavLink>
+        <button className="reset" onClick={() => {
+          open('search');
+
+          setIsMenuOpen(false)
+        }}>
+          <BrandedLink text="Search" />
+        </button>
+
+        <NavLink
+          className={styles.headerMenuItem}
+          end
+          onClick={() => {
+            close(); setIsMenuOpen(false)
+          }}
+          prefetch="intent"
+          to={"/about"}
+        >
+
+          {({ isActive }) => (
+
+            <BrandedLink text="About" isActive={isActive} />
+          )}
+
+        </NavLink>
+
+        <NavLink
+          className={styles.headerMenuItem}
+          end
+          onClick={() => {
+            close(); setIsMenuOpen(false)
+          }}
+          prefetch="intent"
+          to={"/journal"}
+        >
+          {({ isActive }) => (
+
+            <BrandedLink text="Journal" isActive={isActive} />
+          )}
+        </NavLink>
+
+
+
+        <NavLink
+          className={styles.headerMenuItem}
+          end
+          onClick={() => {
+            close();
+            setIsMenuOpen(false)
+          }}
+          prefetch="intent"
+          to={"https://account.null-space.eu"}
+        >
+          {({ isActive }) => (
+
+            <BrandedLink text="Account" isActive={isActive} />
+          )}
+        </NavLink>
+
+        <CartButton cart={cart} />
+      </div>
     </header>
   );
 }
@@ -131,15 +201,15 @@ function RightMenu({ cart, closeMenu }: Pick<HeaderProps, 'cart'> & { closeMenu?
           closeMenu && closeMenu()
         }}
         prefetch="intent"
-        to={"/about"}
+        to={"https://account.null-space.eu"}
       >
-
         {({ isActive }) => (
 
-          <BrandedLink text="About" isActive={isActive} />
+          <BrandedLink text="Account" isActive={isActive} />
         )}
-
       </NavLink>
+
+
 
       <CartButton cart={cart} />
     </nav>
@@ -175,6 +245,23 @@ function LeftMenu({ closeMenu }: { closeMenu?: () => void }) {
       }}>
         <BrandedLink text="Search" />
       </button>
+      <NavLink
+        className={styles.headerMenuItem}
+        end
+        onClick={() => {
+          close();
+          closeMenu && closeMenu()
+        }}
+        prefetch="intent"
+        to={"/about"}
+      >
+
+        {({ isActive }) => (
+
+          <BrandedLink text="About" isActive={isActive} />
+        )}
+
+      </NavLink>
     </nav>
   )
 }
