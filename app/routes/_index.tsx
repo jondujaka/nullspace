@@ -62,6 +62,7 @@ export default function Homepage() {
 
 
   const text = data.metaobject?.fields.find(field => field.key === "home_page_text_section")?.value;
+  const textUnder = data.metaobject?.fields.find(field => field.key === "home_page_text_section_2")?.value;
   const image = data.metaobject?.fields.find(field => field.key === "home_page_image")?.reference;
 
   const lastImage = data.metaobject?.fields.find(field => field.key === "last_image")?.reference;
@@ -76,7 +77,7 @@ export default function Homepage() {
       {allproducts?.nodes && <ShopProducts products={allproducts.nodes} isSmall />}
       <LinkSection text="VIEW FULL COLLECTION" link="/products" />
       {lastImage?.image && <LastImage image={lastImage.image} />}
-      {image && text && <AboutSection richtext={text} image={image} />}
+      {image && text && <AboutSection richtext={text} richtextUnder={textUnder} image={image} />}
     </div>
   );
 }
