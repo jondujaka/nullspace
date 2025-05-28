@@ -5,7 +5,7 @@ const Controls = ({ classes, items, activeIndex, goTo }: { classes: string, item
 
     return (<div className={classes}>
         {items.map((item, i) => {
-            return <button className={activeIndex === i ? styles.activeButton : ""} key={item.id} onClick={() => goTo(i)}><Image loading="eager" data={item} aspectRatio="1/1" /></button>
+            return <button className={activeIndex === i ? styles.activeButton : ""} key={item.id} onClick={() => goTo(i)}><Image loading="eager" data={item} sizes="75px" aspectRatio="1/1" /></button>
         })}
     </div>)
 }

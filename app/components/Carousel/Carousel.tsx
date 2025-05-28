@@ -46,11 +46,11 @@ const Carousel = ({ items = [], isHomepage = false }: { items?: (VideoType | Med
                 //     return null;
                 // }
                 if (item.__typename === 'MediaImage' && item.image) {
-                    return <Image loading='eager' key={item.id} data={item.image} width={item.image.width ?? "auto"} height={item.image.height ?? "auto"} />
+                    return <Image loading='eager' sizes={isHomepage ? '100vw' : '(min-width: 1600px) 1600px, 100vw'} key={item.id} data={item.image} width={item.image.width ?? "auto"} height={item.image.height ?? "auto"} />
                 }
 
                 if (item.__typename === 'Video') {
-                    return <Video loop controls={false} preload='auto' key={item.id} data={item} autoPlay muted playsInline />
+                    return <Video loop controls={false} sizes="100vw" preload='auto' key={item.id} data={item} autoPlay muted playsInline />
                 }
 
 

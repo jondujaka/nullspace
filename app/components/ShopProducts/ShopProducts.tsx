@@ -14,15 +14,16 @@ export default function ShopProducts({ products, isSmall }: { products: ShopProd
     if (!products) {
         return;
     }
-    return <div className={`${styles.productsWrapper} ${isSmall ? styles.smallWrapper : ""}`}>{products.map(product => <ProductItem key={product.id} product={product} />)} </div>
+    return <div className={`${styles.productsWrapper} ${isSmall ? styles.smallWrapper : ""}`}>{products.map(product => <ProductItem isSmall key={product.id} product={product} />)} </div>
 }
 
 
 
 function ProductItem({
-    product,
+    product, isSmall
 }: {
     product: Product;
+    isSmall?: boolean;
 }) {
 
 
@@ -33,9 +34,14 @@ function ProductItem({
 
     const thumbnail = metafields?.find(meta => meta?.key === "thumbnail")?.reference?.image;
     const thumbnailSide = metafields?.find(meta => meta?.key === "thumbnail_side")?.reference?.image;
-    
+
 
     const [productTitle, color] = product.title.split(" ")
+
+    const sizesSmall = '(min-width: 768px ) 25vw, (min-width: 1140px) 15vw, 33vw';
+    const sizesLarge = "(min-width: 768px) 25vw, (min-width: 520px) 33vw, 100vw";
+
+    const sizes = isSmall ? sizesSmall : sizesLarge;
 
     return (
         <Link
@@ -44,14 +50,14 @@ function ProductItem({
             to={productUrl}
         >
 
-            <h5 className={styles.color}>#{color}</h5>
+            <h5 className={styles.color}>({color})</h5>
             <div className={styles.image}>{thumbnail && (
                 <Image
                     alt={thumbnail.altText || product.title}
                     aspectRatio="465/581"
                     data={thumbnail}
                     loading="eager"
-                    sizes="(min-width: 45em) 800px, 100vw"
+                    sizes={sizes}
                 />
             )}
 
@@ -62,7 +68,7 @@ function ProductItem({
                         data={thumbnailSide}
                         className={styles.secondImage}
                         loading="eager"
-                        sizes="(min-width: 45em) 800px, 100vw"
+                        sizes={sizes}
                     />
                 )}</div>
 

@@ -23,7 +23,7 @@ export default function AboutSection({ richtext, image, richtextUnder }: { richt
             
         </div>
         <div className={styles.image}>
-            {image?.image && <Image data={image.image} width={image.image.width ?? ""} height={image.image.height ?? ""} />}
+            {image?.image && <Image sizes="100vw" data={image.image} width={image.image.width ?? ""} height={image.image.height ?? ""} />}
         </div>
 
 

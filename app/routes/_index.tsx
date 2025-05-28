@@ -65,8 +65,9 @@ export default function Homepage() {
   const textUnder = data.metaobject?.fields.find(field => field.key === "home_page_text_section_2")?.value;
   const image = data.metaobject?.fields.find(field => field.key === "home_page_image")?.reference;
 
-  const lastImage = data.metaobject?.fields.find(field => field.key === "last_image")?.reference;
-  const mainImage = data.metaobject?.fields.find(field => field.key === "main_image")?.reference;
+  console.log(data.metaobject)
+  const secondaryImges = data.metaobject?.fields.find(field => field.key === "secondary_images")?.references?.nodes;
+  const mainImages = data.metaobject?.fields.find(field => field.key === "main_images")?.references?.nodes;
 
   const allproducts = data?.allProducts;
 
@@ -74,24 +75,28 @@ export default function Homepage() {
     <div className="home">
 
       {carouselItems && <div className="carousel-wrapper"><Carousel items={carouselItems} isHomepage /></div>}
-      
-      {mainImage?.image && <LastImage image={mainImage.image} />}
+
+      {mainImages && <LastImage images={mainImages} />}
+
+
       {allproducts?.nodes && <ShopProducts products={allproducts.nodes} isSmall />}
       <LinkSection text="VIEW FULL COLLECTION" link="/products" />
-      {lastImage?.image && <LastImage image={lastImage.image} />}
+
+      {secondaryImges && <LastImage images={secondaryImges} />}
       {image && text && <AboutSection richtext={text} richtextUnder={textUnder} image={image} />}
     </div>
   );
 }
 
-function LastImage({ image }: { image: Partial<ImageType> }) {
+function LastImage({ images }: { images: { image: Partial<ImageType> }[] }) {
   const [containerRef, isVisible] = useElementOnScreen({
     threshold: .2,
   });
 
 
 
-  return <div ref={containerRef} className="image-wrapper on-scroll"><Image className={isVisible ? 'reveal' : ''} data={image} sizes="100vw" /></div>
+  return <div ref={containerRef} className="image-wrapper on-scroll">
+    {images.map(image => <div><Image className={isVisible ? 'reveal' : ''} data={image.image} aspectRatio="4087/5107" sizes="(min-width: 768px) 50vw, 100vw" /></div>)}</div>
 }
 
 

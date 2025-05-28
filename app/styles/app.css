@@ -624,21 +624,31 @@ button.reset:hover:not(:has(> *)) {
 .image-wrapper {
   width: 100%;
   height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image-wrapper div {
+ 
+  width: 50%;
+  flex-grow: 1;
+  flex-shrink: 0;
+  min-width: 768px;
 }
 
 .image-wrapper img {
-
-
+  object-fit: cover;
+  object-position: top center;
+  width: 100%;
   opacity: 0;
   transition: .5s ease-in-out;
   transition-delay: .2s;
-
-  display: block;
-  width: 100%;
   height: auto;
+  display: block;
+
 }
 
 .image-wrapper img.reveal {
   opacity: 1;
-  
+
 }
