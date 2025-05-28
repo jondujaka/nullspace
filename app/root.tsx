@@ -1,4 +1,4 @@
-import { Analytics, getShopAnalytics, useNonce } from '@shopify/hydrogen';
+import { Analytics, getShopAnalytics, Script, useNonce } from '@shopify/hydrogen';
 import { type LoaderFunctionArgs } from '@shopify/remix-oxygen';
 import {
   Outlet,
@@ -177,6 +177,8 @@ export function Layout({ children }: { children?: React.ReactNode }) {
         ) : (
           children
         )}
+        <Script async type="text/javascript"
+          src="//static.klaviyo.com/onsite/js/ULWjSM/klaviyo.js" />
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
       </body>
