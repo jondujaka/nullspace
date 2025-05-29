@@ -84,7 +84,7 @@ const JOURNAL_MEDIA = `#graphql
       fields {
         value
         type
-        references(first: 10){
+        references(first: 200){
           nodes {
             ...ImageObject
           }
