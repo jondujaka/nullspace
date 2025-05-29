@@ -39,28 +39,26 @@ export default function SingleProductView({ product, selectedVariant, productOpt
                 <Money className={styles.variantPrice} data={selectedVariant.price} withoutTrailingZeros />
 
             </div>
-            <div className={styles.buttons}>
-                <div className={styles.button}>
-                    <AddToCartButton
-                        disabled={!selectedVariant || !selectedVariant.availableForSale}
-                        onClick={() => {
-                            open('cart');
-                        }}
-                        lines={
-                            selectedVariant
-                                ? [
-                                    {
-                                        merchandiseId: selectedVariant.id,
-                                        quantity: 1,
-                                        selectedVariant,
-                                    },
-                                ]
-                                : []
-                        }
-                    >
-                        {selectedVariant?.availableForSale ? '[ Add to cart ]' : 'Sold out'}
-                    </AddToCartButton>
-                </div>
+            <div className={styles.button}>
+                <AddToCartButton
+                    disabled={!selectedVariant || !selectedVariant.availableForSale}
+                    onClick={() => {
+                        open('cart');
+                    }}
+                    lines={
+                        selectedVariant
+                            ? [
+                                {
+                                    merchandiseId: selectedVariant.id,
+                                    quantity: 1,
+                                    selectedVariant,
+                                },
+                            ]
+                            : []
+                    }
+                >
+                    {selectedVariant?.availableForSale ? '[ Add to cart ]' : 'Sold out'}
+                </AddToCartButton>
             </div>
         </div>
 
