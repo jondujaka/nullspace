@@ -42,7 +42,7 @@ export default function Footer() {
                     Policies
                 </NavLink>
 
-                <a href="https://instagram.com/jdujaka" rel="noopener noreferrer" target="_blank">
+                <a href="https://instagram.com/null_________space" rel="noopener noreferrer" target="_blank">
                     Instagram
                 </a>
             </nav>
@@ -82,7 +82,7 @@ export default function Footer() {
                     Policies
                 </NavLink>
 
-                <a href="https://instagram.com/jdujaka" rel="noopener noreferrer" target="_blank">
+                <a href="https://instagram.com/null_________space" rel="noopener noreferrer" target="_blank">
                     Instagram
                 </a>
             </nav>
