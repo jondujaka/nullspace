@@ -96,7 +96,7 @@ export default function Homepage() {
 
 function LastImage({ images, isEager }: { images: { image: Partial<ImageType> }[], isEager?: boolean }) {
   const [containerRef, isVisible] = useElementOnScreen({
-    threshold: .2,
+    threshold: isEager ? .01 : .2,
   });
 
 
