@@ -59,13 +59,19 @@
     margin: 5rem 0;
     display: flex;
     align-items: center;
-    height: 3rem;
-    padding: 0 1rem;
+    padding: 0.5rem 1rem;
     flex-wrap: wrap;
+    border-top: 1px solid #e1e1e1;
+    position: sticky;
+    bottom: 0;
+    background: white;
+
 
     @media screen and (min-width: 960px) {
         padding: 0;
-
+        position: relative;
+        border: none;
+        padding: 0 1rem;
         .productTitle,
         h1,
         .variantPrice {
@@ -116,12 +122,13 @@
     .buttons {
         height: 45px;
         width: 100%;
-        margin-top: 1rem;
+        margin-top: .5rem;
+        
 
         @media screen and (min-width: 960px) {
             margin: 0;
             width: 50%;
-
+            margin-top: 1rem;
             .button {
                 width: 50%;
             }
