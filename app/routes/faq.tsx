@@ -1,10 +1,15 @@
 import { useLoaderData } from "@remix-run/react";
-import { RichText } from "@shopify/hydrogen";
+import { getSeoMeta, RichText } from "@shopify/hydrogen";
 import { LoaderFunctionArgs, MetaFunction } from "@shopify/remix-oxygen";
 
-export const meta: MetaFunction = () => {
-    return [{ title: 'NullSpace | FAQ' }];
+export const meta = () => {
+    return getSeoMeta({
+        title: 'NullSpace | FAQ',
+        description: 'Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.'
+    })
 };
+
+
 
 export async function loader(args: LoaderFunctionArgs) {
     // Start fetching non-critical data without blocking time to first byte
@@ -48,7 +53,7 @@ const FAQ_PAGE = `#graphql
 
 query FaqPage($country: CountryCode, $language: LanguageCode)
     @inContext(country: $country, language: $language) {
-        metaobject(handle: {handle: "frequently-asked-questions-faq", type: "information_pages"}) {
+        metaobject(handle: {handle: "frequently-asked-questions", type: "information_pages"}) {
             fields {
                 value
                 type

@@ -2,13 +2,20 @@ import { type LoaderFunctionArgs } from '@shopify/remix-oxygen';
 import { useLoaderData, type MetaFunction } from '@remix-run/react';
 import {
   getPaginationVariables,
+  getSeoMeta,
 } from '@shopify/hydrogen';
 import ShopProducts from '~/components/ShopProducts/ShopProducts';
 import ShopImage from '~/components/ShopImage/ShopImage';
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return [{ title: `Nullspace | Shop` }];
+  return getSeoMeta({
+    title: "Nullspace | Products",
+    description: 'Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.'
+  });
+
 };
+
+
 
 export async function loader(args: LoaderFunctionArgs) {
   // Start fetching non-critical data without blocking time to first byte
@@ -170,7 +177,7 @@ const PRODUCTS_QUERY = `#graphql
   ${PRODUCT_ITEM_FRAGMENT}
   query ShopProducts($country: CountryCode, $language: LanguageCode)
     @inContext(country: $country, language: $language) {
-    products(first: 20, sortKey: TITLE) {
+    products(first: 20, sortKey: TITLE, reverse: true) {
       nodes {
         ...ProductItem
       }

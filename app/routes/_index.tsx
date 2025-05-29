@@ -6,12 +6,17 @@ import ImagesSection from '~/components/Products/ImagesSection';
 import LinkSection from '~/components/LinkSection/LinkSection';
 import AboutSection from '~/components/AboutSection/AboutSection';
 import ShopProducts from '~/components/ShopProducts/ShopProducts';
-import { Image } from '@shopify/hydrogen';
+import { getSeoMeta, Image } from '@shopify/hydrogen';
 import { Image as ImageType } from '@shopify/hydrogen/storefront-api-types';
 import useElementOnScreen from '~/hooks/useElementOnScreen';
 
 export const meta: MetaFunction = () => {
-  return [{ title: 'NullSpace' }];
+
+  return getSeoMeta({
+    title: "Nullspace",
+    description: 'Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.'
+  });
+
 };
 
 export async function loader(args: LoaderFunctionArgs) {
@@ -53,6 +58,8 @@ async function loadCriticalData({ context }: LoaderFunctionArgs) {
  */
 
 
+
+
 export default function Homepage() {
   const data = useLoaderData<typeof loader>();
 
@@ -65,7 +72,6 @@ export default function Homepage() {
   const textUnder = data.metaobject?.fields.find(field => field.key === "home_page_text_section_2")?.value;
   const image = data.metaobject?.fields.find(field => field.key === "home_page_image")?.reference;
 
-  console.log(data.metaobject)
   const secondaryImges = data.metaobject?.fields.find(field => field.key === "secondary_images")?.references?.nodes;
   const mainImages = data.metaobject?.fields.find(field => field.key === "main_images")?.references?.nodes;
 
@@ -76,7 +82,7 @@ export default function Homepage() {
 
       {carouselItems && <div className="carousel-wrapper"><Carousel items={carouselItems} isHomepage /></div>}
 
-      {mainImages && <LastImage images={mainImages} />}
+      {mainImages && <LastImage images={mainImages} isEager />}
 
 
       {allproducts?.nodes && <ShopProducts products={allproducts.nodes} isSmall />}
@@ -88,7 +94,7 @@ export default function Homepage() {
   );
 }
 
-function LastImage({ images }: { images: { image: Partial<ImageType> }[] }) {
+function LastImage({ images, isEager }: { images: { image: Partial<ImageType> }[], isEager?: boolean }) {
   const [containerRef, isVisible] = useElementOnScreen({
     threshold: .2,
   });
@@ -96,7 +102,7 @@ function LastImage({ images }: { images: { image: Partial<ImageType> }[] }) {
 
 
   return <div ref={containerRef} className="image-wrapper on-scroll">
-    {images.map(image => <div><Image className={isVisible ? 'reveal' : ''} data={image.image} aspectRatio="4087/5107" sizes="(min-width: 768px) 50vw, 100vw" /></div>)}</div>
+    {images.map(image => <div><Image loading={isEager ? 'eager' : 'lazy'} className={isVisible ? 'reveal' : ''} data={image.image} sizes="(min-width: 768px) 50vw, 100vw" /></div>)}</div>
 }
 
 
@@ -277,7 +283,7 @@ const HOME_ALL_PRODUCTS = `#graphql
 
    query HomeAllProducts($country: CountryCode, $language: LanguageCode)
     @inContext(country: $country, language: $language) {
-    products(first: 20, sortKey: TITLE) {
+    products(first: 20, sortKey: TITLE, reverse:true) {
       nodes {
         ...HomeAllProductsItem
       }

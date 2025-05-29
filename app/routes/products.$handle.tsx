@@ -7,23 +7,19 @@ import {
   getProductOptions,
   getAdjacentAndFirstAvailableVariants,
   useSelectedOptionInUrlParam,
+  getSeoMeta,
 } from '@shopify/hydrogen';
-import { ProductPrice } from '~/components/ProductPrice/ProductPrice';
-import { ProductImage } from '~/components/ProductImage';
-import { ProductForm } from '~/components/ProductForm';
-import Carousel from '~/components/Carousel/Carousel';
 
 import SingleProductView from '~/components/SingleProductView/SingleProductView';
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return [
-    { title: `Hydrogen | ${data?.product.title ?? ''}` },
-    {
-      rel: 'canonical',
-      href: `/products/${data?.product.handle}`,
-    },
-  ];
+  return getSeoMeta({
+    title: `Nullspace | ${data?.product.title ?? ''}`,
+    description: 'Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.'
+})
 };
+
+
 
 export async function loader(args: LoaderFunctionArgs) {
   // Start fetching non-critical data without blocking time to first byte

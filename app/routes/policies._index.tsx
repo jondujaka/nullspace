@@ -1,5 +1,6 @@
 import { type LoaderFunctionArgs } from '@shopify/remix-oxygen';
 import { useLoaderData, Link } from '@remix-run/react';
+import { getSeoMeta } from '@shopify/hydrogen';
 
 export async function loader({ context }: LoaderFunctionArgs) {
   const data = await context.storefront.query(POLICIES_QUERY);
@@ -11,6 +12,16 @@ export async function loader({ context }: LoaderFunctionArgs) {
 
   return { policies };
 }
+
+
+export const meta = () => {
+  return getSeoMeta({
+    title: "Nullspace | Policies",
+    description: 'Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.'
+  });
+
+};
+
 
 export default function Policies() {
   const { policies } = useLoaderData<typeof loader>();

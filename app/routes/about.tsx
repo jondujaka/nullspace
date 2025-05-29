@@ -1,11 +1,16 @@
 import { useLoaderData } from "@remix-run/react";
 import { LoaderFunctionArgs } from "@remix-run/server-runtime";
-import { MetaFunction } from "@shopify/remix-oxygen";
+import { getSeoMeta } from "@shopify/hydrogen";
 import AboutPage from "~/components/AboutPage/AboutPage";
 
-export const meta: MetaFunction = () => {
-    return [{ title: 'NullSpace | About' }];
+export const meta = () => {
+    return getSeoMeta({
+        title: "Nullspace | About",
+        description: 'Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.'
+    });
+
 };
+
 
 export async function loader(args: LoaderFunctionArgs) {
     // Start fetching non-critical data without blocking time to first byte
@@ -30,7 +35,7 @@ export default function About() {
 
     const data = useLoaderData<typeof loader>();
 
-    if(!data?.metaobject){
+    if (!data?.metaobject) {
         return null;
     }
     return <AboutPage data={data.metaobject} />

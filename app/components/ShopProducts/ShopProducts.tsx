@@ -54,7 +54,7 @@ function ProductItem({
             <div className={styles.image}>{thumbnail && (
                 <Image
                     alt={thumbnail.altText || product.title}
-                    aspectRatio="465/581"
+                    aspectRatio="1"
                     data={thumbnail}
                     loading="eager"
                     sizes={sizes}
@@ -64,7 +64,7 @@ function ProductItem({
                 {thumbnailSide && (
                     <Image
                         alt={thumbnailSide.altText || product.title}
-                        aspectRatio="465/581"
+                        aspectRatio="1"
                         data={thumbnailSide}
                         className={styles.secondImage}
                         loading="eager"

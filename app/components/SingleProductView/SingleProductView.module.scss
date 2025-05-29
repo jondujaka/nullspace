@@ -16,12 +16,16 @@
     margin-top: 2rem;
     flex-wrap: wrap;
     width: 100%;
+
+    @media screen and (min-width: 960px) {
+        flex-wrap: nowrap;
+    }
 }
 
 .carouselWrapper {
     // background-color: #EFF1F3;
     width: 100%;
-    max-width: 1600px;
+    max-width: 1400px;
 }
 
 .description {
@@ -30,9 +34,17 @@
     width: 100%;
     padding: 0 1rem;
 
+    p {
+        font-size: 1rem;
+    }
+
 
     @media screen and (min-width: 960px) {
         padding: 0;
+
+        p {
+            font-size: 1.25rem;
+        }
     }
 
     @media screen and (min-width: 1440px) {
@@ -40,9 +52,6 @@
         width: 350px;
     }
 
-    p {
-        font-size: 1.25rem;
-    }
 }
 
 

@@ -1,39 +1,46 @@
 import { useLoaderData } from "@remix-run/react";
 import { LoaderFunctionArgs } from "@remix-run/server-runtime";
+import { getSeoMeta } from "@shopify/hydrogen";
 import JournalPage from "~/components/JournalPage/JournalPage";
 
+export const meta = () => {
+  return getSeoMeta({
+    title: "Nullspace | Journal",
+    description: 'Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.'
+  });
 
+};
 
 
 export async function loader(args: LoaderFunctionArgs) {
-    // Start fetching non-critical data without blocking time to first byte
+  // Start fetching non-critical data without blocking time to first byte
 
 
-    // Await the critical data required to render initial state of the page
-    const criticalData = await loadCriticalData(args);
+  // Await the critical data required to render initial state of the page
+  const criticalData = await loadCriticalData(args);
 
-    return { ...criticalData };
+  return { ...criticalData };
 }
 
 
 
 async function loadCriticalData({ context }: LoaderFunctionArgs) {
-    const result = await context.storefront.query(JOURNAL_MEDIA)
+  const result = await context.storefront.query(JOURNAL_MEDIA)
 
-    return {
-        media: result.metaobject?.fields
-    };
+  return {
+    media: result.metaobject?.fields
+  };
 }
 
 
 export default function Journal() {
 
-    const data = useLoaderData<typeof loader>();
+  const data = useLoaderData<typeof loader>();
 
-    const metaObject = data.media && data.media[0]
+  const metaObject = data.media && data.media[0]
 
-    const items = metaObject?.references?.nodes;
-    return items && <JournalPage media={items} />
+  const items = metaObject?.references?.nodes;
+  return items && <JournalPage media={items} />
 }
 
 

@@ -37,8 +37,10 @@
         margin: 0;
         gap: .5em;
 
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
         .product {
-            width: 32%;
+       
             flex-shrink: 0;
         }
 
@@ -52,15 +54,14 @@
             z-index: 1;
             background-color: var(--color-light);
 
-            grid-template-columns: 1fr 1fr 1fr 1fr;
 
             .product {
-                width: auto;
+                // width: auto;
             }
         }
 
         @media screen and (min-width: 1140px) {
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            
         }
 
 

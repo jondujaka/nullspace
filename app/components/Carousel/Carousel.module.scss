@@ -26,6 +26,10 @@
         height: auto;
         max-height: 100vh;
         aspect-ratio: 16/9;
+
+        &.isHomepage {
+            height: 100vh;
+        }
     }
 
     -ms-overflow-style: none; /* IE 11 */

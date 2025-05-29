@@ -1,52 +1,23 @@
 .wrapper {
     width: 100%;
 
-    display: flex;
-    flex-wrap: wrap;
-   
-    max-width: 1600px;
-
-    margin-top: 1rem;
-    @media screen and (min-width: 960px) {
-        padding: 2rem;
-        
-    margin: 0 auto;
-    }
-
-
     img {
         height: auto;
-        display: inline-block;// max-width: 100%;
-        max-width: 100%;
-    }
-
-    >div {
-        margin: 2rem 0;
+        display: block;
         width: 100%;
     }
 
-    @media screen and (min-width: 960px) {
+    >div {
+        width: 100%;
+        max-width: 1600px;
+        text-align: center;
+        margin: 0 auto;
 
+        @media screen and (min-width: 960px) {
 
-        .row {
-            display: flex;
-            align-items: flex-end;
-            gap: 2rem;
-
-
-            >img {
-                width: 50%;
-            }
+            width: calc(100vw - 23rem);
         }
-
-        > :nth-child(2n + 1) {
-            margin-right: 0;
-            margin-left: auto;
-            width: 100%;
-            text-align: right;
-        }
-
-
     }
+
 
 }

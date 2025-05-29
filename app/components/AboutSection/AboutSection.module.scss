@@ -10,7 +10,9 @@
     position: relative;
     * {
 
-        font-size: 1.5625rem;
+        font-size: 1.125rem;
+        text-transform: uppercase;
+        
         font-family: 'Nunito Sans Variable', sans-serif;
     }
 
@@ -56,7 +58,7 @@
         p {
             
             text-shadow: 1px 1px 1px #fff;
-            color: #000;
+            color: var(--color-grey);
         }
 
         p {
