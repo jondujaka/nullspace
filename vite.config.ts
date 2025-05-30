@@ -33,7 +33,7 @@ export default defineConfig({
     assetsInlineLimit: 0,
   },
   server: {
-    allowedHosts: ['f709-2001-1c00-a68e-c700-8dd2-57de-e030-ad1d.ngrok-free.app']
+    allowedHosts: ['6485-2001-1c00-a68e-c700-954-2e24-d864-5250.ngrok-free.app']
   },
   ssr: {
     optimizeDeps: {

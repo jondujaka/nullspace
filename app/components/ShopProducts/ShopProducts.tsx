@@ -14,7 +14,7 @@ export default function ShopProducts({ products, isSmall }: { products: ShopProd
     if (!products) {
         return;
     }
-    return <div className={`${styles.productsWrapper} ${isSmall ? styles.smallWrapper : ""}`}>{products.map(product => <ProductItem isSmall key={product.id} product={product} />)} </div>
+    return <div className={`${styles.productsWrapper} ${isSmall ? styles.smallWrapper : ""}`}>{products.map(product => <ProductItem isSmall={isSmall} key={product.id} product={product} />)} </div>
 }
 
 
@@ -38,10 +38,12 @@ function ProductItem({
 
     const [productTitle, color] = product.title.split(" ")
 
-    const sizesSmall = '(min-width: 768px ) 25vw, (min-width: 1140px) 15vw, 33vw';
-    const sizesLarge = "(min-width: 768px) 25vw, (min-width: 768px) 33vw, 200vw";
+    const sizesSmall = '(min-width: 1140px) 15vw, (min-width: 768px ) 25vw, 33vw';
+    const sizesLarge = " (min-width: 960px) 25vw, (min-width: 768px) 33vw, 200vw";
 
     const sizes = isSmall ? sizesSmall : sizesLarge;
+
+    console.log({ sizes })
 
     return (
         <Link
