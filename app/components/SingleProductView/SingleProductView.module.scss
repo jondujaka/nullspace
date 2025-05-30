@@ -69,7 +69,7 @@
     max-width: 1400px;
     gap: 1em;
 
-    
+
 
 
     @media screen and (min-width: 1440px) {
@@ -92,13 +92,18 @@
 
         @media screen and (min-width: 1440px) {
             width: auto;
+
+            h1,
+            .variantPrice {
+                margin: 0;
+                font-size: 1.5rem;
+            }
         }
 
 
         h1,
         .variantPrice {
             margin: 0;
-            font-size: 1.5rem;
             color: var(--color-dark);
             display: block;
             font-weight: 400;
@@ -124,15 +129,17 @@
     .button {
         height: 45px;
         width: 100%;
-      
+
 
 
         @media screen and (min-width: 1440px) {
             margin: 0;
             width: 200px;
-    
+
+
             button {
                 width: 100%;
+                font-size: 1.25rem;
             }
         }
 
@@ -146,10 +153,10 @@
         button {
             cursor: pointer;
             line-height: 1;
-            font-size: 1.25rem;
+            font-size: 1rem;
             display: block;
             background: var(--color-dark);
-            font-family: 'Nunito Sans Variable', sans-serif;
+            font-family: 'Courier Prime', monospace;
             font-weight: 300;
             color: white;
             border: none;

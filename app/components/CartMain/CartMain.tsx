@@ -26,7 +26,7 @@ export function CartMain({layout, cart: originalCart}: CartMainProps) {
     cart &&
     Boolean(cart?.discountCodes?.filter((code) => code.applicable)?.length);
   const className = `cart-main ${withDiscount ? 'with-discount' : ''}`;
-  const cartHasItems = cart?.totalQuantity && cart?.totalQuantity > 0;
+  const cartHasItems = Boolean(cart?.totalQuantity && cart?.totalQuantity > 0);
 
   return (
     <div className={className}>
@@ -56,8 +56,7 @@ function CartEmpty({
     <div hidden={hidden}>
       <br />
       <p>
-        Looks like you haven&rsquo;t added anything yet, let&rsquo;s get you
-        started!
+        Nothing in the cart yet!
       </p>
       <br />
       <Link to="/products" onClick={close} prefetch="viewport">

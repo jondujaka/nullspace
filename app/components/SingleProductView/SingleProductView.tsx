@@ -57,7 +57,7 @@ export default function SingleProductView({ product, selectedVariant, productOpt
                             : []
                     }
                 >
-                    {selectedVariant?.availableForSale ? '[ Add to cart ]' : 'Sold out'}
+                    {selectedVariant?.availableForSale ? '(Add to cart)' : 'Sold out'}
                 </AddToCartButton>
             </div>
         </div>

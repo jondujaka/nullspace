@@ -45,7 +45,7 @@ aside {
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
   height: 100vh;
   max-width: var(--aside-width);
-  min-width: var(--aside-width);
+  width: 100%;
   position: fixed;
   right: calc(-1 * var(--aside-width));
   top: 0;
@@ -80,7 +80,7 @@ aside header h2 {
 }
 
 aside main {
-  margin: 1rem;
+  padding: 1rem;
 }
 
 aside p {
@@ -209,6 +209,7 @@ button.reset:hover:not(:has(> *)) {
   max-height: calc(100vh - var(--cart-aside-summary-height));
   overflow-y: auto;
   width: auto;
+  
 }
 
 .cart-main.with-discount {
@@ -219,17 +220,37 @@ button.reset:hover:not(:has(> *)) {
   position: relative;
 }
 
+
+.cart-summary-aside form > div {
+  display: flex;
+  align-items: center;
+  margin-bottom: .5rem;
+}
+
+.cart-summary-aside form input{
+  margin: 0;
+}
 .cart-summary-aside {
   background: white;
   border-top: 1px solid var(--color-dark);
   bottom: 0;
-  padding-top: 0.75rem;
+  
   position: absolute;
-  width: calc(var(--aside-width) - 40px);
+  width: 100%;
+  padding: 0 1rem;
+  left: 0;
 }
 
-.cart-summary-aside button,
-.cart-summary-page button {}
+.cart-summary-aside button {
+  background: black;
+  font-family: "Courier Prime", monospace;
+}
+
+.cart-summary-page {
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  font-family: 'Nunito Sans Variable', sans-serif;
+}
 
 .cart-line-quantity {
   display: flex;
@@ -282,8 +303,10 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .cart-details h4 {
-  font-size: 2rem;
+  font-size: 1.4rem;
   color: black;
+  text-transform: uppercase;
+  font-family: 'Nunito Sans Variable', sans-serif;
 }
 
 .cart-discount {
@@ -295,8 +318,18 @@ button.reset:hover:not(:has(> *)) {
 .cart-subtotal {
   align-items: center;
   display: flex;
+  font-size: 1.4rem;
+  justify-content: space-between;
+  
 }
 
+.cart-subtotal h4,
+.cart-subtotal * {
+  color: black;
+  text-transform: uppercase;
+  /* font-family: 'Nunito Sans Variable', sans-serif; */
+  font-family: 'Courier Prime', Courier, monospace;
+}
 /*
 * --------------------------------------------------
 * components/Search

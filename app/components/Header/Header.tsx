@@ -73,13 +73,6 @@ function MobileHeader({
           )}
 
         </NavLink>
-        <button className="reset" onClick={() => {
-          open('search');
-
-          setIsMenuOpen(false)
-        }}>
-          <BrandedLink text="Search" />
-        </button>
 
         <NavLink
           className={styles.headerMenuItem}
@@ -238,13 +231,7 @@ function LeftMenu({ closeMenu }: { closeMenu?: () => void }) {
         )}
 
       </NavLink>
-      <button className="reset" onClick={() => {
-        open('search');
-
-        closeMenu && closeMenu()
-      }}>
-        <BrandedLink text="Search" />
-      </button>
+ 
       <NavLink
         className={styles.headerMenuItem}
         end
