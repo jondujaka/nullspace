@@ -326,6 +326,7 @@ button.reset:hover:not(:has(> *)) {
 .cart-subtotal h4,
 .cart-subtotal * {
   color: black;
+  font-weight: 400;
   text-transform: uppercase;
   /* font-family: 'Nunito Sans Variable', sans-serif; */
   font-family: 'Courier Prime', Courier, monospace;
