@@ -39,7 +39,7 @@ function ProductItem({
     const [productTitle, color] = product.title.split(" ")
 
     const sizesSmall = '(min-width: 768px ) 25vw, (min-width: 1140px) 15vw, 33vw';
-    const sizesLarge = "(min-width: 768px) 25vw, (min-width: 520px) 33vw, 100vw";
+    const sizesLarge = "(min-width: 768px) 25vw, (min-width: 768px) 33vw, 200vw";
 
     const sizes = isSmall ? sizesSmall : sizesLarge;
 
