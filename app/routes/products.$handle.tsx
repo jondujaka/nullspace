@@ -16,7 +16,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return getSeoMeta({
     title: `NULLSPACE | ${data?.product.title ?? ''}`,
     description: 'Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.'
-})
+  })
 };
 
 
@@ -93,7 +93,7 @@ export default function Product() {
   const { title, descriptionHtml } = product;
 
   const carouselItems = product.media.nodes;
-  
+
 
 
   return (
@@ -172,8 +172,13 @@ const PRODUCT_FRAGMENT = `#graphql
         }
       }
     }
-    metafield(key: "lens", namespace: "custom") {
+
+    metafields(identifiers: [
+          { namespace: "custom", key: "lens" },
+          { namespace: "custom", key: "product_short_description" }
+        ]) {
       id
+      key
       value
       reference {
         ... on Metaobject {

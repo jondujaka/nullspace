@@ -18,7 +18,10 @@ export default function SingleProductView({ product, selectedVariant, productOpt
 
     const productImages = product.media.nodes.filter(node => node.__typename === 'MediaImage')
 
-    const lensDescription = product.metafield?.reference?.fields;
+    const lensMeta = product.metafields?.find(metaField => metaField.key === 'lens')
+    const productDescription = product.metafields?.find(meta => meta.key === 'product_short_description')
+    const lensDescription = lensMeta?.reference?.fields;
+
 
     const lensTitle = lensDescription.find(field => field.key === 'title')?.value
     const filterCategory = lensDescription.find(field => field.key === 'filter_category')?.value
@@ -29,7 +32,8 @@ export default function SingleProductView({ product, selectedVariant, productOpt
         <div className={styles.hero}>
             <div className={styles.carouselWrapper}><Carousel items={productImages} /></div>
             <div className={styles.description}>
-                <p>Mauretania, stretching from central Algeria to the Moroccan Atlantic coast, is a frame inspired by the ancient region of Maghreb, renowned as the land of a million poets. Drawing from the historical city of Tangier the Mauretania frame pays homage to the Moors and their vibrant cultural heritage. Part of our permanent Ihsan collection, the Mauretania features an oversize square frame and is available in three distinct acetates and three lens colors.</p>
+                {productDescription?.value && <RichText data={productDescription.value} />}
+                {/* <p>Mauretania, stretching from central Algeria to the Moroccan Atlantic coast, is a frame inspired by the ancient region of Maghreb, renowned as the land of a million poets. Drawing from the historical city of Tangier the Mauretania frame pays homage to the Moors and their vibrant cultural heritage. Part of our permanent Ihsan collection, the Mauretania features an oversize square frame and is available in three distinct acetates and three lens colors.</p> */}
             </div>
         </div>
 
