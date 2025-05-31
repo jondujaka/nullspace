@@ -11,12 +11,21 @@ import {
   ScrollRestoration,
   useRouteLoaderData,
 } from '@remix-run/react';
-import favicon from '~/assets/favicon.svg';
+import faviconLight from '~/assets/favicon-light.png';
+import faviconDark from '~/assets/favicon-dark.png';
+import appleIcon from '~/assets/apple-touch-icon.png'
+
 import { FOOTER_QUERY, HEADER_QUERY } from '~/lib/fragments';
 import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
 import { PageLayout } from './components/PageLayout';
+// import ibmPlexSans from '@fontsource-variable/ibm-plex-sans?url';
+// import ibmPlexMono from '@fontsource/ibm-plex-mono?url';
 
+import '@fontsource/gruppo';
+import '@fontsource-variable/nunito-sans';
+import '@fontsource/courier-prime/400.css';
+import '@fontsource/courier-prime/700.css';
 export type RootLoader = typeof loader;
 
 /**
@@ -61,7 +70,15 @@ export function links() {
       rel: 'preconnect',
       href: 'https://shop.app',
     },
-    { rel: 'icon', type: 'image/svg+xml', href: favicon },
+
+
+    { rel: 'apple-touch-icon', type: 'image/png', href: appleIcon },
+    { rel: 'icon', type: 'image/png', href: faviconLight, media: "(prefers-color-scheme: dark)" },
+    { rel: 'icon', type: 'image/png', href: faviconDark, media: "(prefers-color-scheme: light)" },
+
+
+
+
   ];
 }
 
@@ -85,7 +102,7 @@ export async function loader(args: LoaderFunctionArgs) {
     consent: {
       checkoutDomain: env.PUBLIC_CHECKOUT_DOMAIN,
       storefrontAccessToken: env.PUBLIC_STOREFRONT_API_TOKEN,
-      withPrivacyBanner: false,
+      withPrivacyBanner: true,
       // localize the privacy banner
       country: args.context.storefront.i18n.country,
       language: args.context.storefront.i18n.language,
@@ -141,10 +158,13 @@ function loadDeferredData({ context }: LoaderFunctionArgs) {
   };
 }
 
+
+
+
 export function Layout({ children }: { children?: React.ReactNode }) {
   const nonce = useNonce();
   const data = useRouteLoaderData<RootLoader>('root');
-
+  console.log({ faviconLight })
   return (
     <html lang="en">
       <head>
@@ -152,8 +172,20 @@ export function Layout({ children }: { children?: React.ReactNode }) {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <link rel="stylesheet" href={resetStyles}></link>
         <link rel="stylesheet" href={appStyles}></link>
+        
+
+        <meta property="og:title" content="Nullspace" />
+        <meta property="og:description" content='Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.' />
+        <meta property="og:image" content="https://cdn.shopify.com/s/files/1/0891/8627/1565/files/og-image.jpg" />
+        <meta property="og:url" content="https://null-space.eu" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://cdn.shopify.com/s/files/1/0891/8627/1565/files/og-image.jpg" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Null Space" />
         <Meta />
-        {/* <Links /> */}
+        <Links />
       </head>
       <body>
         {data ? (

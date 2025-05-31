@@ -1,3 +1,5 @@
+import styles from './ProductPrice.module.scss'
+
 import {Money} from '@shopify/hydrogen';
 import type {MoneyV2} from '@shopify/hydrogen/storefront-api-types';
 
@@ -9,16 +11,16 @@ export function ProductPrice({
   compareAtPrice?: MoneyV2 | null;
 }) {
   return (
-    <div className="product-price">
+    <div className={styles.wrapper}>
       {compareAtPrice ? (
         <div className="product-price-on-sale">
-          {price ? <Money data={price} /> : null}
+          {price ? <Money withoutTrailingZeros data={price} /> : null}
           <s>
-            <Money data={compareAtPrice} />
+            <Money withoutTrailingZeros data={compareAtPrice} />
           </s>
         </div>
       ) : price ? (
-        <Money data={price} />
+        <Money withoutTrailingZeros data={price} />
       ) : (
         <span>&nbsp;</span>
       )}

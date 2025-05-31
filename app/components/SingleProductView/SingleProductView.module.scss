@@ -1,0 +1,288 @@
+.wrapper {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: 960px) {
+        padding: 4rem 1rem;
+        // width: 350px;
+    }
+}
+
+.hero {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    width: 100%;
+
+    @media screen and (min-width: 1440px) {
+        flex-wrap: nowrap;
+    }
+}
+
+.carouselWrapper {
+    // background-color: #EFF1F3;
+    width: 100%;
+    max-width: 1400px;
+}
+
+.description {
+    flex-shrink: 0;
+    flex-grow: 1;
+    width: 100%;
+    padding: 0 1rem;
+
+    p {
+        font-size: 1rem;
+    }
+
+
+    @media screen and (min-width: 960px) {
+        padding: 0;
+
+        p {
+            font-size: 1.25rem;
+        }
+    }
+
+    @media screen and (min-width: 1440px) {
+
+        width: 350px;
+    }
+
+}
+
+
+.shoppingInfo {
+    margin: 5rem 0;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    flex-wrap: wrap;
+    border-top: 1px solid #e1e1e1;
+    position: sticky;
+    bottom: 0;
+    background: white;
+    width: 100%;
+    max-width: 1400px;
+    gap: 1em;
+
+
+
+
+    @media screen and (min-width: 1440px) {
+        padding: 0;
+        position: relative;
+        border: none;
+        padding: 0;
+        gap: 2em;
+        width: calc(100% - 350px - 2rem);
+    }
+
+    .productTitle {
+        display: flex;
+        align-items: center;
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+
+        width: 100%;
+
+        @media screen and (min-width: 1440px) {
+            width: auto;
+
+            h1,
+            .variantPrice {
+                margin: 0;
+                font-size: 1.5rem;
+            }
+        }
+
+
+        h1,
+        .variantPrice {
+            margin: 0;
+            color: var(--color-dark);
+            display: block;
+            font-weight: 400;
+            flex-grow: 1;
+        }
+
+        h1 {
+            font-family: 'Gruppo', sans-serif;
+
+        }
+
+        .variantPrice {
+            font-family: 'Nunito Sans Variable', sans-serif;
+            text-align: right;
+
+            // @media screen and (min-width: 960px) {
+            //     margin-right: 2rem;
+            // }
+        }
+    }
+
+
+    .button {
+        height: 45px;
+        width: 100%;
+
+
+
+        @media screen and (min-width: 1440px) {
+            margin: 0;
+            width: 200px;
+
+
+            button {
+                width: 100%;
+                font-size: 1.25rem;
+            }
+        }
+
+
+        form {
+            width: 100%;
+            display: block;
+            height: 100%;
+        }
+
+        button {
+            cursor: pointer;
+            line-height: 1;
+            font-size: 1rem;
+            display: block;
+            background: var(--color-dark);
+            font-family: 'Courier Prime', monospace;
+            font-weight: 300;
+            color: white;
+            border: none;
+            appearance: none;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.lensDescription {
+    margin-bottom: 4rem;
+
+    padding: 0 1rem;
+
+    @media screen and (min-width: 960px) {
+
+        padding: 0;
+    }
+
+    * {
+        font-family: 'Courier Prime', monospace;
+        // font-weight: 300;
+        // color: black;
+        font-size: 1rem;
+        font-weight: 400;
+    }
+
+    .category {
+        font-size: .875em;
+        margin-left: 1em;
+    }
+
+    h3 {
+        display: inline;
+        font-weight: 700;
+
+        &:before {
+            // color: black;
+            content: "["
+        }
+
+        &:after {
+            content: "]"
+        }
+    }
+
+    strong {
+        font-weight: 700;
+
+        &:before {
+            // color: black;
+            content: "["
+        }
+
+        &:after {
+            // color: black;
+            content: "]"
+        }
+    }
+}
+
+.richText {
+    margin-top: 1rem;
+
+    p {
+        margin-bottom: 1em;
+    }
+
+    li {
+        line-height: 1;
+        margin-top: 1em;
+    }
+}
+
+
+.longDescription {
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+
+    @media screen and (min-width: 960px) {
+
+        padding: 0;
+    }
+
+    span {
+
+        font-family: 'Courier Prime', monospace;
+        color: var(--color-grey) !important;
+        font-size: 1rem !important;
+
+
+    }
+
+    h2 {
+
+        span {
+            font-family: 'Courier Prime', monospace !important;
+            font-weight: 700 !important;
+        }
+
+        &:before {
+            font-family: 'Courier Prime', monospace !important;
+            font-weight: 700 !important;
+            content: "["
+        }
+
+        &:after {
+            font-family: 'Courier Prime', monospace !important;
+            font-weight: 700 !important;
+            content: "]"
+        }
+    }
+
+    ul {
+        padding-inline-start: 0 !important;
+        margin: 0;
+
+        li {
+            list-style-type: none !important;
+            white-space: inherit !important;
+
+            p {
+                margin: 0 !important;
+                line-height: 1 !important;
+            }
+        }
+    }
+}

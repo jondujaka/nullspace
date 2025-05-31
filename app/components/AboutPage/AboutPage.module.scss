@@ -1,0 +1,49 @@
+.wrapper {
+    width: 100%;
+    
+    position: relative;
+    overflow: hidden;
+    background: url("https://cdn.shopify.com/s/files/1/0891/8627/1565/files/ABOUT_IMAGE.png?v=1745601081") no-repeat top right;
+    background-size: 50%;
+
+
+    padding: 1rem;
+    margin-top: 3rem;
+
+    @media screen and (min-width: 960px) {
+        
+    min-height: calc(100vh - var(--footer-height));
+        margin: 0;
+        padding: 2rem
+    }
+}
+
+.text {
+    max-width: 100%;
+    width: 860px;
+    overflow-y: auto;
+    height: 100%;
+    z-index: 1;
+    position: relative;
+
+
+ * {
+    text-shadow: 1px 1px 1px #fff;
+ }
+    h1 {
+        color: var(--color-grey);
+        
+        font-family: 'Gruppo', sans-serif;
+    }
+
+    p {
+        font-family: "Nunito Sans Variable", sans-serif;
+        font-size: 1rem;
+        margin-bottom: 1em;
+    }
+
+    strong {
+        font-family: 'Courier Prime', monospace;
+        font-weight: 400;
+    }
+}

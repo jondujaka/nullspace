@@ -5,10 +5,10 @@ import type {
   FooterQuery,
   HeaderQuery,
 } from 'storefrontapi.generated';
-import {Aside} from '~/components/Aside';
-import {Footer} from '~/components/Footer';
-import {Header, HeaderMenu} from '~/components/Header';
-import {CartMain} from '~/components/CartMain';
+import {Aside} from '~/components/Aside/Aside';
+import Footer from '~/components/Footer/Footer';
+import Header from '~/components/Header/Header';
+import {CartMain} from '~/components/CartMain/CartMain';
 import {
   SEARCH_ENDPOINT,
   SearchFormPredictive,
@@ -34,9 +34,19 @@ export function PageLayout({
 }: PageLayoutProps) {
   return (
     <Aside.Provider>
-      
+      <CartAside cart={cart} />
+      <SearchAside />
+      {/* <MobileMenuAside header={header} publicStoreDomain={publicStoreDomain} /> */}
+      {header && (
+        <Header
+          header={header}
+          cart={cart}
+          isLoggedIn={isLoggedIn}
+          publicStoreDomain={publicStoreDomain}
+        />
+      )}
       <main>{children}</main>
-    
+      <Footer />
     </Aside.Provider>
   );
 }
@@ -70,11 +80,9 @@ function SearchAside() {
                 onFocus={fetchResults}
                 placeholder="Search"
                 ref={inputRef}
-                type="search"
+                type="text"
                 list={queriesDatalistId}
               />
-              &nbsp;
-              <button onClick={goToSearch}>Search</button>
             </>
           )}
         </SearchFormPredictive>
@@ -117,17 +125,6 @@ function SearchAside() {
                   closeSearch={closeSearch}
                   term={term}
                 />
-                {term.current && total ? (
-                  <Link
-                    onClick={closeSearch}
-                    to={`${SEARCH_ENDPOINT}?q=${term.current}`}
-                  >
-                    <p>
-                      View all results for <q>{term.current}</q>
-                      &nbsp; →
-                    </p>
-                  </Link>
-                ) : null}
               </>
             );
           }}
@@ -137,24 +134,24 @@ function SearchAside() {
   );
 }
 
-function MobileMenuAside({
-  header,
-  publicStoreDomain,
-}: {
-  header: PageLayoutProps['header'];
-  publicStoreDomain: PageLayoutProps['publicStoreDomain'];
-}) {
-  return (
-    header.menu &&
-    header.shop.primaryDomain?.url && (
-      <Aside type="mobile" heading="MENU">
-        <HeaderMenu
-          menu={header.menu}
-          viewport="mobile"
-          primaryDomainUrl={header.shop.primaryDomain.url}
-          publicStoreDomain={publicStoreDomain}
-        />
-      </Aside>
-    )
-  );
-}
+// function MobileMenuAside({
+//   header,
+//   publicStoreDomain,
+// }: {
+//   header: PageLayoutProps['header'];
+//   publicStoreDomain: PageLayoutProps['publicStoreDomain'];
+// }) {
+//   return (
+//     header.menu &&
+//     header.shop.primaryDomain?.url && (
+//       <Aside type="mobile" heading="MENU">
+//         <HeaderMenu
+//           menu={header.menu}
+//           viewport="mobile"
+//           primaryDomainUrl={header.shop.primaryDomain.url}
+//           publicStoreDomain={publicStoreDomain}
+//         />
+//       </Aside>
+//     )
+//   );
+// }

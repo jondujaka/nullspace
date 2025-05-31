@@ -1,0 +1,148 @@
+.productsWrapper {
+
+
+    width: 100%;;
+    display: grid;
+    grid-gap: 1.5em;
+
+    grid-auto-columns: 1fr;
+    margin: 20vh 0;
+    position: relative;
+    z-index: 1;
+    background-color: var(--color-light);
+
+    grid-template-columns: 1fr;
+
+
+
+    @media screen and (min-width: 520px) {
+
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @media screen and (min-width: 768px) {
+
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+
+
+    &.smallWrapper {
+
+
+        display: flex;
+        flex-wrap: nowrap;
+        width: 100%;
+        overflow-x: auto;
+        margin: 0;
+        gap: .5em;
+
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+        .product {
+       
+            flex-shrink: 0;
+        }
+
+        @media screen and (min-width: 768px) {
+            width: 100%;
+            display: grid;
+            grid-gap: 1.5em;
+
+            grid-auto-columns: 1fr;
+            position: relative;
+            z-index: 1;
+            background-color: var(--color-light);
+
+
+            .product {
+                // width: auto;
+            }
+        }
+
+        @media screen and (min-width: 1140px) {
+            
+        }
+
+
+        margin-top: 3rem;
+
+        .productInfo {
+            padding-bottom: 0;
+        }
+    }
+
+}
+
+.product {
+    // width: 25%
+    height: auto;
+    display: block;
+    position: relative;
+
+
+    .color {
+        position: absolute;
+        top: 0;
+        right: 1em;
+        color: var(--color-turqoise);
+        z-index: 10;
+        font-size: .7125em;
+        font-family: 'Courier Prime', monospace;
+        font-weight: 400;
+    }
+
+
+    img {
+        height: auto;
+        width: 100%;
+    }
+
+
+    &:hover {
+        .productInfo {
+            opacity: .5;
+        }
+    }
+
+
+    &.productWithSideImage {
+        &:hover {
+            .secondImage {
+                opacity: 1;
+            }
+        }
+    }
+
+    .image {
+        position: relative;
+
+        .secondImage {
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: .15s ease-in-out opacity;
+        }
+    }
+}
+
+.productInfo {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Courier Prime', monospace;
+    align-items: center;
+    padding: 12px;
+
+    * {
+        color: #000;
+        font-size: .85rem;
+    }
+
+    h4 {
+        margin: 0;
+        font-weight: normal;
+        text-transform: uppercase;
+    }
+}

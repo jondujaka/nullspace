@@ -1,8 +1,8 @@
-import type {EntryContext, AppLoadContext} from '@shopify/remix-oxygen';
-import {RemixServer} from '@remix-run/react';
-import {isbot} from 'isbot';
-import {renderToReadableStream} from 'react-dom/server';
-import {createContentSecurityPolicy} from '@shopify/hydrogen';
+import type { EntryContext, AppLoadContext } from '@shopify/remix-oxygen';
+import { RemixServer } from '@remix-run/react';
+import { isbot } from 'isbot';
+import { renderToReadableStream } from 'react-dom/server';
+import { createContentSecurityPolicy } from '@shopify/hydrogen';
 
 export default async function handleRequest(
   request: Request,
@@ -11,40 +11,33 @@ export default async function handleRequest(
   remixContext: EntryContext,
   context: AppLoadContext,
 ) {
-  const {nonce, header, NonceProvider} = createContentSecurityPolicy({
+  const { nonce, header, NonceProvider } = createContentSecurityPolicy({
     shop: {
       checkoutDomain: context.env.PUBLIC_CHECKOUT_DOMAIN,
       storeDomain: context.env.PUBLIC_STORE_DOMAIN,
     },
-    styleSrc: [
+    connectSrc: [
       'https://klaviyo.com',
-      'https://*.klaviyo.com',
-      'https://fonts.googleapis.com'
+      'https://*.klaviyo.com'
     ],
     scriptSrc: [
       'https://klaviyo.com',
       'https://*.klaviyo.com',
       'https://cdn.shopify.com'
     ],
-    connectSrc: [
-      'https://klaviyo.com',
-      'https://*.klaviyo.com'
-    ],
-    fontSrc: [
-      'https://klaviyo.com',
+    mediaSrc: ["https://checkout.null-space.eu"],
+    styleSrc: ["https://fonts.googleapis.com", 'https://klaviyo.com',
+      'https://*.klaviyo.com',
+      'https://fonts.googleapis.com'],
+    fontSrc: ['https://klaviyo.com',
       'https://*.klaviyo.com',
       'https://fonts.googleapis.com',
-      'https://fonts.gstatic.com/'
-    ],
-    imgSrc: [
-      '*',
-      'data:'
-    ],
+      'https://fonts.gstatic.com/', "http://localhost:3000", "https://cdn.shopify.com/"]
   });
 
   const body = await renderToReadableStream(
     <NonceProvider>
-      <RemixServer context={remixContext} url={request.url} nonce={nonce}/>
+      <RemixServer context={remixContext} url={request.url} nonce={nonce} />
     </NonceProvider>,
     {
       nonce,

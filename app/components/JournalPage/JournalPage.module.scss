@@ -1,0 +1,23 @@
+.wrapper {
+    width: 100%;
+
+    img {
+        height: auto;
+        display: block;
+        width: 100%;
+    }
+
+    >div {
+        width: 100%;
+        max-width: 1600px;
+        text-align: center;
+        margin: 0 auto;
+
+        @media screen and (min-width: 960px) {
+
+            width: 80vw;
+        }
+    }
+
+
+}

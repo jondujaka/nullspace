@@ -58,7 +58,7 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  
   cursor: pointer;
 }
 
@@ -79,7 +79,7 @@ body {
 }
 
 body > main {
-  margin: 0 1rem 1rem 1rem;
+  margin: 0;
 }
 
 section {
@@ -98,9 +98,7 @@ fieldset {
 
 form {
   max-width: 100%;
-  @media (min-width: 768px) {
-    max-width: 400px;
-  }
+
 }
 
 input {

@@ -1,23 +1,24 @@
-import type {CartApiQueryFragment} from 'storefrontapi.generated';
-import type {CartLayout} from '~/components/CartMain';
-import {CartForm, Money, type OptimisticCart} from '@shopify/hydrogen';
-import {useRef} from 'react';
-import {FetcherWithComponents} from '@remix-run/react';
+import type { CartApiQueryFragment } from 'storefrontapi.generated';
+import type { CartLayout } from '~/components/CartMain/CartMain';
+import { CartForm, Money, type OptimisticCart } from '@shopify/hydrogen';
+import { useRef } from 'react';
+import { FetcherWithComponents } from '@remix-run/react';
+import styles from './CartSummary.module.scss'
 
 type CartSummaryProps = {
   cart: OptimisticCart<CartApiQueryFragment | null>;
   layout: CartLayout;
 };
 
-export function CartSummary({cart, layout}: CartSummaryProps) {
+export function CartSummary({ cart, layout }: CartSummaryProps) {
   const className =
     layout === 'page' ? 'cart-summary-page' : 'cart-summary-aside';
 
   return (
     <div aria-labelledby="cart-summary" className={className}>
-      <h4>Totals</h4>
+      
       <dl className="cart-subtotal">
-        <dt>Subtotal</dt>
+        <h4>Subtotal</h4>
         <dd>
           {cart.cost?.subtotalAmount?.amount ? (
             <Money data={cart.cost?.subtotalAmount} />
@@ -26,19 +27,19 @@ export function CartSummary({cart, layout}: CartSummaryProps) {
           )}
         </dd>
       </dl>
-      <CartDiscounts discountCodes={cart.discountCodes} />
-      <CartGiftCard giftCardCodes={cart.appliedGiftCards} />
+      {/* <CartDiscounts discountCodes={cart.discountCodes} />
+      <CartGiftCard giftCardCodes={cart.appliedGiftCards} /> */}
       <CartCheckoutActions checkoutUrl={cart.checkoutUrl} />
     </div>
   );
 }
-function CartCheckoutActions({checkoutUrl}: {checkoutUrl?: string}) {
-  if (!checkoutUrl) return null;
+function CartCheckoutActions({ checkoutUrl }: { checkoutUrl?: string }) {
+
 
   return (
     <div>
-      <a href={checkoutUrl} target="_self">
-        <p>Continue to Checkout &rarr;</p>
+      <a href={checkoutUrl} target="_self" className={`${!checkoutUrl ? styles.isDisabled : ""} ${styles.checkoutButton}`}>
+        <p>{checkoutUrl ? "(Checkout)" : "Loading..."} </p>
       </a>
       <br />
     </div>
@@ -53,7 +54,7 @@ function CartDiscounts({
   const codes: string[] =
     discountCodes
       ?.filter((discount) => discount.applicable)
-      ?.map(({code}) => code) || [];
+      ?.map(({ code }) => code) || [];
 
   return (
     <div>
@@ -111,7 +112,7 @@ function CartGiftCard({
   const appliedGiftCardCodes = useRef<string[]>([]);
   const giftCardCodeInput = useRef<HTMLInputElement>(null);
   const codes: string[] =
-    giftCardCodes?.map(({lastCharacters}) => `***${lastCharacters}`) || [];
+    giftCardCodes?.map(({ lastCharacters }) => `***${lastCharacters}`) || [];
 
   function saveAppliedCode(code: string) {
     const formattedCode = code.replace(/\s/g, ''); // Remove spaces

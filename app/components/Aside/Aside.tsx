@@ -1,3 +1,5 @@
+import styles from './Aside.module.scss'
+
 import {
   createContext,
   type ReactNode,
@@ -61,7 +63,7 @@ export function Aside({
       <button className="close-outside" onClick={close} />
       <aside>
         <header>
-          <h3>{heading}</h3>
+          <h3 className={styles.title}>{heading}</h3>
           <button className="close reset" onClick={close} aria-label="Close">
             &times;
           </button>
