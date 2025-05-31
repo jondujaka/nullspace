@@ -11,7 +11,10 @@ import {
   ScrollRestoration,
   useRouteLoaderData,
 } from '@remix-run/react';
-import favicon from '~/assets/favicon.svg';
+import faviconLight from '~/assets/favicon-light.svg';
+import faviconDark from '~/assets/favicon-dark.svg';
+import appleIcon from '~/assets/apple-touch-icon.png'
+
 import { FOOTER_QUERY, HEADER_QUERY } from '~/lib/fragments';
 import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
@@ -68,7 +71,12 @@ export function links() {
       href: 'https://shop.app',
     },
 
-    { rel: 'icon', type: 'image/svg+xml', href: favicon },
+
+    { rel: 'apple-touch-icon', type: 'image/png', href: appleIcon },
+    { rel: 'favicon', type: 'image/svg+xml', href: faviconLight, media: "(prefers-color-scheme: dark)" },
+    { rel: 'favicon', type: 'image/svg+xml', href: faviconDark, media: "(prefers-color-scheme: light)" }
+
+
 
 
   ];
@@ -149,6 +157,7 @@ function loadDeferredData({ context }: LoaderFunctionArgs) {
     footer,
   };
 }
+
 
 export function Layout({ children }: { children?: React.ReactNode }) {
   const nonce = useNonce();
