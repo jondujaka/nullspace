@@ -5,7 +5,7 @@ import AboutPage from "~/components/AboutPage/AboutPage";
 
 export const meta = () => {
     return getSeoMeta({
-        title: "Nullspace | About",
+        title: "NULLSPACE | About",
         description: 'Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.'
     });
 

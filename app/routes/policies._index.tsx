@@ -16,7 +16,7 @@ export async function loader({ context }: LoaderFunctionArgs) {
 
 export const meta = () => {
   return getSeoMeta({
-    title: "Nullspace | Policies",
+    title: "NULLSPACE | Policies",
     description: 'Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.'
   });
 

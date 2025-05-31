@@ -43,7 +43,6 @@ function ProductItem({
 
     const sizes = isSmall ? sizesSmall : sizesLarge;
 
-    console.log({ sizes })
 
     return (
         <Link

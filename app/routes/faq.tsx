@@ -4,7 +4,7 @@ import { LoaderFunctionArgs, MetaFunction } from "@shopify/remix-oxygen";
 
 export const meta = () => {
     return getSeoMeta({
-        title: 'NullSpace | FAQ',
+        title: 'NULLSPACE | FAQ',
         description: 'Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.'
     })
 };

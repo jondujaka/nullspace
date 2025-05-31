@@ -13,7 +13,7 @@ import useElementOnScreen from '~/hooks/useElementOnScreen';
 export const meta: MetaFunction = () => {
 
   return getSeoMeta({
-    title: "Nullspace",
+    title: "NULLSPACE",
     description: 'Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.'
   });
 

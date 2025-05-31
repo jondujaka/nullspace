@@ -5,7 +5,7 @@ import { getSeoMeta } from '@shopify/hydrogen';
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
 
   return getSeoMeta({
-    title: `Nullspace | ${data?.page.title ?? ''}`,
+    title: `NULLSPACE | ${data?.page.title ?? ''}`,
     description: 'Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.'
   });
 

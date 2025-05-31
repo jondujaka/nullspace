@@ -3,7 +3,7 @@ import { RichText } from "@shopify/hydrogen";
 import { LoaderFunctionArgs, MetaFunction } from "@shopify/remix-oxygen";
 
 export const meta: MetaFunction = () => {
-    return [{ title: 'NullSpace | FAQ' }];
+    return [{ NULLSPACE: 'NullSpace | FAQ' }];
 };
 
 export async function loader(args: LoaderFunctionArgs) {

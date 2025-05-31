@@ -11,8 +11,8 @@ import {
   ScrollRestoration,
   useRouteLoaderData,
 } from '@remix-run/react';
-import faviconLight from '~/assets/favicon-light.svg';
-import faviconDark from '~/assets/favicon-dark.svg';
+import faviconLight from '~/assets/favicon-light.png';
+import faviconDark from '~/assets/favicon-dark.png';
 import appleIcon from '~/assets/apple-touch-icon.png'
 
 import { FOOTER_QUERY, HEADER_QUERY } from '~/lib/fragments';
@@ -73,8 +73,8 @@ export function links() {
 
 
     { rel: 'apple-touch-icon', type: 'image/png', href: appleIcon },
-    { rel: 'favicon', type: 'image/svg+xml', href: faviconLight, media: "(prefers-color-scheme: dark)" },
-    { rel: 'favicon', type: 'image/svg+xml', href: faviconDark, media: "(prefers-color-scheme: light)" }
+    { rel: 'icon', type: 'image/png', href: faviconLight, media: "(prefers-color-scheme: dark)" },
+    { rel: 'icon', type: 'image/png', href: faviconDark, media: "(prefers-color-scheme: light)" },
 
 
 
@@ -159,10 +159,12 @@ function loadDeferredData({ context }: LoaderFunctionArgs) {
 }
 
 
+
+
 export function Layout({ children }: { children?: React.ReactNode }) {
   const nonce = useNonce();
   const data = useRouteLoaderData<RootLoader>('root');
-
+  console.log({ faviconLight })
   return (
     <html lang="en">
       <head>
@@ -170,7 +172,18 @@ export function Layout({ children }: { children?: React.ReactNode }) {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <link rel="stylesheet" href={resetStyles}></link>
         <link rel="stylesheet" href={appStyles}></link>
-        <title>NullSpace</title>
+        
+
+        <meta property="og:title" content="Nullspace" />
+        <meta property="og:description" content='Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.' />
+        <meta property="og:image" content="https://cdn.shopify.com/s/files/1/0891/8627/1565/files/og-image.jpg" />
+        <meta property="og:url" content="https://null-space.eu" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://cdn.shopify.com/s/files/1/0891/8627/1565/files/og-image.jpg" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Null Space" />
         <Meta />
         <Links />
       </head>

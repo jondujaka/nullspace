@@ -9,7 +9,7 @@ import ShopImage from '~/components/ShopImage/ShopImage';
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return getSeoMeta({
-    title: "Nullspace | Products",
+    title: "NULLSPACE | Products",
     description: 'Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.'
   });
 

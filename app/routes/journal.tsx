@@ -5,7 +5,7 @@ import JournalPage from "~/components/JournalPage/JournalPage";
 
 export const meta = () => {
   return getSeoMeta({
-    title: "Nullspace | Journal",
+    title: "NULLSPACE | Journal",
     description: 'Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.'
   });
 

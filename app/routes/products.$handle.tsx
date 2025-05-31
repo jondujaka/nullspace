@@ -14,7 +14,7 @@ import SingleProductView from '~/components/SingleProductView/SingleProductView'
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return getSeoMeta({
-    title: `Nullspace | ${data?.product.title ?? ''}`,
+    title: `NULLSPACE | ${data?.product.title ?? ''}`,
     description: 'Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.'
 })
 };
