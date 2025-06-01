@@ -43,7 +43,9 @@ body img {
 aside {
   background: var(--color-light);
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+  
   height: 100vh;
+  height: 100dvh; 
   max-width: var(--aside-width);
   width: 100%;
   position: fixed;
