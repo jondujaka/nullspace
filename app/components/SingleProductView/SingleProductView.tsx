@@ -18,14 +18,14 @@ export default function SingleProductView({ product, selectedVariant, productOpt
 
     const productImages = product.media.nodes.filter(node => node.__typename === 'MediaImage')
 
-    const lensMeta = product.metafields?.find(metaField => metaField.key === 'lens')
-    const productDescription = product.metafields?.find(meta => meta.key === 'product_short_description')
+    const lensMeta = product.metafields?.find(metaField => metaField?.key === 'lens')
+    const productDescription = product.metafields?.find(meta => meta?.key === 'product_short_description')
     const lensDescription = lensMeta?.reference?.fields;
 
 
-    const lensTitle = lensDescription.find(field => field.key === 'title')?.value
-    const filterCategory = lensDescription.find(field => field.key === 'filter_category')?.value
-    const lensDescriptionText = lensDescription.find(field => field.key === 'lens-description')?.value
+    const lensTitle = lensDescription?.find(field => field.key === 'title')?.value
+    const filterCategory = lensDescription?.find(field => field.key === 'filter_category')?.value
+    const lensDescriptionText = lensDescription?.find(field => field.key === 'lens-description')?.value
 
     return <div className={styles.wrapper}>
 
