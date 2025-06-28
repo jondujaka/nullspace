@@ -1,6 +1,6 @@
 import styles from './ShopProducts.module.scss';
 
-import { Link } from "@remix-run/react";
+import { Link } from "react-router";
 import { Image, Money } from "@shopify/hydrogen";
 import { ShopProductsQuery } from "storefrontapi.generated";
 import { useVariantUrl } from "~/lib/variants";

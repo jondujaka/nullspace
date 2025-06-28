@@ -1,4 +1,4 @@
-import { Link } from '@remix-run/react';
+import { Link } from 'react-router';
 import styles from './AboutSection.module.scss'
 import { Image, RichText } from "@shopify/hydrogen";
 import { Image as Imagetype, MediaImage } from "@shopify/hydrogen/storefront-api-types";

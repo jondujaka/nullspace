@@ -1,5 +1,5 @@
 import styles from './Footer.module.scss'
-import { Await, NavLink } from "@remix-run/react";
+import { Await, NavLink } from "react-router";
 import { Suspense } from "react";
 import { FooterQuery, HeaderQuery } from "storefrontapi.generated";
 import Logo from '../Logo';

@@ -18,6 +18,10 @@
 
     .text {
 
+        @media screen and (min-width: 768px){
+            padding: 1rem 6rem;
+        }
+
         max-width: 1400px;
         margin: 0 auto;
         padding: 1rem .5rem;
@@ -29,9 +33,7 @@
         z-index: 1;
 
 
-        @media screen and (min-width: 768px){
-            padding: 1rem 6rem;
-        }
+       
 
         &.isVisible {
             opacity: 1;

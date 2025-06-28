@@ -10,7 +10,7 @@ import {
   Scripts,
   ScrollRestoration,
   useRouteLoaderData,
-} from '@remix-run/react';
+} from 'react-router';
 import faviconLight from '~/assets/favicon-light.png';
 import faviconDark from '~/assets/favicon-dark.png';
 import appleIcon from '~/assets/apple-touch-icon.png'
@@ -164,7 +164,7 @@ function loadDeferredData({ context }: LoaderFunctionArgs) {
 export function Layout({ children }: { children?: React.ReactNode }) {
   const nonce = useNonce();
   const data = useRouteLoaderData<RootLoader>('root');
-  console.log({ faviconLight })
+
   return (
     <html lang="en">
       <head>

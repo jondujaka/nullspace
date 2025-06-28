@@ -1,5 +1,5 @@
 import { type LoaderFunctionArgs } from '@shopify/remix-oxygen';
-import { useLoaderData, Link } from '@remix-run/react';
+import { useLoaderData, Link } from 'react-router';
 import { getSeoMeta } from '@shopify/hydrogen';
 
 export async function loader({ context }: LoaderFunctionArgs) {

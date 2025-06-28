@@ -1,5 +1,5 @@
 import { type LoaderFunctionArgs } from '@shopify/remix-oxygen';
-import { useLoaderData, type MetaFunction } from '@remix-run/react';
+import { useLoaderData, type MetaFunction } from 'react-router';
 
 import Carousel from '~/components/Carousel/Carousel';
 import ImagesSection from '~/components/Products/ImagesSection';
