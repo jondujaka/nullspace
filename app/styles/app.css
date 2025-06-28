@@ -662,6 +662,14 @@ button.reset:hover:not(:has(> *)) {
   height: auto;
   display: flex;
   flex-wrap: wrap;
+  position: relative;
+}
+
+.image-wrapper span {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
 }
 
 
