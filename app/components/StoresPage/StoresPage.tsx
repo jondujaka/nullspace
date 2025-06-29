@@ -2,26 +2,19 @@ import { Link } from 'react-router'
 import styles from './StoresPage.module.scss'
 
 
-const stores = [{
-    title: "Glamcult Store",
-    location: "Amsterdam,  Netherlands",
-    link: "https://maps.app.goo.gl/Nas5mZugyyd72oj19",
-    address: "OudeZijds Voorburgwal 92, D, 1012 GH"
-}]
-
-export default function StoresPage({ storesList }) {
+export default function StoresPage({ storesList }: { storesList: Store[] }) {
     return <div className={styles.wrapper}>
 
         <div className={styles.title}>
             Europe
         </div>
 
-        <div className={styles.storesWrapper}>{storesList.map(store => <Store store={store} id={store.title} />)}
+        <div className={styles.storesWrapper}>{storesList.map(store => <Store key={store.title} store={store} id={store.title} />)}
 
         </div></div>
 }
 
-function Store({ store }) {
+function Store({ store }: { store: Store }) {
 
     const title = store.fields.find(field => field.key === 'title').value;
     const location = store.fields.find(field => field.key === 'location').value;

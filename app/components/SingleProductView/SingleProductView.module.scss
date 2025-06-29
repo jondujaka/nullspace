@@ -68,7 +68,7 @@
     .variantPrice {
         margin: 0;
         font-size: 1.25rem;
-        
+
         font-family: 'Unica77', sans-serif;
     }
 
@@ -79,7 +79,7 @@
     @media screen and (min-width: 1440px) {
         width: auto;
 
-       
+
     }
 
 
@@ -90,7 +90,7 @@
 
     .variantPrice {
         text-align: right;
-        opacity: .7;
+        color: #757575;
     }
 }
 
@@ -141,9 +141,10 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 1rem;
-       
 
-        h1, .variantPrice {
+
+        h1,
+        .variantPrice {
             margin: 0;
             font-size: 1rem;
         }
@@ -320,7 +321,7 @@
 
 .longDescription {
     margin-bottom: 2rem;
-    
+
 
     span {
 
