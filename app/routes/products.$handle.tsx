@@ -11,6 +11,7 @@ import {
 } from '@shopify/hydrogen';
 
 import SingleProductView from '~/components/SingleProductView/SingleProductView';
+import RelatedProducts from '~/components/RelatedProducts/RelatedProducts';
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return getSeoMeta({
@@ -47,11 +48,12 @@ async function loadCriticalData({
     throw new Error('Expected product handle to be defined');
   }
 
-  const [{ product}, {shop}] = await Promise.all([
+  const [{ product }, { shop }, products] = await Promise.all([
     storefront.query(PRODUCT_QUERY, {
       variables: { handle, selectedOptions: getSelectedProductOptions(request) },
     }),
-    storefront.query(SHIPPING_QUERY)
+    storefront.query(SHIPPING_QUERY),
+    storefront.query(PRODUCT_ALL_PRODUCTS)
     // Add other queries here, so that they are loaded in parallel
   ]);
 
@@ -59,9 +61,11 @@ async function loadCriticalData({
     throw new Response(null, { status: 404 });
   }
 
+
   return {
     product,
-    shipping: shop.shippingPolicy
+    shipping: shop.shippingPolicy,
+    allProducts: products
   };
 }
 
@@ -78,7 +82,7 @@ function loadDeferredData({ context, params }: LoaderFunctionArgs) {
 }
 
 export default function Product() {
-  const { product, shipping } = useLoaderData<typeof loader>();
+  const { product, shipping, allProducts } = useLoaderData<typeof loader>();
 
 
   // Optimistically selects a variant with given available variant information
@@ -102,6 +106,7 @@ export default function Product() {
   return (
     <div className="product">
       <SingleProductView product={product} selectedVariant={selectedVariant} productOptions={productOptions} shipping={shipping} />
+      <RelatedProducts products={allProducts} current={product.id}/>
     </div>
   );
 }
@@ -254,6 +259,100 @@ const SHIPPING_QUERY = `#graphql
     shop {
       shippingPolicy {
         ...ProductShippingPolicy
+      }
+    }
+  }
+` as const;
+
+
+
+const PRODUCT_ALL_PRODUCTS = `#graphql
+
+  fragment ProductProductVariant on ProductVariant {
+    availableForSale
+    compareAtPrice {
+      amount
+      currencyCode
+    }
+    id
+    image {
+      __typename
+      id
+      url
+      altText
+      width
+      height
+    }
+    price {
+      amount
+      currencyCode
+    }
+    product {
+      title
+      handle
+    }
+    selectedOptions {
+      name
+      value
+    }
+    sku
+    title
+    unitPrice {
+      amount
+      currencyCode
+    }
+  }
+
+  fragment ProductAllProductsItem on Product {
+    id
+    handle
+    title
+    featuredImage {
+      id
+      altText
+      url
+      width
+      height
+    }
+    variants(first: 1) {
+      nodes {
+        ...ProductProductVariant
+      }
+    }
+
+    
+
+    
+    metafields(identifiers: [
+          { namespace: "custom", key: "thumbnail" },
+          { namespace: "custom", key: "thumbnail_side" },
+        ]) {
+      id
+      key
+      reference {
+        ... on MediaImage {
+          id
+          image {
+            originalSrc
+            src
+            transformedSrc
+            width
+            url
+            height
+            id
+            altText
+          }
+        }
+      }
+    }
+  }
+
+
+   query ProductAllProducts($country: CountryCode, $language: LanguageCode)
+    @inContext(country: $country, language: $language) {
+    products(first: 20, sortKey: TITLE, reverse:true) {
+      nodes {
+        ...ProductAllProductsItem
       }
     }
   }

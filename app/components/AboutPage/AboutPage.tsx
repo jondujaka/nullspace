@@ -10,7 +10,6 @@ export default function AboutPage({ data }: { data: Data }) {
         return null;
     }
 
-    console.log({ data })
 
     const richText = data.fields.find(field => field.key === 'text');
     const video = data.fields.find(field => field.key === 'video')

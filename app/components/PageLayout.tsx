@@ -38,8 +38,6 @@ export function PageLayout({
 
   const location = useLocation()
 
-  console.log({stores})
-
 
   const isHome = location.pathname === '/';
   return (

@@ -8,18 +8,18 @@ import { useVariantUrl } from "~/lib/variants";
 
 type Product = ShopProductsQuery['products']['nodes'][0]
 
-export default function ShopProducts({ products, isSmall }: { products: ShopProductsQuery['products']['nodes'], isSmall?: boolean }) {
+export default function ShopProducts({ products, isSmall, isRelated }: { products: ShopProductsQuery['products']['nodes'], isSmall?: boolean, isRelated?: boolean }) {
 
 
     if (!products) {
         return;
     }
     return <>
-    
-        <div className={`${styles.productsWrapper} ${isSmall ? styles.smallWrapper : ""}`}>
+
+        <div className={`${styles.productsWrapper} ${(isSmall || isRelated) ? styles.smallWrapper : ""} ${isRelated ? styles.isRelated : ""}`}>
             {products.map(product => <ProductItem isSmall={isSmall} key={product.id} product={product} />)}
         </div>
-        {isSmall && <div className={styles.button}><Link to="/products">(VIEW FULL COLLECTION)</Link></div>}
+        {isSmall && !isRelated && <div className={styles.button}><Link to="/products">(VIEW FULL COLLECTION)</Link></div>}
     </>
 }
 

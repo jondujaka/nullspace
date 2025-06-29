@@ -16,19 +16,13 @@ export default function HomeProducts({ products }: { products: ShopProductsQuery
     if (!products) {
         return;
     }
-    return <>
-        <CartProvider
-            onLineAdd={() => {
-                console.log('a line is being added');
-            }}
-            onLineAddComplete={() => {
-                console.log('a line has been added');
-            }}
-        >
-            <div className={styles.productsWrapper}>
-                {products.map(product => <ProductItem key={product.id} product={product} />)}
-            </div></CartProvider>
-    </>
+    return
+    <CartProvider>
+        <div className={styles.productsWrapper}>
+            {products.map(product => <ProductItem key={product.id} product={product} />)}
+        </div>
+    </CartProvider>
+
 }
 
 

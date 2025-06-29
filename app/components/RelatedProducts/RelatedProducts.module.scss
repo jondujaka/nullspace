@@ -1,0 +1,11 @@
+.wrapper {
+    @media screen and (min-width: 960px) {
+        padding: 4rem 1rem;
+    }
+
+    h2 {
+        margin-top: 4rem;
+        margin-bottom: 1rem;
+        padding: 0 1rem;
+    }
+}

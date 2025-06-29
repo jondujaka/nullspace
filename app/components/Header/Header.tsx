@@ -55,7 +55,6 @@ function MobileHeader({
 
         <div className={styles.headerMenuItem} onClick={() => {
 
-          console.log("CLICK")
           setIsMenuOpen(prev => !prev)
         }}><BrandedLink text="menu" isActive={isMenuOpen} /></div>
       </div>
