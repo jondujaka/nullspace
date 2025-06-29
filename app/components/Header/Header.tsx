@@ -1,4 +1,4 @@
-import type { HeaderQuery, CartApiQueryFragment } from 'storefrontapi.generated';
+import type { HeaderQuery, CartApiQueryFragment, StoresQueryQuery } from 'storefrontapi.generated';
 import { Await, Link, NavLink, useAsyncValue } from 'react-router';
 import styles from './Header.module.scss'
 import {
@@ -21,6 +21,7 @@ interface HeaderProps {
   publicStoreDomain: string;
   isHome?: boolean;
   hasMarquee?: boolean;
+  stores?: StoresQueryQuery
 }
 type Viewport = 'desktop' | 'mobile';
 
@@ -175,9 +176,11 @@ export default function Header({
   isLoggedIn,
   cart,
   publicStoreDomain,
-  isHome
+  isHome,
+  stores
 }: HeaderProps) {
   const { shop, menu } = header;
+
   const { close } = useAside();
 
   const position = useScrollPosition(isHome)
@@ -202,13 +205,29 @@ export default function Header({
 
   const [hasMarquee, setHasMarquee] = useState(true)
 
+  const storesList = stores?.metaobjects.nodes.map(node => node.fields.find(field => field.key === 'title')?.value)
+
+  const productsList = menu?.items.map(item => {
+
+    if(!item?.url){
+      return null;
+    }
+    const splitUrl = item.url?.split('/');
+    const id = splitUrl.pop();
+
+    return {
+      title: item.title,
+      url: `/products/${id}`
+    }
+  })
+
   return (
 
     <>
       <Marquee onClose={() => setHasMarquee(false)} text="Free shipping and returns within the EU and selected countries." />
       <MobileHeader hasMarquee={hasMarquee} header={header} isLoggedIn={isLoggedIn} cart={cart} publicStoreDomain={publicStoreDomain} />
       <header className={`${styles.header} ${isInverted && isHome ? styles.inverted : ''} `}>
-        <LeftMenu />
+        <LeftMenu storesList={storesList} productsList={productsList} />
         <NavLink
           className={`${styles.headerMenuItem} ${styles.desktopLogo}`}
           end
@@ -266,8 +285,9 @@ function RightMenu({ cart, closeMenu }: Pick<HeaderProps, 'cart'> & { closeMenu?
 }
 
 
-function LeftMenu({ closeMenu }: { closeMenu?: () => void }) {
+function LeftMenu({ closeMenu, storesList, productsList }: { closeMenu?: () => void, storesList?: string[], productsList: { url: string; title: string }[] }) {
   const { open, close } = useAside();
+
   return (
     <nav className={`${styles.headerMenu} ${styles.menuLeft}`}>
 
@@ -293,14 +313,10 @@ function LeftMenu({ closeMenu }: { closeMenu?: () => void }) {
 
 
 
-        </NavLink><ul className={styles.subMenu}>
-          <li><Link to="/products/001-black">X.001 Black</Link></li>
-          <li><Link to="/products/001-brown">X.001 Brown</Link></li>
-          <li><Link to="/products/001-translucent">X.001 Translucent</Link></li>
-          <li><Link to="/products/002-brown">Y.002 Brown</Link></li>
-          <li><Link to="/products/002-space-grey">Y.002 Space Grey</Link></li>
-          <li><Link to="/products/002-frosted">Y.002 Frosted</Link></li>
-          <li><Link to="/products/002-brown">Y.002 Translucentp</Link></li>
+        </NavLink>
+        <ul className={styles.subMenu}>
+          {productsList.map(product => <li><Link to={product.url}>{product.title}</Link></li>)}
+
         </ul>
       </div>
 
@@ -368,9 +384,9 @@ function LeftMenu({ closeMenu }: { closeMenu?: () => void }) {
           )}
 
         </NavLink>
-        <ul className={styles.subMenu}>
-          <li><Link to="/stores">Glamcult</Link></li>
-        </ul>
+        {storesList?.length ? <ul className={styles.subMenu}>
+          {storesList.map(store => <li key={store}><Link to="/stores">{store}</Link></li>)}
+        </ul> : null}
       </div>
 
       <NavLink

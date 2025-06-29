@@ -15,7 +15,7 @@ import faviconLight from '~/assets/favicon-light.png';
 import faviconDark from '~/assets/favicon-dark.png';
 import appleIcon from '~/assets/apple-touch-icon.png'
 
-import { FOOTER_QUERY, HEADER_QUERY } from '~/lib/fragments';
+import { FOOTER_QUERY, HEADER_QUERY, STORES_QUERY } from '~/lib/fragments';
 import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
 import { PageLayout } from './components/PageLayout';
@@ -117,17 +117,18 @@ export async function loader(args: LoaderFunctionArgs) {
 async function loadCriticalData({ context }: LoaderFunctionArgs) {
   const { storefront } = context;
 
-  const [header] = await Promise.all([
+  const [header, stores] = await Promise.all([
     storefront.query(HEADER_QUERY, {
       cache: storefront.CacheLong(),
       variables: {
         headerMenuHandle: 'main-menu', // Adjust to your header menu handle
       },
     }),
+    storefront.query(STORES_QUERY),
     // Add other queries here, so that they are loaded in parallel
   ]);
 
-  return { header };
+  return { header, stores };
 }
 
 /**
@@ -165,6 +166,7 @@ export function Layout({ children }: { children?: React.ReactNode }) {
   const nonce = useNonce();
   const data = useRouteLoaderData<RootLoader>('root');
 
+
   return (
     <html lang="en">
       <head>
@@ -172,7 +174,7 @@ export function Layout({ children }: { children?: React.ReactNode }) {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <link rel="stylesheet" href={resetStyles}></link>
         <link rel="stylesheet" href={appStyles}></link>
-        
+
 
         <meta property="og:title" content="Nullspace" />
         <meta property="og:description" content='Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.' />

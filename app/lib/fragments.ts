@@ -219,6 +219,25 @@ export const HEADER_QUERY = `#graphql
   ${MENU_FRAGMENT}
 ` as const;
 
+
+export const STORES_QUERY = `#graphql
+ 
+  query StoresQuery(
+    $country: CountryCode
+    $language: LanguageCode
+  ) @inContext(language: $language, country: $country) {
+    metaobjects(type: "stockisk", first: 20) {
+      nodes {
+        id
+        fields {
+          key
+          value
+        }
+      }
+    }
+  }
+` as const;
+
 export const FOOTER_QUERY = `#graphql
   query Footer(
     $country: CountryCode
