@@ -26,6 +26,10 @@
         color: black;
         padding: .5rem 8rem;
         line-height: 1.2;
-        font-size: 10px;
+        font-size: 8px;
+
+        @media screen and (min-width: 360px){
+            font-size: 10px;
+        }
     }
 }
