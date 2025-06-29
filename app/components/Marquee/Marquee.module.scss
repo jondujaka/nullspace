@@ -1,0 +1,31 @@
+.wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 2px 0;
+    width: 100%;
+    z-index: 100;
+ 
+
+    button {
+        position: fixed;
+        right: 0;
+        
+        top: 2px;
+        background-color: none;
+        border: none;
+        
+        color: black;
+        z-index: 101;
+        cursor: pointer;
+        background: white;
+        padding: 3px 12px 5px 4px;
+    }
+
+    .textContainer {
+        color: black;
+        padding: .5rem 8rem;
+        line-height: 1.2;
+        font-size: .875rem;
+    }
+}

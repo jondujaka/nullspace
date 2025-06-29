@@ -10,8 +10,6 @@ export default function ImageWithText({ image, isEager, text }: { image: Partial
     });
 
 
-
-    console.log({text})
     return (
 
         <div>
@@ -28,6 +26,6 @@ export function Wrapper({ images, isEager, text }: { images: { image: Partial<Im
     });
 
     return <div ref={containerRef} className={styles.imagesWrapper}>
-        {images.map(image => <ImageWithText image={image.image} isEager text={text} />)}
+        {images.map(image => <ImageWithText key={image.image.id} image={image.image} isEager text={text} />)}
     </div>
 }

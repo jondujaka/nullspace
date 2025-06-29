@@ -1,4 +1,4 @@
-import { Await, Link } from 'react-router';
+import { Await, Link, useLocation } from 'react-router';
 import {Suspense, useId} from 'react';
 import type {
   CartApiQueryFragment,
@@ -32,6 +32,11 @@ export function PageLayout({
   isLoggedIn,
   publicStoreDomain,
 }: PageLayoutProps) {
+
+  const location = useLocation()
+
+
+  const isHome = location.pathname === '/';
   return (
     <Aside.Provider>
       <CartAside cart={cart} />
@@ -43,6 +48,7 @@ export function PageLayout({
           cart={cart}
           isLoggedIn={isLoggedIn}
           publicStoreDomain={publicStoreDomain}
+          isHome={isHome}
         />
       )}
       <main>{children}</main>

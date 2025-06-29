@@ -7,18 +7,23 @@
     margin-top: 2rem;
     overflow: hidden;
 
+    @media screen and (min-width: 960px) {
+
+        min-height: 400px;
+    }
+
     position: relative;
+
     * {
 
         font-size: 1rem;
-        text-transform: uppercase;
-        
-        font-family: 'Nunito Sans Variable', sans-serif;
+
+        font-family: 'Unica77', sans-serif;
     }
 
     .text {
 
-        @media screen and (min-width: 768px){
+        @media screen and (min-width: 768px) {
             padding: 1rem 6rem;
         }
 
@@ -30,10 +35,11 @@
         transition: .5s ease-in-out;
         transition-delay: .2s;
         position: relative;
+        justify-content: center;
         z-index: 1;
 
 
-       
+
 
         &.isVisible {
             opacity: 1;
@@ -51,14 +57,15 @@
             display: inline-block;
             margin: 0 auto;
             padding: .4rem;
+
             &:hover {
-                background-color: rgba(255,255,255,0.7);
+                background-color: rgba(255, 255, 255, 0.7);
             }
-            
+
         }
 
         p {
-            
+
             text-shadow: 1px 1px 1px #fff;
             color: var(--color-grey);
         }
@@ -77,6 +84,7 @@
     .image {
         position: absolute;
         z-index: 0;
+
         // @media screen and (min-width: 768px) {
         //     position: relative;
         // }

@@ -47,10 +47,11 @@ async function loadCriticalData({
     throw new Error('Expected product handle to be defined');
   }
 
-  const [{ product }] = await Promise.all([
+  const [{ product}, {shop}] = await Promise.all([
     storefront.query(PRODUCT_QUERY, {
       variables: { handle, selectedOptions: getSelectedProductOptions(request) },
     }),
+    storefront.query(SHIPPING_QUERY)
     // Add other queries here, so that they are loaded in parallel
   ]);
 
@@ -60,6 +61,7 @@ async function loadCriticalData({
 
   return {
     product,
+    shipping: shop.shippingPolicy
   };
 }
 
@@ -76,7 +78,8 @@ function loadDeferredData({ context, params }: LoaderFunctionArgs) {
 }
 
 export default function Product() {
-  const { product } = useLoaderData<typeof loader>();
+  const { product, shipping } = useLoaderData<typeof loader>();
+
 
   // Optimistically selects a variant with given available variant information
   const selectedVariant = useOptimisticVariant(
@@ -98,7 +101,7 @@ export default function Product() {
 
   return (
     <div className="product">
-      <SingleProductView product={product} selectedVariant={selectedVariant} productOptions={productOptions} />
+      <SingleProductView product={product} selectedVariant={selectedVariant} productOptions={productOptions} shipping={shipping} />
     </div>
   );
 }
@@ -233,4 +236,25 @@ const PRODUCT_QUERY = `#graphql
     }
   }
   ${PRODUCT_FRAGMENT}
+` as const;
+
+
+const SHIPPING_QUERY = `#graphql
+  fragment ProductShippingPolicy on ShopPolicy {
+    body
+    handle
+    id
+    title
+    url
+  }
+  query ShippingPolicy(
+    $country: CountryCode
+    $language: LanguageCode
+  ) @inContext(language: $language, country: $country) {
+    shop {
+      shippingPolicy {
+        ...ProductShippingPolicy
+      }
+    }
+  }
 ` as const;

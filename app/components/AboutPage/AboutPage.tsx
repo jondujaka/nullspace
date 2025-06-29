@@ -16,8 +16,12 @@ export default function AboutPage({ data }: { data: Data }) {
 
     return (
         <div className={styles.wrapper}>
+
             <div className={styles.text}>
                 {richText?.value && <RichText data={richText.value} />}</div>
+
+
+            <div className={styles.video}></div>
         </div>
     )
 }

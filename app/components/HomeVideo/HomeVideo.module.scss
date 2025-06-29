@@ -1,0 +1,56 @@
+.wrapper {
+    position: relative;
+    height: 80vh;
+}
+
+.content {
+    position: absolute;
+    width: 100%;
+    bottom: 1rem;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    bottom: 8rem;
+
+    
+    @media screen and (min-width: 960px) {
+        bottom: 4rem;
+    }
+
+    h2 {
+        font-size: 1.375rem;
+        color: white;
+        margin: 0;
+    }
+
+    .buttons {
+        margin-top: .5rem;
+        display: flex;
+        gap: 1rem;
+
+        @media screen and (min-width: 960px) {
+            margin-top: 1.5rem;
+        }
+
+
+
+        .button {
+            padding: 12px 14px;
+            border-width: 1px;
+            border-radius: 25px;
+            font-size: .75rem;
+            color: white;
+            border: 1px solid white;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+
+            @media screen and (min-width: 960px) {
+                font-size: .835rem;
+                padding: 18px 23px;
+            }
+        }
+    }
+}

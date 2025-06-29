@@ -32,7 +32,7 @@ export default function Footer() {
                     prefetch="intent"
                     to={"/faq"}
                 >
-                    FAQ
+                    Contact/FAQ
                 </NavLink>
                 <NavLink
                     end

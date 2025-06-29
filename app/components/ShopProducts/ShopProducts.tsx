@@ -14,7 +14,13 @@ export default function ShopProducts({ products, isSmall }: { products: ShopProd
     if (!products) {
         return;
     }
-    return <div className={`${styles.productsWrapper} ${isSmall ? styles.smallWrapper : ""}`}>{products.map(product => <ProductItem isSmall={isSmall} key={product.id} product={product} />)} </div>
+    return <>
+    
+        <div className={`${styles.productsWrapper} ${isSmall ? styles.smallWrapper : ""}`}>
+            {products.map(product => <ProductItem isSmall={isSmall} key={product.id} product={product} />)}
+        </div>
+        {isSmall && <div className={styles.button}><Link to="/products">(VIEW FULL COLLECTION)</Link></div>}
+    </>
 }
 
 

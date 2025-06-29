@@ -2,7 +2,10 @@
     width: 100%;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 4rem;
+    flex-wrap: wrap;
 
     @media screen and (min-width: 960px) {
         padding: 4rem 1rem;
@@ -10,42 +13,184 @@
     }
 }
 
-.hero {
+
+.product {
+    flex-grow: 1;
+
+
+
+
+
+    * {
+        color: black;
+    }
+
+    @media screen and (min-width: 960px) {
+        padding: 4rem;
+    }
+
+    @media screen and (min-width: 1080px) {
+        width: auto;
+    }
+
+
+    .innerWrapper {
+
+        width: 100%;
+        margin: 0 auto;
+
+        >div {
+            padding: 0 1rem;
+
+            @media screen and (min-width: 960px) {
+                padding: 0;
+
+            }
+        }
+
+        @media screen and (min-width: 1080px) {
+            max-width: 400px;
+        }
+
+    }
+}
+
+.productTitle {
     display: flex;
-    gap: 2rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
+    margin-bottom: 2rem;
+
+    display: none;
+
+    @media screen and (min-width: 960px) {
+        display: flex;
+    }
 
     @media screen and (min-width: 1440px) {
-        flex-wrap: nowrap;
+        width: auto;
+
+        h1,
+        .variantPrice {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+    }
+
+
+    h1,
+    .variantPrice {
+        margin: 0;
+        color: var(--color-dark);
+        display: block;
+
+    }
+
+    h1 {
+        font-family: 'Unica77', sans-serif;
+        // font-weight: bold;
+
+    }
+
+    .variantPrice {
+        font-family: 'Unica77', sans-serif;
+        text-align: right;
+        opacity: .7;
+
+    }
+}
+
+.gridWrapper {
+
+    display: none;
+
+    @media screen and (min-width: 1080px) {
+        display: grid;
+    }
+
+    width: calc(100% - 484px);
+    max-width: 1400px;
+
+    flex-shrink: 1;
+
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+
+    >div {
+
+        display: flex;
+        align-items: center;
+    }
+
+    img {
+        display: flex;
+        width: 100%;
+        height: auto;
+
+    }
+}
+
+
+.mobileBar {
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: white;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    z-index: 100;
+
+    .mobileProductInfo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+       
+
+        h1, .variantPrice {
+            margin: 0;
+            font-size: 1rem;
+        }
+    }
+
+
+
+    @media screen and (min-width: 960px) {
+        display: none;
     }
 }
 
 .carouselWrapper {
     // background-color: #EFF1F3;
     width: 100%;
-    max-width: 1400px;
+    display: block;
+
+    @media screen and (min-width: 1080px) {
+        display: none;
+    }
+
+
 }
 
 .description {
     flex-shrink: 0;
     flex-grow: 1;
     width: 100%;
-    padding: 0 1rem;
 
-    p {
+
+    h5 {
+        font-family: "RocaLight", sans-serif;
         font-size: 1rem;
     }
 
-
-    @media screen and (min-width: 960px) {
-        padding: 0;
-
-        p {
-            font-size: 1.25rem;
-        }
+    p {
+        font-size: .875rem;
     }
+
+
 
     @media screen and (min-width: 1440px) {
 
@@ -54,116 +199,65 @@
 
 }
 
+.textInfo {
+    margin: 2rem 0;
+    font-weight: bold;
+    font-size: .875rem;
+}
 
-.shoppingInfo {
-    margin: 5rem 0;
-    display: flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    flex-wrap: wrap;
-    border-top: 1px solid #e1e1e1;
-    position: sticky;
-    bottom: 0;
-    background: white;
+.buttonDesktop {
+    margin: 2rem 0;
+    display: none;
+
+    @media screen and (min-width: 960px) {
+        display: block;
+    }
+}
+
+.buttonMobile {
+
+    button {
+        font-size: .875rem !important;
+    }
+
+}
+
+.button {
+    height: 45px;
     width: 100%;
-    max-width: 1400px;
-    gap: 1em;
-
 
 
 
     @media screen and (min-width: 1440px) {
-        padding: 0;
-        position: relative;
-        border: none;
-        padding: 0;
-        gap: 2em;
-        width: calc(100% - 350px - 2rem);
-    }
-
-    .productTitle {
-        display: flex;
-        align-items: center;
-        display: flex;
-        align-items: center;
-        flex-grow: 1;
-
-        width: 100%;
-
-        @media screen and (min-width: 1440px) {
-            width: auto;
-
-            h1,
-            .variantPrice {
-                margin: 0;
-                font-size: 1.5rem;
-            }
-        }
 
 
-        h1,
-        .variantPrice {
-            margin: 0;
-            color: var(--color-dark);
-            display: block;
-            font-weight: 400;
-            flex-grow: 1;
-        }
-
-        h1 {
-            font-family: 'Gruppo', sans-serif;
-
-        }
-
-        .variantPrice {
-            font-family: 'Nunito Sans Variable', sans-serif;
-            text-align: right;
-
-            // @media screen and (min-width: 960px) {
-            //     margin-right: 2rem;
-            // }
-        }
-    }
-
-
-    .button {
-        height: 45px;
-        width: 100%;
-
-
-
-        @media screen and (min-width: 1440px) {
-            margin: 0;
-            width: 200px;
-
-
-            button {
-                width: 100%;
-                font-size: 1.25rem;
-            }
-        }
-
-
-        form {
-            width: 100%;
-            display: block;
-            height: 100%;
-        }
 
         button {
-            cursor: pointer;
-            line-height: 1;
-            font-size: 1rem;
-            display: block;
-            background: var(--color-dark);
-            font-family: 'Courier Prime', monospace;
-            font-weight: 300;
-            color: white;
-            border: none;
-            appearance: none;
             width: 100%;
-            height: 100%;
+            font-size: 1.25rem;
         }
+    }
+
+
+    form {
+        width: 100%;
+        display: block;
+        height: 100%;
+    }
+
+    button {
+        cursor: pointer;
+        line-height: 1;
+        font-size: 1rem;
+        display: block;
+        background: var(--color-dark);
+        font-family: 'Unica77', sans-serifspace;
+        font-weight: 300;
+        color: white;
+        border: none;
+        appearance: none;
+        width: 100%;
+        height: 100%;
     }
 }
 
@@ -178,10 +272,10 @@
     }
 
     * {
-        font-family: 'Courier Prime', monospace;
+        font-family: 'Unica77', sans-serifspace;
         // font-weight: 300;
         // color: black;
-        font-size: 1rem;
+        font-size: .875rem;
         font-weight: 400;
     }
 
@@ -192,30 +286,12 @@
 
     h3 {
         display: inline;
-        font-weight: 700;
-
-        &:before {
-            // color: black;
-            content: "["
-        }
-
-        &:after {
-            content: "]"
-        }
+        font-weight: bold;
     }
 
     strong {
-        font-weight: 700;
+        font-weight: bold;
 
-        &:before {
-            // color: black;
-            content: "["
-        }
-
-        &:after {
-            // color: black;
-            content: "]"
-        }
     }
 }
 
@@ -233,41 +309,43 @@
 }
 
 
+.shipping {
+
+    p {
+        font-size: .875rem;
+    }
+
+    ul {
+        padding-inline-start: 0;
+    }
+
+    li {
+        white-space: initial !important;
+        // display: block;
+    }
+}
+
 .longDescription {
     margin-bottom: 2rem;
-    padding: 0 1rem;
-
-    @media screen and (min-width: 960px) {
-
-        padding: 0;
-    }
+    
 
     span {
 
-        font-family: 'Courier Prime', monospace;
-        color: var(--color-grey) !important;
-        font-size: 1rem !important;
+        font-family: 'Unica77', sans-serif;
+        font-size: .875rem !important;
 
 
+    }
+
+    h3 {
+        font-size: .875rem !important;
     }
 
     h2 {
 
         span {
-            font-family: 'Courier Prime', monospace !important;
-            font-weight: 700 !important;
-        }
-
-        &:before {
-            font-family: 'Courier Prime', monospace !important;
-            font-weight: 700 !important;
-            content: "["
-        }
-
-        &:after {
-            font-family: 'Courier Prime', monospace !important;
-            font-weight: 700 !important;
-            content: "]"
+            font-family: 'Unica77', sans-serif !important;
+            font-weight: bold !important;
         }
     }
 

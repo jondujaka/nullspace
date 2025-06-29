@@ -1,5 +1,6 @@
 import { type FetcherWithComponents } from 'react-router';
 import {CartForm, type OptimisticCartLineInput} from '@shopify/hydrogen';
+import { MouseEventHandler } from 'react';
 
 export function AddToCartButton({
   analytics,
@@ -12,7 +13,7 @@ export function AddToCartButton({
   children: React.ReactNode;
   disabled?: boolean;
   lines: Array<OptimisticCartLineInput>;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }) {
   return (
     <CartForm route="/cart" inputs={{lines}} action={CartForm.ACTIONS.LinesAdd}>

@@ -6,12 +6,27 @@
     padding: 0 2rem;
     position: fixed;
     width: 100%;
-    top: 0;
+    top: 1rem;
     z-index: 900;
     background: transparent;
 
     * {
-        font-family: 'Gruppo', sans-serif;
+        font-family: 'Unica77', sans-serif;
+        color: black;
+
+        svg * {
+            fill: black;
+        }
+    }
+
+    &.inverted {
+        * {
+            color: white;
+        }
+
+        svg * {
+            fill: white;
+        }
     }
 
 
@@ -33,6 +48,10 @@
     @media screen and (min-width: 960px) {
         display: none;
     }
+
+    svg * {
+        fill: black;
+    }
 }
 
 .navWrapper {
@@ -41,38 +60,51 @@
     left: 0;
     padding: 0 .7rem .4rem .7rem;
 
+    height: 100vh;
     width: 100%;
     // height: 100vh;
     z-index: 5;
     background: white;
+    opacity: 0;
 
+    transition: opacity .4s ease-in-out .1s;
 
-    display: flex;
-    flex-direction: row;
-    transform: translateY(-100%);
-    transition: .4s ease-in-out;
-    // opacity: 0;
-    justify-content: space-between;
-
+    z-index: -100;
 
     &.isOpen {
         // opacity: 1;
-        transform: translateX(0)
+        // transform: translateX(0);
+        z-index: 10000;
+        opacity: 1;
+
+        transition: opacity .4s ease-in-out .1s;
     }
+
+    >div {
+        display: flex;
+        flex-direction: column;
+        margin-top: 2rem;
+
+    }
+
+
 
 
     a,
     button {
         display: flex;
         align-items: center;
-        > span {
-            font-family: 'Gruppo', sans-serif;
+        margin-bottom: 1rem;
+
+        >span {
+            font-family: 'Unica77', sans-serif;
             text-transform: lowercase;
             margin: 0;
             padding: 0;
             line-height: 1;
             font-size: 1rem;
-            color: black;
+
+            z-index: 1;
 
         }
 
@@ -95,18 +127,27 @@
     justify-content: space-between;
     background: white;
 
+    transition: transform .2s ease-in-out;
+    transform: translateY(0);
+    &.withMarquee {
+        transform: translateY(2rem);
+    }
+
     .mobileLogo {
         display: flex;
         align-items: center;
+
+        svg {
+            height: 20px;
+        }
     }
 
-    .headerMenuItem > span {
-        color: var(--color-grey);
-        font-family: 'Gruppo', sans-serif;
+    .headerMenuItem>span {
+        font-family: 'Unica77', sans-serif;
         text-transform: lowercase;
         margin: 0;
         padding: 0;
-        font-size: 1.25rem;
+        font-size: 1rem;
         line-height: 1;
         background: transparent;
         border: none;
@@ -129,15 +170,17 @@
     // display: none;
     grid-gap: 1rem;
 
+    position: relative;
+
+
     a,
     button {
-        color: var(--color-grey);
-        font-family: 'Gruppo', sans-serif;
-        text-transform: lowercase;
+        font-family: 'Unica77', sans-serif;
+
         margin: 0;
         padding: 0;
-        font-size: 1.25rem;
-        
+        font-size: .875rem;
+
         display: flex;
         align-items: center;
 
@@ -149,7 +192,7 @@
     @media (min-width: 960px) {
         display: flex;
         justify-content: center;
-        grid-gap: 5rem;
+        grid-gap: 3rem;
         align-items: center;
     }
 }
@@ -165,26 +208,52 @@
 }
 
 .desktopLogo {
-    position: absolute;
+    position: absolute !important;
     left: 50%;
     transform: translateX(-50%);
+    top: 1.3rem;
 }
 
 .headerMenuItem {
     cursor: pointer;
+    position: relative;
+
+
+    .subMenu {
+        position: absolute;
+        display: none;
+
+        left: 0;
+        margin: 0;
+        padding: 0;
+        top: 1rem;
+        padding-top: 1rem;
+
+        * {
+            text-transform: none;
+            white-space: nowrap;
+        }
+
+
+    }
+
+
+    &:hover {
+        >.subMenu {
+            display: block;
+        }
+    }
 
 
     svg {
-        height: 18px;
+        height: 24px;
     }
 
 
-    &:hover,
-    &.active {
-        svg * {
-            // fill: var(--color-dark);
-        }
+    &:hover svg {
+        opacity: .7;
     }
+
 }
 
 .headerCtas {

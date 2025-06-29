@@ -1,0 +1,27 @@
+.wrapper {
+    section {
+        padding: 0;
+        margin: 0;
+    }
+
+    border-top: 1px solid #e2e2e2;
+
+
+    .title {
+        cursor: pointer;
+        font-size: 1rem;
+        padding: 1rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        svg {
+            height: 24px;
+            margin-right: 1rem;
+
+            &.rotate {
+                transform: rotate(180deg);
+            }
+        }
+    }
+}

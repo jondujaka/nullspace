@@ -5,11 +5,13 @@ import { ProductItemFragment } from "storefrontapi.generated";
 import { AddToCartButton } from '../AddToCartButton';
 import { useAside } from '../Aside/Aside';
 import Carousel from '../Carousel/Carousel';
+import { Image } from '@shopify/hydrogen';
+import Collapsible from '../Collapsible/Collapsible';
 
 
 
 
-export default function SingleProductView({ product, selectedVariant, productOptions }: { product: Product, selectedVariant: ProductVariant, productOptions: MappedProductOptions[] }) {
+export default function SingleProductView({ product, selectedVariant, productOptions, shipping }: { product: Product, selectedVariant: ProductVariant, productOptions: MappedProductOptions[], shipping: { body: string } }) {
 
     const { open } = useAside();
 
@@ -27,23 +29,30 @@ export default function SingleProductView({ product, selectedVariant, productOpt
     const filterCategory = lensDescription?.find(field => field.key === 'filter_category')?.value
     const lensDescriptionText = lensDescription?.find(field => field.key === 'lens-description')?.value
 
+
     return <div className={styles.wrapper}>
 
-        <div className={styles.hero}>
-            <div className={styles.carouselWrapper}><Carousel items={productImages} /></div>
-            <div className={styles.description}>
-                {productDescription?.value && <RichText data={productDescription.value} />}
-                {/* <p>Mauretania, stretching from central Algeria to the Moroccan Atlantic coast, is a frame inspired by the ancient region of Maghreb, renowned as the land of a million poets. Drawing from the historical city of Tangier the Mauretania frame pays homage to the Moors and their vibrant cultural heritage. Part of our permanent Ihsan collection, the Mauretania features an oversize square frame and is available in three distinct acetates and three lens colors.</p> */}
-            </div>
+        <div className={styles.gridWrapper}>
+
+
+            {productImages.map(image => <div><Image data={image.image} /></div>)}
+
+
         </div>
 
-        <div className={styles.shoppingInfo}>
-            <div className={styles.productTitle}>
+        <div className={styles.carouselWrapper}>
+
+            <Carousel items={productImages} />
+        </div>
+
+
+        <div className={styles.mobileBar}>
+            <div className={styles.mobileProductInfo}>
                 <h1> {product.title}</h1>
                 <Money className={styles.variantPrice} data={selectedVariant.price} withoutTrailingZeros />
 
             </div>
-            <div className={styles.button}>
+            <div className={`${styles.button} ${styles.buttonMobile}`}>
                 <AddToCartButton
                     disabled={!selectedVariant || !selectedVariant.availableForSale}
                     onClick={() => {
@@ -61,20 +70,73 @@ export default function SingleProductView({ product, selectedVariant, productOpt
                             : []
                     }
                 >
-                    {selectedVariant?.availableForSale ? '(Add to cart)' : 'Sold out'}
+                    {selectedVariant?.availableForSale ? '(Add to Shopping Bag)' : 'Sold out'}
                 </AddToCartButton>
             </div>
         </div>
 
-        <div className={styles.longDescription} dangerouslySetInnerHTML={{ __html: product.descriptionHtml }} />
-        {lensDescription && (
-            <div className={styles.lensDescription}>
-                <div>
-                    <h3>{lensTitle}</h3>
-                    <span className={styles.category}>Filter category: {filterCategory}</span>
+        <div className={styles.product}>
+            <div className={styles.innerWrapper}>
+                <div className={styles.productTitle}>
+                    <h1> {product.title}</h1>
+                    <Money className={styles.variantPrice} data={selectedVariant.price} withoutTrailingZeros />
+
                 </div>
-                <RichText className={styles.richText} data={lensDescriptionText} />
-            </div>
-        )}
-        {colorOptions && colorOptions.optionValues.map(opt => opt.name)}</div>
+                <div className={styles.description}>
+                    {productDescription?.value && <RichText data={productDescription.value} />}
+                    {/* <p>Mauretania, stretching from central Algeria to the Moroccan Atlantic coast, is a frame inspired by the ancient region of Maghreb, renowned as the land of a million poets. Drawing from the historical city of Tangier the Mauretania frame pays homage to the Moors and their vibrant cultural heritage. Part of our permanent Ihsan collection, the Mauretania features an oversize square frame and is available in three distinct acetates and three lens colors.</p> */}
+                </div>
+
+                <div className={`${styles.button} ${styles.buttonDesktop}`}>
+                    <AddToCartButton
+                        disabled={!selectedVariant || !selectedVariant.availableForSale}
+                        onClick={() => {
+                            open('cart');
+                        }}
+                        lines={
+                            selectedVariant
+                                ? [
+                                    {
+                                        merchandiseId: selectedVariant.id,
+                                        quantity: 1,
+                                        selectedVariant,
+                                    },
+                                ]
+                                : []
+                        }
+                    >
+                        {selectedVariant?.availableForSale ? '(Add to Shopping Bag)' : 'Sold out'}
+                    </AddToCartButton>
+                </div>
+
+
+                <div className={styles.textInfo}>
+                    <span>Complimentary shipping and returns</span>
+                </div>
+
+                <Collapsible title="Product Details">
+                    <div className={styles.longDescription} dangerouslySetInnerHTML={{ __html: product.descriptionHtml }} />
+                    {lensDescription && (
+                        <div className={styles.lensDescription}>
+                            <div>
+                                <h3>{lensTitle}</h3>
+                                <span className={styles.category}>Filter category: {filterCategory}</span>
+                            </div>
+                            <RichText className={styles.richText} data={lensDescriptionText} />
+                        </div>
+                    )}
+                </Collapsible>
+
+
+                <Collapsible title="Shipping & Returns">
+                    <div className={styles.shipping} dangerouslySetInnerHTML={{ __html: shipping.body }} />
+                </Collapsible>
+
+
+
+
+
+                {colorOptions && colorOptions.optionValues.map(opt => opt.name)}</div>
+        </div >
+    </div >
 }

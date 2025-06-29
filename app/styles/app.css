@@ -13,20 +13,43 @@
 
 
 body {
-  font-family: 'Nunito Sans Variable', sans-serif;
+  font-family: 'Unica77', sans-serif;
   background: var(--color-light);
-  color: white;
+  color: black;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@font-face {
+  font-family: 'Unica77';
+  src: url('/fonts/unica.woff2') format('woff2'),
+       url('/fonts/unica.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'RocaLight';
+  src: url('/fonts/roca-light.woff2') format('woff2'),
+       url('/fonts/roca-light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 body *,
 body a {
-  color: var(--color-grey);
+  color: black;
   box-sizing: border-box;
 }
 
 body img {
   display: block;
 }
+
 
 /*
 * --------------------------------------------------
@@ -195,7 +218,7 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .cart h1 {
-  font-family: 'Nunito Sans Variable', sans-serif;
+  font-family: 'Unica77', sans-serif;
   font-weight: 400;
   font-size: 1.5rem;
   color: var(--color-grey);
@@ -251,7 +274,7 @@ button.reset:hover:not(:has(> *)) {
 .cart-summary-page {
   text-transform: uppercase;
   font-size: 1.1rem;
-  font-family: 'Nunito Sans Variable', sans-serif;
+  font-family: 'Unica77', sans-serif;
 }
 
 .cart-line-quantity {
@@ -308,7 +331,7 @@ button.reset:hover:not(:has(> *)) {
   font-size: 1.4rem;
   color: black;
   text-transform: uppercase;
-  font-family: 'Nunito Sans Variable', sans-serif;
+  font-family: 'Unica77', sans-serif;
 }
 
 .cart-discount {
@@ -331,7 +354,7 @@ button.reset:hover:not(:has(> *)) {
   font-weight: 400;
   text-transform: uppercase;
   /* font-family: 'Nunito Sans Variable', sans-serif; */
-  font-family: 'Courier Prime', Courier, monospace;
+  font-family: 'Unica77', Courier, monospace;
 }
 /*
 * --------------------------------------------------
@@ -608,21 +631,19 @@ button.reset:hover:not(:has(> *)) {
 
 .content-wrapper h1,
 .cart h1 {
-  font-family: 'Gruppo', sans-serif !important;
-  color: var(--color-grey) !important;
+  font-family: 'Unica77', sans-serif !important;
+  
 }
 
 .content-wrapper h2 {
-  color: var(--color-grey) !important;
   margin-top: 3rem;
   font-size: 2rem;
 }
 
 .content-wrapper p,
 .content-wrapper span {
-  color: var(--color-grey) !important;
   margin-bottom: .4em;
-  font-family: 'Nunito Sans Variable', sans-serif !important;
+  font-family: 'Unica77', sans-serif !important;
 }
 
 .content-wrapper li {
@@ -634,10 +655,11 @@ button.reset:hover:not(:has(> *)) {
   font-weight: 700;
 }
 
+
 .policies a {
   display: block;
   padding: 1rem;
-
+  color: black;
   margin-bottom: 1rem;
 }
 
@@ -653,7 +675,7 @@ button.reset:hover:not(:has(> *)) {
   width: 100%;
   color: black;
 
-  font-family: 'Nunito Sans Variable', sans-serif;
+  font-family: 'Unica77', sans-serif;
 }
 
 
