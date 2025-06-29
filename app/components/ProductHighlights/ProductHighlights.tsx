@@ -4,7 +4,7 @@ import { Link } from 'react-router'
 import { Image } from '@shopify/hydrogen';
 export default function ProductHighlights({ items }: { items: ProductHighlightsQueryQuery['metaobjects'] }) {
     return <div className={styles.wrapper}>
-        {items.nodes.map(item => <Product item={item} />)}
+        {items.nodes.map(item => <Product item={item} key={item.id} />)}
     </div>
 }
 
@@ -16,7 +16,7 @@ function Product({ item }: { item: ProductHighlightsQueryQuery['metaobjects']['n
 
 
     return <Link className={styles.productWrapper} to={`/products/${product?.handle}`}>
-        {image?.image && <Image data={image.image} />}
+        {image?.image && <Image data={image.image} sizes="(min-width: 1200px) 33vw, 400px" />}
         <span>VIEW PRODUCT</span>
 
     </Link>

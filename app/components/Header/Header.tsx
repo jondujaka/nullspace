@@ -315,7 +315,7 @@ function LeftMenu({ closeMenu, storesList, productsList }: { closeMenu?: () => v
 
         </NavLink>
         <ul className={styles.subMenu}>
-          {productsList.map(product => <li><Link to={product.url}>{product.title}</Link></li>)}
+          {productsList.map(product => <li key={product.url}><Link to={product.url}>{product.title}</Link></li>)}
 
         </ul>
       </div>

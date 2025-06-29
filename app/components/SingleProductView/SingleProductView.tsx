@@ -34,8 +34,7 @@ export default function SingleProductView({ product, selectedVariant, productOpt
 
         <div className={styles.gridWrapper}>
 
-
-            {productImages.map(image => <div><Image data={image.image} /></div>)}
+            {productImages.map(image => <div key={image.id}><Image sizes="(min-width: 1900px) 700px, (min-width: 1080px) 25vw, 100vw" data={image.image} /></div>)}
 
 
         </div>
