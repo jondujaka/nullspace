@@ -22,7 +22,7 @@
     --text-width: 100%;
 
     @media screen and (min-width: 1080px) {
-    --text-width: 480px;
+        --text-width: 480px;
     }
 
     @media screen and (min-width: 1280px) {
@@ -37,10 +37,9 @@
 
 .video {
     aspect-ratio: 9/16;
-    background: fuchsia;
 
     right: 5rem;
-    bottom: 12rem;
+    bottom: 11rem;
 
     border-radius: 25px;
     box-shadow: 0 0px 52px 10px rgba(0, 0, 0, .3);
@@ -48,6 +47,11 @@
 
     height: 70vh;
     margin: 2rem auto 8rem auto;
+    overflow: hidden;
+
+
+    object-fit: cover;
+
 
     @media screen and (min-width: 1080px) {
         height: auto;
@@ -59,7 +63,7 @@
 }
 
 .text {
-    
+
     width: var(--text-width);
     overflow-y: auto;
     height: 100%;

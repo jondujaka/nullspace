@@ -845,23 +845,50 @@ export type AboutPageQueryVariables = StorefrontAPI.Exact<{
 export type AboutPageQuery = {
   metaobject?: StorefrontAPI.Maybe<{
     fields: Array<
-      Pick<StorefrontAPI.MetaobjectField, 'value' | 'type'> & {
+      Pick<StorefrontAPI.MetaobjectField, 'value' | 'key' | 'type'> & {
         reference?: StorefrontAPI.Maybe<
-          Pick<StorefrontAPI.MediaImage, 'id'> & {
-            image?: StorefrontAPI.Maybe<
-              Pick<
-                StorefrontAPI.Image,
-                | 'originalSrc'
-                | 'src'
-                | 'transformedSrc'
-                | 'width'
-                | 'url'
-                | 'height'
-                | 'id'
-                | 'altText'
-              >
-            >;
-          }
+          | (Pick<StorefrontAPI.MediaImage, 'id'> & {
+              image?: StorefrontAPI.Maybe<
+                Pick<
+                  StorefrontAPI.Image,
+                  | 'originalSrc'
+                  | 'src'
+                  | 'transformedSrc'
+                  | 'width'
+                  | 'url'
+                  | 'height'
+                  | 'id'
+                  | 'altText'
+                >
+              >;
+            })
+          | ({__typename: 'Video'} & Pick<
+              StorefrontAPI.Video,
+              'id' | 'mediaContentType' | 'alt'
+            > & {
+                sources: Array<
+                  Pick<
+                    StorefrontAPI.VideoSource,
+                    'url' | 'width' | 'mimeType' | 'height' | 'format'
+                  >
+                >;
+                previewImage?: StorefrontAPI.Maybe<
+                  Pick<
+                    StorefrontAPI.Image,
+                    | 'originalSrc'
+                    | 'src'
+                    | 'transformedSrc'
+                    | 'width'
+                    | 'url'
+                    | 'height'
+                    | 'id'
+                    | 'altText'
+                  >
+                >;
+                presentation?: StorefrontAPI.Maybe<
+                  Pick<StorefrontAPI.MediaPresentation, 'id'>
+                >;
+              })
         >;
       }
     >;
@@ -1813,7 +1840,7 @@ interface GeneratedQueryTypes {
     return: HomePageMetaObjectsQuery;
     variables: HomePageMetaObjectsQueryVariables;
   };
-  '#graphql\n\nquery AboutPage($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n        metaobject(handle: {handle: "about-page-description-zsw7daga", type: "about_page_description"}) {\n            fields {\n                value\n                reference {\n                    ... on MediaImage {\n                        id\n                        image {\n                            originalSrc\n                            src\n                            transformedSrc\n                            width\n                            url\n                            height\n                            id\n                            altText\n                        }\n                    }\n                }\n                type\n            }\n        }\n    }\n\n': {
+  '#graphql\n\nquery AboutPage($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n        metaobject(handle: {handle: "about-page-description-zsw7daga", type: "about_page_description"}) {\n            fields {\n                value\n                key\n                reference {\n                    \n                    ... on MediaImage {\n                        id\n                        image {\n                            originalSrc\n                            src\n                            transformedSrc\n                            width\n                            url\n                            height\n                            id\n                            altText\n                        }\n                    }\n                    ... on Video {\n                        id\n                        __typename\n                        sources {\n                            url\n                            width\n                            mimeType\n                            height\n                            format\n                        }\n                        previewImage {\n                            originalSrc\n                            src\n                            transformedSrc\n                            width\n                            url\n                            height\n                            id\n                            altText\n                        }\n                        presentation {\n                            id\n                        }\n                    \n                        mediaContentType\n                        alt\n                    }\n                }\n                type\n            }\n        }\n    }\n\n': {
     return: AboutPageQuery;
     variables: AboutPageQueryVariables;
   };
