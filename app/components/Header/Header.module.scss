@@ -9,16 +9,12 @@
     top: 1rem;
     z-index: 900;
     background: transparent;
-
     display: none;
+    --color: black;
 
     @media screen and (min-width: 960px) {
         display: flex;
     }
-
-
-    --color: black;
-
 
     * {
         font-family: 'Unica77', sans-serif;
@@ -27,11 +23,7 @@
     }
 
     &.inverted {
-
         --color: white;
-
-
-
     }
 
 }
