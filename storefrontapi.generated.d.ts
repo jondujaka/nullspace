@@ -1972,7 +1972,7 @@ interface GeneratedQueryTypes {
     return: HomeImagesSectionQuery;
     variables: HomeImagesSectionQueryVariables;
   };
-  '#graphql\n\n\n  fragment ProductImage on MediaImage {\n    id\n    image {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n  }\n\n  fragment ProductInfo on Product {\n    id\n    title\n    handle\n  }\n\n  query ProductHighlightsQuery($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n      metaobjects(type: "product_highlight", first: 10) {\n        nodes {\n          id\n          fields {\n            type\n            value\n            reference {\n              ...ProductImage\n              ...ProductInfo\n            }\n          }\n        }\n      }\n  }\n  \n': {
+  '#graphql\n\n\n  fragment ProductImage on MediaImage {\n    id\n    image {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n  }\n\n  fragment ProductInfo on Product {\n    id\n    title\n    handle\n  }\n\n  query ProductHighlightsQuery($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n      metaobjects(type: "product_highlight", first: 10, reverse: true) {\n        nodes {\n          id\n          fields {\n            type\n            value\n            reference {\n              ...ProductImage\n              ...ProductInfo\n            }\n          }\n        }\n      }\n  }\n  \n': {
     return: ProductHighlightsQueryQuery;
     variables: ProductHighlightsQueryQueryVariables;
   };

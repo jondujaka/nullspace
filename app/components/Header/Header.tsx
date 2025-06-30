@@ -13,6 +13,7 @@ import BrandedLink from '../BrandedLink/BrandedLink';
 import { useEffect, useState } from 'react';
 import useScrollPosition from '~/hooks/useScrollPosition';
 import Marquee from '../Marquee/Marquee';
+import AccountIcon from '../AccountIcon';
 
 interface HeaderProps {
   header: HeaderQuery;
@@ -21,7 +22,8 @@ interface HeaderProps {
   publicStoreDomain: string;
   isHome?: boolean;
   hasMarquee?: boolean;
-  stores?: StoresQueryQuery
+  stores?: StoresQueryQuery;
+  isInverted?: boolean
 }
 type Viewport = 'desktop' | 'mobile';
 
@@ -31,7 +33,8 @@ function MobileHeader({
   isLoggedIn,
   cart,
   publicStoreDomain,
-  hasMarquee
+  hasMarquee,
+  isInverted
 }: HeaderProps) {
   const { shop, menu } = header;
   const { close } = useAside();
@@ -40,7 +43,7 @@ function MobileHeader({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className={styles.mobileHeader}>
+    <header className={`${styles.mobileHeader} ${(isInverted && !isMenuOpen) ? styles.inverted : ''} ${isMenuOpen ? styles.hasMenuOpen : ''} `}>
 
       <div className={`${styles.navController} ${hasMarquee ? styles.withMarquee : ""}`}>
         <NavLink
@@ -50,13 +53,35 @@ function MobileHeader({
           prefetch="intent"
           to={"/"}
         >
-          <Logo fill="#000" />
+          <Logo className={styles.logo} fill="#000" />
         </NavLink>
 
         <div className={styles.headerMenuItem} onClick={() => {
 
           setIsMenuOpen(prev => !prev)
-        }}><BrandedLink text="menu" isActive={isMenuOpen} /></div>
+        }}>
+          <div className={styles.hamburger}>
+            <span /><span />
+          </div>
+        </div>
+
+
+        <NavLink
+          className={styles.headerMenuItem}
+          end
+          onClick={() => {
+            close();
+            setIsMenuOpen(false)
+          }}
+          prefetch="intent"
+          to={"https://account.null-space.eu"}
+        >
+          {({ isActive }) => (
+
+            <AccountIcon className={styles.accountButton} />
+          )}
+        </NavLink>
+        <CartButton cart={cart} className={styles.cartButton} />
       </div>
 
       <div className={`${styles.navWrapper} ${isMenuOpen ? styles.isOpen : ""} `}>
@@ -146,25 +171,7 @@ function MobileHeader({
             )}
           </NavLink>
 
-
-
-          <NavLink
-            className={styles.headerMenuItem}
-            end
-            onClick={() => {
-              close();
-              setIsMenuOpen(false)
-            }}
-            prefetch="intent"
-            to={"https://account.null-space.eu"}
-          >
-            {({ isActive }) => (
-
-              <BrandedLink text="Account" isActive={isActive} />
-            )}
-          </NavLink>
-
-          <CartButton cart={cart} /></div>
+        </div>
       </div>
     </header>
   );
@@ -208,7 +215,7 @@ export default function Header({
 
   const productsList = menu?.items.map(item => {
 
-    if(!item?.url){
+    if (!item?.url) {
       return null;
     }
     const splitUrl = item.url?.split('/');
@@ -224,7 +231,7 @@ export default function Header({
 
     <>
       <Marquee onClose={() => setHasMarquee(false)} text="Free shipping and returns within the EU and selected countries." />
-      <MobileHeader hasMarquee={hasMarquee} header={header} isLoggedIn={isLoggedIn} cart={cart} publicStoreDomain={publicStoreDomain} />
+      <MobileHeader isInverted={isInverted && isHome} hasMarquee={hasMarquee} header={header} isLoggedIn={isLoggedIn} cart={cart} publicStoreDomain={publicStoreDomain} />
       <header className={`${styles.header} ${isInverted && isHome ? styles.inverted : ''} `}>
         <LeftMenu storesList={storesList} productsList={productsList} />
         <NavLink
@@ -234,7 +241,7 @@ export default function Header({
           prefetch="intent"
           to={"/"}
         >
-          <Logo />
+          <Logo className={styles.logo} />
         </NavLink>
         <RightMenu cart={cart} />
         {/* <HeaderMenu
@@ -269,7 +276,7 @@ function RightMenu({ cart, closeMenu }: Pick<HeaderProps, 'cart'> & { closeMenu?
       >
         {({ isActive }) => (
 
-          <BrandedLink text="Account" isActive={isActive} />
+          <AccountIcon className={styles.accountButton} />
         )}
 
 
@@ -278,7 +285,7 @@ function RightMenu({ cart, closeMenu }: Pick<HeaderProps, 'cart'> & { closeMenu?
 
 
 
-      <CartButton cart={cart} />
+      <CartButton cart={cart} className={styles.cartButton} />
     </nav>
   )
 }
@@ -383,9 +390,9 @@ function LeftMenu({ closeMenu, storesList, productsList }: { closeMenu?: () => v
           )}
 
         </NavLink>
-        {storesList?.length ? <ul className={styles.subMenu}>
+        {/* {storesList?.length ? <ul className={styles.subMenu}>
           {storesList.map(store => <li key={store}><Link to="/stores">{store}</Link></li>)}
-        </ul> : null}
+        </ul> : null} */}
       </div>
 
       <NavLink

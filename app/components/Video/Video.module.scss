@@ -4,11 +4,8 @@
     position: relative;
 
     @media screen and (min-width: 960px) {
-
-
         max-height: 100vh;
         aspect-ratio: 16/9;
-
         height: 80vh;
     }
 
@@ -29,7 +26,8 @@
 
         z-index: 1;
         border: none;
-        background: white;
+        background: linear-gradient(0deg, rgba(243, 244, 246, .35), rgba(243, 244, 246, .2)), linear-gradient(180deg, hsla(0, 0%, 100%, .15), hsla(0, 0%, 95%, 0));
+        backdrop-filter: blur(5px);
         padding: 0;
         margin: 0;
         display: block;
@@ -64,7 +62,5 @@
                 fill: black;
             }
         }
-
-        ;
     }
 }

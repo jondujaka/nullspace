@@ -52,7 +52,7 @@ export default function Footer() {
             <div className={styles.newsletterWrapper}>
                 <div className={styles.newsletterButton}>
                     <span>Sign up and receive 10% off on your first order</span>
-                    <div className="klaviyo-form-Uf3hBV" />
+                    {/* <div className="klaviyo-form-Uf3hBV" /> */}
                 </div>
             </div>
             <div className={styles.logo}>

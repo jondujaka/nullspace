@@ -30,6 +30,22 @@
     /* IE 11 */
     scrollbar-width: none;
 
+
+    margin-top: 3rem;
+
+    @media screen and (min-width: 768px) {
+        width: 100%;
+        // display: grid;
+        grid-gap: 1.5em;
+
+        position: relative;
+        z-index: 1;
+        background-color: var(--color-light);
+
+
+
+    }
+
     /* Firefox 64 */
     &::-webkit-scrollbar {
         display: none;
@@ -49,22 +65,8 @@
         scroll-snap-align: start;
     }
 
-    @media screen and (min-width: 768px) {
-        width: 100%;
-        // display: grid;
-        grid-gap: 1.5em;
-
-        position: relative;
-        z-index: 1;
-        background-color: var(--color-light);
 
 
-
-    }
-
-
-
-    margin-top: 3rem;
 
     .productInfo {
         padding-bottom: 0;

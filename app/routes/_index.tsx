@@ -192,7 +192,7 @@ const PRODUCT_HIGHLIGHTS = `#graphql
 
   query ProductHighlightsQuery($country: CountryCode, $language: LanguageCode)
     @inContext(country: $country, language: $language) {
-      metaobjects(type: "product_highlight", first: 10) {
+      metaobjects(type: "product_highlight", first: 10, reverse: true) {
         nodes {
           id
           fields {

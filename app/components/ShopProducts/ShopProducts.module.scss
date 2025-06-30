@@ -8,7 +8,12 @@
         border-radius: 25px;
         padding: .5rem 1.4rem;
         background-color: #e9e9e9;
-        font-size: .875rem;
+        font-size: .75rem;
+
+        
+        @media screen and (min-width: 960px) {
+            font-size: .875rem;
+        }
     }
 }
 
@@ -55,25 +60,15 @@
         /* IE 11 */
         scrollbar-width: none;
 
-        /* Firefox 64 */
-        &::-webkit-scrollbar {
-            display: none;
-        }
+
+
+        margin-top: 3rem;
 
         grid-template-columns: repeat(7, 1fr);
 
-
-        &.isRelated {
-            grid-template-columns: repeat(6, 1fr);
-        }
-
-        .product {
-            width: 120px;
-            flex-shrink: 0;
-
-            @media screen and (min-width: 768px) {
-                width: auto;
-            }
+        /* Firefox 64 */
+        &::-webkit-scrollbar {
+            display: none;
         }
 
         @media screen and (min-width: 768px) {
@@ -92,7 +87,20 @@
 
 
 
-        margin-top: 3rem;
+
+        &.isRelated {
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        .product {
+            width: 165px;
+            flex-shrink: 0;
+
+            @media screen and (min-width: 768px) {
+                width: auto;
+            }
+        }
+
 
         .productInfo {
             padding-bottom: 0;
@@ -114,9 +122,15 @@
         right: 1em;
         color: var(--color-turqoise);
         z-index: 10;
-        font-size: .7125em;
+        font-size: .5rem;
         font-family: 'Unica77', sans-serifspace;
         font-weight: 400;
+
+
+        @media screen and (min-width: 960px) {
+
+            font-size: .7125rem;
+        }
     }
 
 
@@ -165,9 +179,11 @@
     font-family: 'Unica77', sans-serifspace;
     align-items: center;
     padding: 6px;
+
     @media screen and (min-width: 768px) {
         padding: 12px;
     }
+
     * {
         color: #000;
         font-size: .75rem;
@@ -183,6 +199,7 @@
         text-transform: uppercase;
         color: #000;
     }
+
     >div {
         color: #757575;
     }

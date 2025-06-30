@@ -6,13 +6,13 @@
     margin-bottom: 4rem;
     margin-top: 2rem;
     overflow: hidden;
+    position: relative;
 
     @media screen and (min-width: 960px) {
 
         min-height: 400px;
     }
 
-    position: relative;
 
     * {
 
@@ -23,9 +23,7 @@
 
     .text {
 
-        @media screen and (min-width: 768px) {
-            padding: 1rem 6rem;
-        }
+
 
         max-width: 1400px;
         margin: 0 auto;
@@ -37,8 +35,13 @@
         position: relative;
         justify-content: center;
         z-index: 1;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
 
-
+        @media screen and (min-width: 768px) {
+            padding: 1rem 6rem;
+        }
 
 
         &.isVisible {
@@ -46,9 +49,6 @@
             transform: translateY(0);
         }
 
-        display: flex;
-        flex-direction: column;
-        text-align: center;
 
         a {
             color: var(--color-turqoise);
@@ -68,10 +68,12 @@
 
             text-shadow: 1px 1px 1px #fff;
             color: var(--color-grey);
-        }
-
-        p {
             margin-bottom: 1rem;
+            font-size: .875rem;
+
+            @media screen and (min-width: 960px) {
+                font-size: 1rem;
+            }
         }
 
 

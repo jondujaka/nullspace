@@ -1,14 +1,12 @@
 .wrapper {
     width: 100%;
-
     position: relative;
     overflow: hidden;
     background: url("https://cdn.shopify.com/s/files/1/0891/8627/1565/files/ABOUT_IMAGE.png?v=1745601081") no-repeat top right;
     background-size: 50%;
-
-
     padding: 1rem;
     margin-top: 6rem;
+    --text-width: 100%;
 
     @media screen and (min-width: 960px) {
 
@@ -19,7 +17,6 @@
 
 
 
-    --text-width: 100%;
 
     @media screen and (min-width: 1080px) {
         --text-width: 480px;
@@ -37,7 +34,7 @@
 
 .video {
     aspect-ratio: 9/16;
-
+    display: block;
     right: 5rem;
     bottom: 11rem;
 
@@ -49,7 +46,7 @@
     margin: 2rem auto 8rem auto;
     overflow: hidden;
 
-
+    max-width: 100%;
     object-fit: cover;
 
 
@@ -83,8 +80,13 @@
 
     p {
         font-family: "Unica77", sans-serif;
-        font-size: 1rem;
+        font-size: .875rem;
         margin-bottom: 1em;
+
+
+        @media screen and (min-width: 960px) {
+            font-size: 1rem;
+        }
     }
 
     strong {

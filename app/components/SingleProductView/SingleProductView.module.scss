@@ -16,11 +16,6 @@
 
 .product {
     flex-grow: 1;
-
-
-
-
-
     * {
         color: black;
     }
@@ -83,11 +78,6 @@
     }
 
 
-    h1 {
-        // font-weight: bold;
-
-    }
-
     .variantPrice {
         text-align: right;
         color: #757575;
@@ -98,9 +88,7 @@
 
     display: none;
 
-    @media screen and (min-width: 1080px) {
-        display: grid;
-    }
+   
 
     width: calc(100% - 530px);
     max-width: 1400px;
@@ -109,6 +97,10 @@
 
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
+
+    @media screen and (min-width: 1080px) {
+        display: grid;
+    }
 
     >div {
 
@@ -136,6 +128,10 @@
     padding: 1rem;
     z-index: 100;
 
+    @media screen and (min-width: 960px) {
+        display: none;
+    }
+
     .mobileProductInfo {
         display: flex;
         justify-content: space-between;
@@ -152,9 +148,7 @@
 
 
 
-    @media screen and (min-width: 960px) {
-        display: none;
-    }
+    
 }
 
 .carouselWrapper {
@@ -174,6 +168,10 @@
     flex-grow: 1;
     width: 100%;
 
+    @media screen and (min-width: 1440px) {
+
+        width: 350px;
+    }
 
     h5 {
         font-family: "RocaLight", sans-serif;
@@ -186,10 +184,7 @@
 
 
 
-    @media screen and (min-width: 1440px) {
-
-        width: 350px;
-    }
+  
 
 }
 
@@ -257,7 +252,6 @@
 
 .lensDescription {
     margin-bottom: 4rem;
-
     padding: 0 1rem;
 
     @media screen and (min-width: 960px) {

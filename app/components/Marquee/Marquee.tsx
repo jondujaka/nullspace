@@ -15,7 +15,7 @@ export default function Marquee({ text, onClose }: { text: string, onClose: () =
                 setHide(true)
                 onClose()
             }}>&#10006;</button>
-            <MarqueeComponent autoFill style={{ padding: '.1rem 0', background: 'white' }}>
+            <MarqueeComponent className={styles.marqueeWrapper} autoFill>
                 <span className={styles.textContainer}>{text}</span>
             </MarqueeComponent>
         </div>)

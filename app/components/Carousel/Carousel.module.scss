@@ -12,12 +12,21 @@
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
 
+    -ms-overflow-style: none;
+    /* IE 11 */
+    scrollbar-width: none;
+
+    /* Firefox 64 */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
 
     &.isHomepage {
         width: 100%;
         position: relative;
         height: 80vh;
-        
+
     }
 
     @media screen and (min-width: 960px) {
@@ -32,11 +41,6 @@
         }
     }
 
-    -ms-overflow-style: none; /* IE 11 */
-    scrollbar-width: none; /* Firefox 64 */
-    &::-webkit-scrollbar {
-        display: none;
-    }
 
 
     >img,
@@ -91,6 +95,7 @@
         margin: 0;
         padding: 0;
     }
+
     @media screen and (min-width: 960px) {
         position: absolute;
         margin: 0;

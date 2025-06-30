@@ -2,6 +2,7 @@ import { Image, RichText } from '@shopify/hydrogen';
 import styles from './ImageWithText.module.scss'
 import useElementOnScreen from "~/hooks/useElementOnScreen";
 import { Image as ImageType } from '@shopify/hydrogen/storefront-api-types';
+import { Link } from 'react-router';
 
 
 export default function ImageWithText({ image, isEager, text }: { image: Partial<ImageType>, isEager?: boolean, text?: string }) {
@@ -13,8 +14,11 @@ export default function ImageWithText({ image, isEager, text }: { image: Partial
     return (
 
         <div>
-            {text && <RichText className={styles.text} data={text} />}
-            <Image loading={isEager ? 'eager' : 'lazy'} className={isVisible ? 'reveal' : ''} data={image} sizes="(min-width: 768px) 50vw, 100vw" />
+            {text && <div className={styles.content}>
+                <RichText className={styles.text} data={text} />
+                <Link to="/products">View Products</Link>
+            </div>}
+            <Image loading={isEager ? 'eager' : 'lazy'} className={isVisible ? 'reveal' : ''} data={image} sizes="100vw" />
         </div>
     )
 }
@@ -26,6 +30,6 @@ export function Wrapper({ images, isEager, text }: { images: { image: Partial<Im
     });
 
     return <div ref={containerRef} className={styles.imagesWrapper}>
-        {images.map(image => <ImageWithText key={image.image.id} image={image.image} isEager text={text} />)}
+        {images.map((image, i) => <ImageWithText key={image.image.id} image={image.image} isEager text={i === 0 ? text : undefined} />)}
     </div>
 }

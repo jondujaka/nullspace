@@ -22,9 +22,11 @@ export default function AboutPage({ data }: { data: Data }) {
                 {richText?.value && <RichText data={richText.value} />}</div>
 
 
-            {video?.reference && <div className={styles.video}>
-                <Video playsInline muted controls={false} loop data={video.reference} />
-            </div>}
+            {video?.reference &&
+                <Video className={styles.video} data={video.reference} loop controls={false} preload='auto' autoPlay muted={true} playsInline />
+
+
+            }
         </div>
     )
 }
