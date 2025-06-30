@@ -95,7 +95,7 @@ export default function Homepage() {
 
   return (
     <div className="home">
-      {carouselItems && <HomeVideo video={carouselItems[0]} />}
+      {carouselItems && <HomeVideo lazy video={carouselItems[0]} />}
 
       {allproducts?.nodes && <ShopProducts products={allproducts.nodes} isSmall />}
 
@@ -110,7 +110,7 @@ export default function Homepage() {
       
       {allproducts?.nodes && <HomeProducts products={allproducts.nodes} />}
 
-      {finalVideo && <Video video={finalVideo} id="campaign" />}
+      {finalVideo && <Video lazy video={finalVideo} id="campaign" />}
 
 
 {/* 

@@ -2,12 +2,24 @@ import { Video as VideoType } from "@shopify/hydrogen/storefront-api-types";
 import styles from './Video.module.scss'
 import { Video as VideoComponent } from "@shopify/hydrogen";
 import { useState } from "react";
+import useElementOnScreen from "~/hooks/useElementOnScreen";
+import { Image } from "@shopify/hydrogen";
 
-export default function Video({ video, id, noSound }: { video: VideoType, id?: string, noSound?: boolean }) {
+export default function Video({ video, id, noSound, lazy }: { video: VideoType, id?: string, noSound?: boolean, lazy?: boolean }) {
 
     const [isMuted, setIsMuted] = useState(true);
-    return <div className={styles.wrapper} id={id}>
-        <VideoComponent loop controls={false} preload='auto' data={video} autoPlay muted={isMuted} playsInline />
+
+    const [containerRef, isVisible] = useElementOnScreen({
+        reappear: false,
+        threshold: .999,
+    });
+
+
+
+    return <div className={styles.wrapper} id={id} ref={containerRef}>
+
+        {video.previewImage && <Image data={video.previewImage} />}
+        {lazy && isVisible && <VideoComponent loop controls={false} preload='auto' data={video} autoPlay muted={isMuted} playsInline />}
         {isMuted && !noSound && <button className={styles.button} onClick={() => setIsMuted(false)}>
 
             <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" baseProfile="tiny" viewBox="10 10 80 80">

@@ -17,6 +17,6 @@ export default function HomeVideo({ video }: { video: VideoType }) {
                 <a href="#campaign" className={styles.button}>View Campaign</a>
             </div>
         </div>
-        <Video video={video} noSound />
+        <Video video={video} lazy noSound />
     </div>
 }
