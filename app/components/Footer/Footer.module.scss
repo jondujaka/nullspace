@@ -82,8 +82,12 @@ footer {
         margin-top: 1rem;
         text-transform: capitalize;
 
-        color: var(--color-grey);
+        color: black;
         font-size: .625rem;
+    }
+
+    svg * {
+        fill: black;
     }
 }
 
@@ -126,6 +130,6 @@ footer {
     >a {
         font-size: .875rem;
 
-        color: var(--color-grey);
+        color: black;
     }
 }
