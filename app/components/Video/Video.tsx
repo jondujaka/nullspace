@@ -11,7 +11,7 @@ export default function Video({ video, id, noSound, lazy }: { video: VideoType, 
 
     const [containerRef, isVisible] = useElementOnScreen({
         reappear: false,
-        threshold: .999,
+        threshold: 0,
     });
 
 
