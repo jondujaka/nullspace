@@ -21,8 +21,6 @@ export default async function handleRequest(
       'https://*.klaviyo.com'
     ],
     scriptSrc: [
-      'self',
-      'http://localhost:3000',
       'https://klaviyo.com',
       'https://*.klaviyo.com',
       'https://cdn.shopify.com'
