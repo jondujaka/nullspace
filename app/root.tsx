@@ -202,7 +202,7 @@ export function Layout({ children }: { children?: React.ReactNode }) {
           children
         )}
         <Script async type="text/javascript"
-          src="//static.klaviyo.com/onsite/js/ULWjSM/klaviyo.js" nonce={nonce} />
+          src="https://static.klaviyo.com/onsite/js/ULWjSM/klaviyo.js" nonce={nonce} />
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
       </body>
