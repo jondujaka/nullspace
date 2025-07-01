@@ -18,7 +18,7 @@ export default function Video({ video, id, noSound, lazy }: { video: VideoType, 
 
     return <div className={styles.wrapper} id={id} ref={containerRef}>
 
-        {video.previewImage && <Image data={video.previewImage} />}
+        {video.previewImage && <Image sizes="100vw" data={video.previewImage} />}
         {lazy && isVisible && <VideoComponent loop controls={false} preload='auto' data={video} autoPlay muted={isMuted} playsInline />}
         {isMuted && !noSound && <button className={styles.button} onClick={() => setIsMuted(false)}>
 

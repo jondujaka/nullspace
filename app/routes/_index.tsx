@@ -100,7 +100,7 @@ export default function Homepage() {
       {allproducts?.nodes && <ShopProducts products={allproducts.nodes} isSmall />}
 
 
-      {mainImages && <Wrapper images={mainImages} isEager text={text} />}
+      {/* {mainImages && <Wrapper images={mainImages} isEager text={text} />} */}
 
       <ProductHighlights items={productHighlights} />
 

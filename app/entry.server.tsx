@@ -1,8 +1,8 @@
-import type { EntryContext, AppLoadContext } from '@shopify/remix-oxygen';
-import { ServerRouter } from 'react-router';
-import { isbot } from 'isbot';
-import { renderToReadableStream } from 'react-dom/server';
-import { createContentSecurityPolicy } from '@shopify/hydrogen';
+import type {EntryContext, AppLoadContext} from '@shopify/remix-oxygen';
+import {ServerRouter} from 'react-router';
+import {isbot} from 'isbot';
+import {renderToReadableStream} from 'react-dom/server';
+import {createContentSecurityPolicy} from '@shopify/hydrogen';
 
 export default async function handleRequest(
   request: Request,
@@ -11,33 +11,42 @@ export default async function handleRequest(
   reactRouterContext: EntryContext,
   context: AppLoadContext,
 ) {
-  const { nonce, header, NonceProvider } = createContentSecurityPolicy({
+  const {nonce, header, NonceProvider} = createContentSecurityPolicy({
     shop: {
       checkoutDomain: context.env.PUBLIC_CHECKOUT_DOMAIN,
       storeDomain: context.env.PUBLIC_STORE_DOMAIN,
     },
-    connectSrc: [
-      'https://klaviyo.com',
-      'https://*.klaviyo.com'
-    ],
+    
+    connectSrc: ['https://klaviyo.com', 'https://*.klaviyo.com'],
     scriptSrc: [
       'https://klaviyo.com',
       'https://*.klaviyo.com',
-      'https://cdn.shopify.com'
+      'https://cdn.shopify.com',
     ],
-    mediaSrc: ["https://checkout.null-space.eu"],
-    styleSrc: ["https://fonts.googleapis.com", 'https://klaviyo.com',
-      'https://*.klaviyo.com',
-      'https://fonts.googleapis.com'],
-    fontSrc: ['https://klaviyo.com',
+    mediaSrc: ['https://checkout.null-space.eu'],
+    styleSrc: [
+      'https://fonts.googleapis.com',
+      'https://klaviyo.com',
       'https://*.klaviyo.com',
       'https://fonts.googleapis.com',
-      'https://fonts.gstatic.com/', "http://localhost:3000", "https://cdn.shopify.com/"]
+    ],
+    fontSrc: [
+      'https://klaviyo.com',
+      'https://*.klaviyo.com',
+      'https://fonts.googleapis.com',
+      'https://fonts.gstatic.com/',
+      'http://localhost:3000',
+      'https://cdn.shopify.com/',
+    ],
   });
 
   const body = await renderToReadableStream(
     <NonceProvider>
-      <ServerRouter context={reactRouterContext} url={request.url} nonce={nonce} />
+      <ServerRouter
+        context={reactRouterContext}
+        url={request.url}
+        nonce={nonce}
+      />
     </NonceProvider>,
     {
       nonce,
@@ -54,7 +63,12 @@ export default async function handleRequest(
   }
 
   responseHeaders.set('Content-Type', 'text/html');
-  responseHeaders.set('Content-Security-Policy', header);
+
+  // TEMPORARY
+  // responseHeaders.set('Content-Security-Policy', header);
+  responseHeaders.set('Content-Security-Policy', 
+  "default-src 'self' 'unsafe-inline' 'unsafe-eval' *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;"
+);
 
   return new Response(body, {
     headers: responseHeaders,

@@ -1,5 +1,5 @@
-import { Analytics, getShopAnalytics, Script, useNonce } from '@shopify/hydrogen';
-import { type LoaderFunctionArgs } from '@shopify/remix-oxygen';
+import {Analytics, getShopAnalytics, Script, useNonce} from '@shopify/hydrogen';
+import {type LoaderFunctionArgs} from '@shopify/remix-oxygen';
 import {
   Outlet,
   useRouteError,
@@ -13,12 +13,12 @@ import {
 } from 'react-router';
 import faviconLight from '~/assets/favicon-light.png';
 import faviconDark from '~/assets/favicon-dark.png';
-import appleIcon from '~/assets/apple-touch-icon.png'
+import appleIcon from '~/assets/apple-touch-icon.png';
 
-import { FOOTER_QUERY, HEADER_QUERY, STORES_QUERY } from '~/lib/fragments';
+import {FOOTER_QUERY, HEADER_QUERY, STORES_QUERY} from '~/lib/fragments';
 import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
-import { PageLayout } from './components/PageLayout';
+import {PageLayout} from './components/PageLayout';
 // import ibmPlexSans from '@fontsource-variable/ibm-plex-sans?url';
 // import ibmPlexMono from '@fontsource/ibm-plex-mono?url';
 
@@ -71,14 +71,19 @@ export function links() {
       href: 'https://shop.app',
     },
 
-
-    { rel: 'apple-touch-icon', type: 'image/png', href: appleIcon },
-    { rel: 'icon', type: 'image/png', href: faviconLight, media: "(prefers-color-scheme: dark)" },
-    { rel: 'icon', type: 'image/png', href: faviconDark, media: "(prefers-color-scheme: light)" },
-
-
-
-
+    {rel: 'apple-touch-icon', type: 'image/png', href: appleIcon},
+    {
+      rel: 'icon',
+      type: 'image/png',
+      href: faviconLight,
+      media: '(prefers-color-scheme: dark)',
+    },
+    {
+      rel: 'icon',
+      type: 'image/png',
+      href: faviconDark,
+      media: '(prefers-color-scheme: light)',
+    },
   ];
 }
 
@@ -89,7 +94,7 @@ export async function loader(args: LoaderFunctionArgs) {
   // Await the critical data required to render initial state of the page
   const criticalData = await loadCriticalData(args);
 
-  const { storefront, env } = args.context;
+  const {storefront, env} = args.context;
 
   return {
     ...deferredData,
@@ -114,8 +119,8 @@ export async function loader(args: LoaderFunctionArgs) {
  * Load data necessary for rendering content above the fold. This is the critical data
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  */
-async function loadCriticalData({ context }: LoaderFunctionArgs) {
-  const { storefront } = context;
+async function loadCriticalData({context}: LoaderFunctionArgs) {
+  const {storefront} = context;
 
   const [header, stores] = await Promise.all([
     storefront.query(HEADER_QUERY, {
@@ -128,7 +133,7 @@ async function loadCriticalData({ context }: LoaderFunctionArgs) {
     // Add other queries here, so that they are loaded in parallel
   ]);
 
-  return { header, stores };
+  return {header, stores};
 }
 
 /**
@@ -136,8 +141,8 @@ async function loadCriticalData({ context }: LoaderFunctionArgs) {
  * fetched after the initial page load. If it's unavailable, the page should still 200.
  * Make sure to not throw any errors here, as it will cause the page to 500.
  */
-function loadDeferredData({ context }: LoaderFunctionArgs) {
-  const { storefront, customerAccount, cart } = context;
+function loadDeferredData({context}: LoaderFunctionArgs) {
+  const {storefront, customerAccount, cart} = context;
 
   // defer the footer query (below the fold)
   const footer = storefront
@@ -159,13 +164,9 @@ function loadDeferredData({ context }: LoaderFunctionArgs) {
   };
 }
 
-
-
-
-export function Layout({ children }: { children?: React.ReactNode }) {
+export function Layout({children}: {children?: React.ReactNode}) {
   const nonce = useNonce();
   const data = useRouteLoaderData<RootLoader>('root');
-
 
   return (
     <html lang="en">
@@ -175,14 +176,22 @@ export function Layout({ children }: { children?: React.ReactNode }) {
         <link rel="stylesheet" href={resetStyles}></link>
         <link rel="stylesheet" href={appStyles}></link>
 
-
         <meta property="og:title" content="Nullspace" />
-        <meta property="og:description" content='Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary.' />
-        <meta property="og:image" content="https://cdn.shopify.com/s/files/1/0891/8627/1565/files/og-image.jpg" />
+        <meta
+          property="og:description"
+          content="Eyewear that merges technology with timeless aesthetics. built for those who see beyond the ordinary."
+        />
+        <meta
+          property="og:image"
+          content="https://cdn.shopify.com/s/files/1/0891/8627/1565/files/og-image.jpg"
+        />
         <meta property="og:url" content="https://null-space.eu" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://cdn.shopify.com/s/files/1/0891/8627/1565/files/og-image.jpg" />
+        <meta
+          name="twitter:image"
+          content="https://cdn.shopify.com/s/files/1/0891/8627/1565/files/og-image.jpg"
+        />
 
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Null Space" />
@@ -201,8 +210,12 @@ export function Layout({ children }: { children?: React.ReactNode }) {
         ) : (
           children
         )}
-        <Script async type="text/javascript"
-          src="https://static.klaviyo.com/onsite/js/ULWjSM/klaviyo.js" nonce={nonce} />
+        <Script
+          async
+          type="text/javascript"
+          src="https://static.klaviyo.com/onsite/js/ULWjSM/klaviyo.js"
+          nonce={nonce}
+        />
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
       </body>
