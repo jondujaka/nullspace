@@ -14,7 +14,7 @@ export default function Marquee({ text, onClose }: { text: string, onClose: () =
             <button onClick={() => {
                 setHide(true)
                 onClose()
-            }}>&#10006;</button>
+            }}>×</button>
             <MarqueeComponent className={styles.marqueeWrapper} autoFill>
                 <span className={styles.textContainer}>{text}</span>
             </MarqueeComponent>

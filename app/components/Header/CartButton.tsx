@@ -40,7 +40,7 @@ function CartBadge({ count, className }: { count: number | null, className?: str
             {/* <BrandedLink text={`cart ${count === null ? `&nbsp` : `(${count})`}`} /> */}
             <span>{count}</span>
 
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-sentry-element="svg" data-sentry-component="ShoppingBagIcon" data-sentry-source-file="ShoppingBagIcon.tsx"><path d="M4.6 6.6H19.4V20.9H4.6V6.6Z" stroke="black" stroke-width="1.2" data-sentry-element="path" data-sentry-source-file="ShoppingBagIcon.tsx"></path><path d="M15.2988 5.9998C15.2988 3.68021 13.8219 1.7998 12 1.7998C10.1781 1.7998 8.70117 3.68021 8.70117 5.9998" stroke="black" stroke-width="1.2" data-sentry-element="path" data-sentry-source-file="ShoppingBagIcon.tsx"></path></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-sentry-element="svg" data-sentry-component="ShoppingBagIcon" data-sentry-source-file="ShoppingBagIcon.tsx"><path d="M4.6 6.6H19.4V20.9H4.6V6.6Z" stroke="black" strokeWidth="1.2" data-sentry-element="path" data-sentry-source-file="ShoppingBagIcon.tsx"></path><path d="M15.2988 5.9998C15.2988 3.68021 13.8219 1.7998 12 1.7998C10.1781 1.7998 8.70117 3.68021 8.70117 5.9998" stroke="black" strokeWidth="1.2" data-sentry-element="path" data-sentry-source-file="ShoppingBagIcon.tsx"></path></svg>
         </a>
     );
 }

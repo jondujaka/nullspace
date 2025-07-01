@@ -189,24 +189,6 @@ export default function Header({
 
   const { close } = useAside();
 
-  const position = useScrollPosition(isHome)
-
-  const [isInverted, setIsInverted] = useState(false);
-
-  useEffect(() => {
-    if (!isHome) {
-      return;
-    }
-
-    const screenWidth = window.innerHeight;
-    const targetHeight = screenWidth * 0.8;
-
-    if (position < targetHeight) {
-      setIsInverted(true)
-    } else {
-      setIsInverted(false)
-    }
-  }, [position])
 
 
   const [hasMarquee, setHasMarquee] = useState(true)
@@ -231,8 +213,8 @@ export default function Header({
 
     <>
       <Marquee onClose={() => setHasMarquee(false)} text="Free shipping and returns within the EU and selected countries." />
-      <MobileHeader isInverted={isInverted && isHome} hasMarquee={hasMarquee} header={header} isLoggedIn={isLoggedIn} cart={cart} publicStoreDomain={publicStoreDomain} />
-      <header className={`${styles.header} ${isInverted && isHome ? styles.inverted : ''} `}>
+      <MobileHeader hasMarquee={hasMarquee} header={header} isLoggedIn={isLoggedIn} cart={cart} publicStoreDomain={publicStoreDomain} />
+      <header className={styles.header}>
         <LeftMenu storesList={storesList} productsList={productsList} />
         <NavLink
           className={`${styles.headerMenuItem} ${styles.desktopLogo}`}

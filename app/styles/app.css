@@ -87,8 +87,8 @@ aside header {
 }
 
 aside header .close {
-  font-weight: bold;
-  opacity: 0.8;
+
+
   text-decoration: none;
   transition: all 200ms;
   width: 24px;

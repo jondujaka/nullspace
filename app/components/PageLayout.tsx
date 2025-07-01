@@ -35,11 +35,6 @@ export function PageLayout({
   isLoggedIn,
   publicStoreDomain,
 }: PageLayoutProps) {
-
-  const location = useLocation()
-
-
-  const isHome = location.pathname === '/';
   return (
     <Aside.Provider>
       <CartAside cart={cart} />
@@ -52,7 +47,6 @@ export function PageLayout({
           stores={stores}
           isLoggedIn={isLoggedIn}
           publicStoreDomain={publicStoreDomain}
-          isHome={isHome}
         />
       )}
       <main>{children}</main>
