@@ -59,10 +59,18 @@
     .product {
         flex-grow: 1;
         flex-shrink: 0;
-        min-width: 240px;
-        width: 30%;
-        max-width: 80vw;
+        width: 240px;
+
         scroll-snap-align: start;
+        width: 80vw;
+
+        @media screen and (min-width: 960px){
+            width: 420px
+        }
+
+        @media screen and (min-width: 1440px){
+            width: 510px
+        }
     }
 
 

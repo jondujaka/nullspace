@@ -39,11 +39,8 @@
     .textContainer {
         color: black;
         padding: 0 8rem;
-        font-size: .5rem;
+        font-size: .75rem;
         display: block;
 
-        @media screen and (min-width: 960px) {
-            font-size: .75rem;
-        }
     }
 }
