@@ -43,8 +43,9 @@
 
             transition: opacity .3s ease-in-out;
 
-            font-size: .875rem;
+            font-size: .75rem;
             @media screen and (min-width: 960px) {
+                font-size: .875rem;
                 opacity: 0;
             }
         }
