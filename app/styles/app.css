@@ -16,7 +16,9 @@ body {
   font-family: 'Unica77', sans-serif;
   background: var(--color-light);
   color: black;
+  -moz-text-size-adjust: 100%;
 }
+
 
 html {
   scroll-behavior: smooth;
