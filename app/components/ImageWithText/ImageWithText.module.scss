@@ -78,6 +78,10 @@
     }
 
     >div {
+
+        &:first-of-type {
+            width: 90%;
+        }
         flex-shrink: 0;
         height: auto;
         position: relative;

@@ -133,7 +133,11 @@
 
     * {
         color: #000;
-        font-size: .85rem;
+        font-size: .75rem;
+
+        @media screen and (min-width: 960px){
+            font-size: .85rem;
+        }
     }
 
     >div {

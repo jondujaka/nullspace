@@ -9,6 +9,10 @@
     >div {
         height: 24px;
         align-items: center;
+
+        * {
+            font-size: .75rem !important;
+        }
     }
 
 
@@ -16,6 +20,8 @@
         background: linear-gradient(0deg, rgba(243, 244, 246, .6), rgba(243, 244, 246, .6)), linear-gradient(180deg, hsla(0, 0%, 100%, .25), hsla(0, 0%, 95%, 0));
         backdrop-filter: blur(30px);
         padding: .1rem 0;
+
+
     }
 
     button {
@@ -23,7 +29,7 @@
         right: 0;
 
         top: 2px;
-        
+
         border: none;
 
         color: black;
@@ -33,13 +39,16 @@
         width: 34px;
         height: 24px;
         transform: translateY(-2px);
+        font-size: 1rem;
 
     }
 
     .textContainer {
         color: black;
         padding: 0 8rem;
-        font-size: .75rem;
+
+
+
         display: block;
 
     }
