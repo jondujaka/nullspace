@@ -118,11 +118,10 @@
 
 .productInfo {
     position: absolute;
+    z-index: 2;
     top: 0;
     left: 0;
-
     font-family: 'Unica77', sans-serifspace;
-
     padding: 1.5rem 1rem;
 
     * {

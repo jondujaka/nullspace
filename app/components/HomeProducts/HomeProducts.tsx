@@ -69,13 +69,13 @@ function ProductItem({
 
     return (
         <div
-            className={`${styles.product} ${true && styles.productWithSideImage} `}
+            className={styles.product}
         // prefetch="intent"
         // to={productUrl}
         >
 
 
-            <div className={styles.image}>{renderedThumbnail && (
+            <Link to={productUrl} className={styles.image}>{renderedThumbnail && (
                 <Image
                     alt={renderedThumbnail.altText || product.title}
                     aspectRatio="1"
@@ -84,7 +84,7 @@ function ProductItem({
                     sizes={sizes}
                 />
             )}
-            </div>
+            </Link>
 
             <div className={styles.productInfo}>
                 <h4>{product.title}</h4>
