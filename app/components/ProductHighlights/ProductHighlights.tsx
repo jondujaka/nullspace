@@ -17,7 +17,7 @@ function Product({ item }: { item: ProductHighlightsQueryQuery['metaobjects']['n
 
     return <Link className={styles.productWrapper} to={`/products/${product?.handle}`}>
         {image?.image && <Image data={image.image} sizes="(min-width: 1200px) 33vw, 400px" />}
-        <span>VIEW PRODUCT</span>
+        <span>View Product</span>
 
     </Link>
 }
