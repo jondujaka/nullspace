@@ -51,7 +51,7 @@ footer {
 
 .footerMobile {
     display: flex;
-    padding: 6rem 1rem 12rem 1rem;
+    padding: 4rem 1rem;
 
     @media screen and (min-width: 960px) {
         display: none;
