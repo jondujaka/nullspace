@@ -1,3 +1,22 @@
+.button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    a {
+        color: black;
+        border-radius: 25px;
+        padding: .5rem 1.4rem;
+        background-color: #e9e9e9;
+        font-size: .75rem;
+
+        
+        @media screen and (min-width: 960px) {
+            font-size: .875rem;
+        }
+    }
+}
+
 .productsWrapper {
 
 
@@ -26,7 +45,6 @@
     }
 
 
-
     &.smallWrapper {
 
 
@@ -34,7 +52,7 @@
         flex-wrap: nowrap;
         width: 100%;
         overflow-x: auto;
-        margin: 0;
+        margin: 2rem 0;
         gap: .5em;
 
 
@@ -42,16 +60,15 @@
         /* IE 11 */
         scrollbar-width: none;
 
+
+
+        margin-top: 3rem;
+
+        grid-template-columns: repeat(7, 1fr);
+
         /* Firefox 64 */
         &::-webkit-scrollbar {
             display: none;
-        }
-
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-
-        .product {
-
-            flex-shrink: 0;
         }
 
         @media screen and (min-width: 768px) {
@@ -65,12 +82,25 @@
             background-color: var(--color-light);
 
 
-            
+
         }
 
 
 
-        margin-top: 3rem;
+
+        &.isRelated {
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        .product {
+            width: 165px;
+            flex-shrink: 0;
+
+            @media screen and (min-width: 768px) {
+                width: auto;
+            }
+        }
+
 
         .productInfo {
             padding-bottom: 0;
@@ -92,9 +122,15 @@
         right: 1em;
         color: var(--color-turqoise);
         z-index: 10;
-        font-size: .7125em;
-        font-family: 'Courier Prime', monospace;
+        font-size: .5rem;
+        font-family: 'Unica77', sans-serifspace;
         font-weight: 400;
+
+
+        @media screen and (min-width: 960px) {
+
+            font-size: .7125rem;
+        }
     }
 
 
@@ -140,18 +176,31 @@
 .productInfo {
     display: flex;
     justify-content: space-between;
-    font-family: 'Courier Prime', monospace;
+    font-family: 'Unica77', sans-serifspace;
     align-items: center;
-    padding: 12px;
+    padding: 6px;
+
+    @media screen and (min-width: 768px) {
+        padding: 12px;
+    }
 
     * {
         color: #000;
-        font-size: .85rem;
+        font-size: .75rem;
+
+        @media screen and (min-width: 768px) {
+            font-size: .85rem;
+        }
     }
 
     h4 {
         margin: 0;
         font-weight: normal;
         text-transform: uppercase;
+        color: #000;
+    }
+
+    >div {
+        color: #757575;
     }
 }

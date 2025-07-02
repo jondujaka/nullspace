@@ -61,11 +61,11 @@ export function Aside({
       role="dialog"
     >
       <button className="close-outside" onClick={close} />
-      <aside>
+      <aside className={styles.wrapper}>
         <header>
           <h3 className={styles.title}>{heading}</h3>
           <button className="close reset" onClick={close} aria-label="Close">
-            &times;
+          ×
           </button>
         </header>
         <main>{children}</main>

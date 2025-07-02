@@ -1,22 +1,20 @@
 footer {
-
-    @media screen and (min-width: 960px) {
-        
-        flex-direction: row;
-    }
-
     background: var(--color-light);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 3rem 2rem;
+    padding: 6rem 2rem;
     flex-wrap: wrap;
     flex-direction: column;
-    border-top: 1px solid var(--color-grey);
+    // border-top: 1px solid var(--color-grey);
     z-index: 10;
     position: relative;
+    display: none;
 
-
+    @media screen and (min-width: 960px) {
+        display: flex;
+        flex-direction: row;
+    }
 
     .newsletterWrapper {
         width: 100%;
@@ -30,23 +28,19 @@ footer {
 
             span {
                 color: black;
-                font-family: 'Nunito Sans Variable', sans-serif;
+                font-family: 'Unica77', sans-serif;
             }
         }
+
         button {
             font-size: .875rem !important;
+            font-family: 'Unica77', sans-serif !important;
+            padding: 0px 26px !important
         }
-    
+
     }
 }
 
-.footer {
-    display: none;
-
-    @media screen and (min-width: 960px) {
-        display: flex;
-    }
-}
 
 
 .logo {
@@ -57,14 +51,14 @@ footer {
 
 .footerMobile {
     display: flex;
+    padding: 4rem 1rem;
 
     @media screen and (min-width: 960px) {
         display: none;
     }
 
-    padding: 1rem;
 
-   
+
 
     .newsletterButton {
         margin: 0;
@@ -88,18 +82,24 @@ footer {
         margin-top: 1rem;
         text-transform: capitalize;
 
-        color: var(--color-grey);
+        color: black;
         font-size: .625rem;
+    }
+
+    svg * {
+        fill: black;
     }
 }
 
 .newsletterButton {
+
+
+    margin: 3rem 0;
+
     @media screen and (min-width: 960px) {
         margin: 0;
     }
 
-
-    margin: 3rem 0;
 
     a {
         color: var(--color-light);
@@ -116,18 +116,20 @@ footer {
 
 .menu {
 
+
+
+    display: flex;
+    gap: 2rem;
+
     @media screen and (min-width: 960px) {
 
         margin-right: 0;
         margin-left: auto;
     }
 
-    display: flex;
-    gap: 2rem;
-
     >a {
         font-size: .875rem;
 
-        color: var(--color-grey);
+        color: black;
     }
 }

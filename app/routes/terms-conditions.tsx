@@ -1,4 +1,4 @@
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "react-router";
 import { RichText } from "@shopify/hydrogen";
 import { LoaderFunctionArgs, MetaFunction } from "@shopify/remix-oxygen";
 

@@ -1,6 +1,6 @@
 import styles from './ShopProducts.module.scss';
 
-import { Link } from "@remix-run/react";
+import { Link } from "react-router";
 import { Image, Money } from "@shopify/hydrogen";
 import { ShopProductsQuery } from "storefrontapi.generated";
 import { useVariantUrl } from "~/lib/variants";
@@ -8,13 +8,19 @@ import { useVariantUrl } from "~/lib/variants";
 
 type Product = ShopProductsQuery['products']['nodes'][0]
 
-export default function ShopProducts({ products, isSmall }: { products: ShopProductsQuery['products']['nodes'], isSmall?: boolean }) {
+export default function ShopProducts({ products, isSmall, isRelated }: { products: ShopProductsQuery['products']['nodes'], isSmall?: boolean, isRelated?: boolean }) {
 
 
     if (!products) {
         return;
     }
-    return <div className={`${styles.productsWrapper} ${isSmall ? styles.smallWrapper : ""}`}>{products.map(product => <ProductItem isSmall={isSmall} key={product.id} product={product} />)} </div>
+    return <>
+
+        <div className={`${styles.productsWrapper} ${(isSmall || isRelated) ? styles.smallWrapper : ""} ${isRelated ? styles.isRelated : ""}`}>
+            {products.map(product => <ProductItem isSmall={isSmall} key={product.id} product={product} />)}
+        </div>
+        {isSmall && !isRelated && <div className={styles.button}><Link to="/products">(VIEW FULL COLLECTION)</Link></div>}
+    </>
 }
 
 

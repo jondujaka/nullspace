@@ -12,12 +12,21 @@
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
 
+    -ms-overflow-style: none;
+    /* IE 11 */
+    scrollbar-width: none;
+
+    /* Firefox 64 */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
 
     &.isHomepage {
         width: 100%;
         position: relative;
         height: 80vh;
-        
+
     }
 
     @media screen and (min-width: 960px) {
@@ -32,11 +41,6 @@
         }
     }
 
-    -ms-overflow-style: none; /* IE 11 */
-    scrollbar-width: none; /* Firefox 64 */
-    &::-webkit-scrollbar {
-        display: none;
-    }
 
 
     >img,
@@ -61,7 +65,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: 'Courier Prime', monospace;
+        font-family: 'Unica77', sans-serifspace;
     }
 
 }
@@ -75,14 +79,14 @@
 .controls {
     // position: absolute;
     bottom: 1rem;
-    right: 1rem;
+    right: 0;
     display: flex;
     width: 100%;
     overflow: hidden;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-top: 1rem;
     padding: 1rem;
+    margin-bottom: 1rem;
     justify-content: flex-end;
 
 
@@ -91,6 +95,7 @@
         margin: 0;
         padding: 0;
     }
+
     @media screen and (min-width: 960px) {
         position: absolute;
         margin: 0;
@@ -109,8 +114,8 @@
     button {
         cursor: pointer;
         border-radius: 0;
-        height: 50px;
-        width: 50px;
+        height: 40px;
+        width: 40px;
         padding: 0;
         margin: 0;
         border: none;

@@ -1,6 +1,6 @@
 import { AboutPageQuery } from 'storefrontapi.generated';
 import styles from './AboutPage.module.scss';
-import { RichText } from '@shopify/hydrogen';
+import { RichText, Video } from '@shopify/hydrogen';
 
 
 type Data = AboutPageQuery['metaobject']
@@ -10,14 +10,23 @@ export default function AboutPage({ data }: { data: Data }) {
         return null;
     }
 
-    const image = data.fields.find(field => field.type === 'file_reference')
-    const richText = data.fields.find(field => field.type === 'rich_text_field');
+
+    const richText = data.fields.find(field => field.key === 'text');
+    const video = data.fields.find(field => field.key === 'video')
 
 
     return (
         <div className={styles.wrapper}>
+
             <div className={styles.text}>
                 {richText?.value && <RichText data={richText.value} />}</div>
+
+
+            {video?.reference &&
+                <Video className={styles.video} data={video.reference} loop controls={false} preload='auto' autoPlay muted={true} playsInline />
+
+
+            }
         </div>
     )
 }

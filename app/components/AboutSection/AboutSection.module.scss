@@ -6,17 +6,24 @@
     margin-bottom: 4rem;
     margin-top: 2rem;
     overflow: hidden;
-
     position: relative;
+
+    @media screen and (min-width: 960px) {
+
+        min-height: 400px;
+    }
+
+
     * {
 
         font-size: 1rem;
-        text-transform: uppercase;
-        
-        font-family: 'Nunito Sans Variable', sans-serif;
+
+        font-family: 'Unica77', sans-serif;
     }
 
     .text {
+
+
 
         max-width: 1400px;
         margin: 0 auto;
@@ -26,21 +33,22 @@
         transition: .5s ease-in-out;
         transition-delay: .2s;
         position: relative;
+        justify-content: center;
         z-index: 1;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
 
-
-        @media screen and (min-width: 768px){
+        @media screen and (min-width: 768px) {
             padding: 1rem 6rem;
         }
+
 
         &.isVisible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        display: flex;
-        flex-direction: column;
-        text-align: center;
 
         a {
             color: var(--color-turqoise);
@@ -49,20 +57,23 @@
             display: inline-block;
             margin: 0 auto;
             padding: .4rem;
+
             &:hover {
-                background-color: rgba(255,255,255,0.7);
+                background-color: rgba(255, 255, 255, 0.7);
             }
-            
+
         }
 
         p {
-            
+
             text-shadow: 1px 1px 1px #fff;
             color: var(--color-grey);
-        }
-
-        p {
             margin-bottom: 1rem;
+            font-size: .875rem;
+
+            @media screen and (min-width: 960px) {
+                font-size: 1rem;
+            }
         }
 
 
@@ -75,6 +86,7 @@
     .image {
         position: absolute;
         z-index: 0;
+
         // @media screen and (min-width: 768px) {
         //     position: relative;
         // }

@@ -1,5 +1,5 @@
-import { useLoaderData } from "@remix-run/react";
-import { LoaderFunctionArgs } from "@remix-run/server-runtime";
+import { useLoaderData } from "react-router";
+import { LoaderFunctionArgs } from "react-router";
 import { getSeoMeta } from "@shopify/hydrogen";
 import AboutPage from "~/components/AboutPage/AboutPage";
 
@@ -49,7 +49,9 @@ query AboutPage($country: CountryCode, $language: LanguageCode)
         metaobject(handle: {handle: "about-page-description-zsw7daga", type: "about_page_description"}) {
             fields {
                 value
+                key
                 reference {
+                    
                     ... on MediaImage {
                         id
                         image {
@@ -62,6 +64,33 @@ query AboutPage($country: CountryCode, $language: LanguageCode)
                             id
                             altText
                         }
+                    }
+                    ... on Video {
+                        id
+                        __typename
+                        sources {
+                            url
+                            width
+                            mimeType
+                            height
+                            format
+                        }
+                        previewImage {
+                            originalSrc
+                            src
+                            transformedSrc
+                            width
+                            url
+                            height
+                            id
+                            altText
+                        }
+                        presentation {
+                            id
+                        }
+                    
+                        mediaContentType
+                        alt
                     }
                 }
                 type

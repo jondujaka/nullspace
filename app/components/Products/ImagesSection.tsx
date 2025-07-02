@@ -1,6 +1,6 @@
 import styles from './ImagesSection.module.scss'
 
-import { Link } from "@remix-run/react";
+import { Link } from 'react-router';
 import { Image, Money } from "@shopify/hydrogen";
 import { HomeImagesSectionQuery, ProductItemFragment } from 'storefrontapi.generated';
 import { useVariantUrl } from "~/lib/variants";

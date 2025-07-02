@@ -1,5 +1,5 @@
 import styles from './LinkSection.module.scss'
-import { NavLink } from "@remix-run/react";
+import { NavLink } from 'react-router';
 
 export default function LinkSection({ text, link }: { text: string, link: string }) {
     return <div className={styles.wrapper}>

@@ -1,5 +1,5 @@
 import { type LoaderFunctionArgs } from '@shopify/remix-oxygen';
-import { useLoaderData, type MetaFunction } from '@remix-run/react';
+import { useLoaderData, type MetaFunction } from 'react-router';
 
 import Carousel from '~/components/Carousel/Carousel';
 import ImagesSection from '~/components/Products/ImagesSection';
@@ -9,6 +9,12 @@ import ShopProducts from '~/components/ShopProducts/ShopProducts';
 import { getSeoMeta, Image } from '@shopify/hydrogen';
 import { Image as ImageType } from '@shopify/hydrogen/storefront-api-types';
 import useElementOnScreen from '~/hooks/useElementOnScreen';
+import { Wrapper } from '~/components/ImageWithText/ImageWithText';
+import Video from '~/components/Video/Video';
+import HomeVideo from '~/components/HomeVideo/HomeVideo';
+import Marquee from '~/components/Marquee/Marquee';
+import ProductHighlights from '~/components/ProductHighlights/ProductHighlights';
+import HomeProducts from '~/components/HomeProducts/HomeProducts';
 
 export const meta: MetaFunction = () => {
 
@@ -34,11 +40,14 @@ export async function loader(args: LoaderFunctionArgs) {
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  */
 async function loadCriticalData({ context }: LoaderFunctionArgs) {
-  const [{ products }, { metaobject }, { metaobjects }, { products: allProducts }] = await Promise.all([
+  const [{ products }, { metaobject }, { metaobjects }, { metaobjects: productHighlights }, { products: allProducts }] = await Promise.all([
     context.storefront.query(HOME_PRODUCTS),
     context.storefront.query(HOME_VIDEOS_QUERY),
     context.storefront.query(HOME_IMAGES_SECTION),
+    context.storefront.query(PRODUCT_HIGHLIGHTS),
     context.storefront.query(HOME_ALL_PRODUCTS),
+
+
     // Add other queries here, so that they are loaded in parallel
   ]);
 
@@ -47,7 +56,8 @@ async function loadCriticalData({ context }: LoaderFunctionArgs) {
     homeProducts: products.nodes,
     metaobject: metaobject,
     imagesSection: metaobjects.nodes,
-    allProducts: allProducts
+    allProducts: allProducts,
+    productHighlights
   };
 }
 
@@ -64,6 +74,10 @@ export default function Homepage() {
   const data = useLoaderData<typeof loader>();
 
 
+  const productHighlights = data.productHighlights;
+
+
+
   const carouselMeta = data.metaobject?.fields.find(field => field.key === 'home_page_videos')
   const carouselItems = carouselMeta?.references?.nodes.filter(Boolean);
 
@@ -72,37 +86,39 @@ export default function Homepage() {
   const textUnder = data.metaobject?.fields.find(field => field.key === "home_page_text_section_2")?.value;
   const image = data.metaobject?.fields.find(field => field.key === "home_page_image")?.reference;
 
-  const secondaryImges = data.metaobject?.fields.find(field => field.key === "secondary_images")?.references?.nodes;
+  const secondaryImages = data.metaobject?.fields.find(field => field.key === "secondary_images")?.references?.nodes;
   const mainImages = data.metaobject?.fields.find(field => field.key === "main_images")?.references?.nodes;
 
   const allproducts = data?.allProducts;
 
+  const finalVideo = secondaryImages && secondaryImages[0];
+
   return (
     <div className="home">
-
-      {carouselItems && <div className="carousel-wrapper"><Carousel items={carouselItems} isHomepage /></div>}
-
-      {mainImages && <LastImage images={mainImages} isEager />}
-
+      {carouselItems && <HomeVideo lazy video={carouselItems[0]} />}
 
       {allproducts?.nodes && <ShopProducts products={allproducts.nodes} isSmall />}
-      <LinkSection text="VIEW FULL COLLECTION" link="/products" />
 
-      {secondaryImges && <LastImage images={secondaryImges} />}
-      {image && text && <AboutSection richtext={text} richtextUnder={textUnder} image={image} />}
+
+      {mainImages && <Wrapper images={mainImages} isEager text={text} />}
+
+      <ProductHighlights items={productHighlights} />
+
+      
+      {image && text && <AboutSection richtext={textUnder} image={image} />}
+
+      
+      {allproducts?.nodes && <HomeProducts products={allproducts.nodes} />}
+
+      {finalVideo && <Video lazy video={finalVideo} id="campaign" />}
+
+
+{/* 
+      <LinkSection text="VIEW FULL COLLECTION" link="/products" /> */}
+
+      {/* {secondaryImges && <Wrapper images={secondaryImges} />} */}
     </div>
   );
-}
-
-function LastImage({ images, isEager }: { images: { image: Partial<ImageType> }[], isEager?: boolean }) {
-  const [containerRef, isVisible] = useElementOnScreen({
-    threshold: isEager ? .01 : .2,
-  });
-
-
-
-  return <div ref={containerRef} className="image-wrapper on-scroll">
-    {images.map(image => <div><Image loading={isEager ? 'eager' : 'lazy'} className={isVisible ? 'reveal' : ''} data={image.image} sizes="(min-width: 768px) 50vw, 100vw" /></div>)}</div>
 }
 
 
@@ -141,6 +157,50 @@ const HOME_IMAGES_SECTION = `#graphql
             reference {
               ...ImagesSetionImage
               ...ImagesSetionProduct
+            }
+          }
+        }
+      }
+  }
+  
+` as const;
+
+
+
+const PRODUCT_HIGHLIGHTS = `#graphql
+
+
+  fragment ProductImage on MediaImage {
+    id
+    image {
+      originalSrc
+      src
+      transformedSrc
+      width
+      url
+      height
+      id
+      altText
+    }
+  }
+
+  fragment ProductInfo on Product {
+    id
+    title
+    handle
+  }
+
+  query ProductHighlightsQuery($country: CountryCode, $language: LanguageCode)
+    @inContext(country: $country, language: $language) {
+      metaobjects(type: "product_highlight", first: 10, reverse: true) {
+        nodes {
+          id
+          fields {
+            type
+            value
+            reference {
+              ...ProductImage
+              ...ProductInfo
             }
           }
         }
@@ -256,9 +316,13 @@ const HOME_ALL_PRODUCTS = `#graphql
       }
     }
 
+    
+
+    
     metafields(identifiers: [
           { namespace: "custom", key: "thumbnail" },
-          { namespace: "custom", key: "thumbnail_side" }
+          { namespace: "custom", key: "thumbnail_side" },
+          { namespace: "custom", key: "thumbnail_model" },
         ]) {
       id
       key

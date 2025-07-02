@@ -1,9 +1,10 @@
-import {Await, Link} from '@remix-run/react';
+import { Await, Link, useLocation } from 'react-router';
 import {Suspense, useId} from 'react';
 import type {
   CartApiQueryFragment,
   FooterQuery,
   HeaderQuery,
+  StoresQueryQuery,
 } from 'storefrontapi.generated';
 import {Aside} from '~/components/Aside/Aside';
 import Footer from '~/components/Footer/Footer';
@@ -19,6 +20,7 @@ interface PageLayoutProps {
   cart: Promise<CartApiQueryFragment | null>;
   footer: Promise<FooterQuery | null>;
   header: HeaderQuery;
+  stores: StoresQueryQuery;
   isLoggedIn: Promise<boolean>;
   publicStoreDomain: string;
   children?: React.ReactNode;
@@ -28,6 +30,7 @@ export function PageLayout({
   cart,
   children = null,
   footer,
+  stores,
   header,
   isLoggedIn,
   publicStoreDomain,
@@ -41,6 +44,7 @@ export function PageLayout({
         <Header
           header={header}
           cart={cart}
+          stores={stores}
           isLoggedIn={isLoggedIn}
           publicStoreDomain={publicStoreDomain}
         />
@@ -53,7 +57,7 @@ export function PageLayout({
 
 function CartAside({cart}: {cart: PageLayoutProps['cart']}) {
   return (
-    <Aside type="cart" heading="CART">
+    <Aside type="cart" heading="Cart">
       <Suspense fallback={<p>Loading cart ...</p>}>
         <Await resolve={cart}>
           {(cart) => {

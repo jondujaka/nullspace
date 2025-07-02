@@ -2,7 +2,7 @@ import type { CartApiQueryFragment } from 'storefrontapi.generated';
 import type { CartLayout } from '~/components/CartMain/CartMain';
 import { CartForm, Money, type OptimisticCart } from '@shopify/hydrogen';
 import { useRef } from 'react';
-import { FetcherWithComponents } from '@remix-run/react';
+import { FetcherWithComponents } from 'react-router';
 import styles from './CartSummary.module.scss'
 
 type CartSummaryProps = {

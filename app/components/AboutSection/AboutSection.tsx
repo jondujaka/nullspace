@@ -1,4 +1,4 @@
-import { Link } from '@remix-run/react';
+import { Link } from 'react-router';
 import styles from './AboutSection.module.scss'
 import { Image, RichText } from "@shopify/hydrogen";
 import { Image as Imagetype, MediaImage } from "@shopify/hydrogen/storefront-api-types";
@@ -16,7 +16,6 @@ export default function AboutSection({ richtext, image, richtextUnder }: { richt
     return <div className={styles.aboutSection}>
         <div className={`${styles.text} ${isVisible ? styles.isVisible : ''}`} ref={containerRef}>
             <RichText data={richtext} />
-            <Link to="/about">(READ MORE)</Link>
 
            {richtextUnder &&<RichText className={styles.extraText} data={richtextUnder} />}
 
