@@ -197,10 +197,7 @@ export function Layout({children}: {children?: React.ReactNode}) {
         <meta property="og:site_name" content="Null Space" />
         <Meta />
         <Links />
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-ET02ZCGZ4T"
-        />
+       
         <Script
           dangerouslySetInnerHTML={{
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
