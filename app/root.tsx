@@ -197,6 +197,19 @@ export function Layout({children}: {children?: React.ReactNode}) {
         <meta property="og:site_name" content="Null Space" />
         <Meta />
         <Links />
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-ET02ZCGZ4T"
+        />
+        <Script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ET02ZCGZ4T');`,
+          }}
+        />
       </head>
       <body>
         {data ? (
