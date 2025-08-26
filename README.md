@@ -25,6 +25,12 @@ Headless Shopify website built using Shopify Hydrogen and deployed on Shopify Ox
 npm i
 ```
 
+## Creating environment
+```
+npx hydrogen env pull
+```
+After following the instructions to login with the shopify account, this will create an `.env` file with the necessary secrets
+
 ## Building for production
 
 ```bash
