@@ -51,7 +51,7 @@ function MobileHeader({
           end
           onClick={close}
           prefetch="intent"
-          to={"/"}
+          to={"/shop"}
         >
           <Logo className={styles.logo} fill="#000" />
         </NavLink>
@@ -221,7 +221,7 @@ export default function Header({
           end
           onClick={close}
           prefetch="intent"
-          to={"/"}
+          to={"/shop"}
         >
           <Logo className={styles.logo} />
         </NavLink>

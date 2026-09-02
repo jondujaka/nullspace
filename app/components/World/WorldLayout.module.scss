@@ -1,0 +1,14 @@
+.shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--world-bg, #fff);
+  color: var(--world-text, #a8a7a8);
+  font-family: 'Milliard', 'Unica77', sans-serif;
+}
+
+.main {
+  width: 100%;
+  margin: 0;
+  padding: var(--world-content-top, 2.75rem) var(--world-body-pad-x, var(--world-pad-x, 1.75rem))
+    var(--world-content-bottom, 5rem);
+}

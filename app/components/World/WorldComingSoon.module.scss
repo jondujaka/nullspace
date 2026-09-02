@@ -1,0 +1,23 @@
+.announcement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: min(58vh, 32rem);
+  width: 100%;
+  margin: 0;
+  padding: 3rem 0 4rem;
+  /* Nudge “Coming soon” slightly below true vertical center */
+  transform: translateY(1.75rem);
+}
+
+.headline {
+  margin: 0;
+  font-family: 'Milliard', sans-serif;
+  font-size: var(--world-heading-size);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--world-header) !important;
+  line-height: var(--world-leading);
+}

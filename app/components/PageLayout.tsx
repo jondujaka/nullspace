@@ -35,6 +35,15 @@ export function PageLayout({
   isLoggedIn,
   publicStoreDomain,
 }: PageLayoutProps) {
+  const {pathname} = useLocation();
+  const isGate = pathname === '/';
+  const isWorld = pathname === '/world' || pathname.startsWith('/world/');
+  const hideCommerceChrome = isGate || isWorld;
+
+  if (hideCommerceChrome) {
+    return <>{children}</>;
+  }
+
   return (
     <Aside.Provider>
       <CartAside cart={cart} />

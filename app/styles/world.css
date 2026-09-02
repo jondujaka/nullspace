@@ -1,0 +1,108 @@
+@font-face {
+  font-family: 'Milliard';
+  src: url('/fonts/milliard/milliard-light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Milliard';
+  src: url('/fonts/milliard/milliard-book.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Milliard';
+  src: url('/fonts/milliard/milliard-medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Milliard';
+  src: url('/fonts/milliard/milliard-semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Milliard';
+  src: url('/fonts/milliard/milliard-bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --world-header: #070707;
+  --world-text: #a8a7a8;
+  --world-bg: #ffffff;
+  --world-max: 920px;
+  --world-pad-x: 64px;
+  --world-body-pad-x: 64px;
+  --world-nav-pad-x: 120px;
+  --world-header-pad-y: 22px;
+  --world-header-height: 4.5rem;
+  --world-content-top: 46px;
+  --world-content-bottom: 5rem;
+  --world-type-size: 15.5px;
+  --world-heading-size: 15.5px;
+  --world-nav-size: 13.5px;
+  --world-logo-size: 26px;
+  --world-leading: 1.35;
+  --world-stack: 0.85em;
+  --world-section-gap: 2rem;
+  --world-measure: 100%;
+}
+
+@media screen and (max-width: 899px) {
+  :root {
+    --world-body-pad-x: 24px;
+    --world-nav-pad-x: 18px;
+    --world-header-pad-y: 16px;
+    --world-content-top: 32px;
+    --world-content-bottom: 4rem;
+    /* Extra space under logo for the second nav row on mobile */
+    --world-nav-row: 2.15rem;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  :root {
+    --world-nav-pad-x: 14px;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  :root {
+    --world-nav-row: 0px;
+  }
+}
+
+.world-scope,
+.world-scope * {
+  box-sizing: border-box;
+}
+
+.world-scope a {
+  color: inherit;
+}
+
+/* Kill global reset heading styles inside World */
+.world-scope .page h1,
+.world-scope .page h2,
+.world-scope .page h3,
+.world-scope .page h4 {
+  font-size: var(--world-heading-size) !important;
+  font-weight: 400 !important;
+  line-height: var(--world-leading) !important;
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 0 !important;
+}
