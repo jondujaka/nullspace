@@ -19,6 +19,7 @@ import {FOOTER_QUERY, HEADER_QUERY, STORES_QUERY} from '~/lib/fragments';
 import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
 import {PageLayout} from './components/PageLayout';
+import PageDipWhite from './components/PageDipWhite';
 // import ibmPlexSans from '@fontsource-variable/ibm-plex-sans?url';
 // import ibmPlexMono from '@fontsource/ibm-plex-mono?url';
 
@@ -233,6 +234,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         ) : (
           children
         )}
+        <PageDipWhite />
         <Script
           async
           type="text/javascript"

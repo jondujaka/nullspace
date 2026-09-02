@@ -1,0 +1,47 @@
+.veil {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  pointer-events: none;
+  background: #fff;
+  opacity: 0;
+}
+
+.in {
+  pointer-events: auto;
+  animation: dipIn 420ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.hold {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.out {
+  pointer-events: none;
+  animation: dipOut 520ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes dipIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dipOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .veil {
+    display: none;
+  }
+}

@@ -1,9 +1,24 @@
-import {Link} from 'react-router';
+import type {MouseEvent} from 'react';
 import styles from './GatePage.module.scss';
 import gateBackground from '~/assets/world/gate-background.jpg';
 import eyewearLogo from '~/assets/world/ns-eyewear-logo-white.png';
 import worldLogo from '~/assets/world/ns-world-logo.png';
 import GateDevControls from './GateDevControls';
+import {startPageDip} from '~/components/PageDipWhite';
+
+function handleDipClick(event: MouseEvent<HTMLAnchorElement>, to: string) {
+  if (
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey ||
+    event.button !== 0
+  ) {
+    return;
+  }
+  event.preventDefault();
+  startPageDip(to);
+}
 
 export default function GatePage() {
   return (
@@ -16,22 +31,30 @@ export default function GatePage() {
       />
       <div className={styles.overlay} aria-hidden />
       <div className={styles.choices}>
-        <Link className={`${styles.pill} ${styles.eyewear}`} to="/shop">
+        <a
+          className={`${styles.pill} ${styles.eyewear}`}
+          href="/shop"
+          onClick={(event) => handleDipClick(event, '/shop')}
+        >
           <img
             className={styles.wordmark}
             src={eyewearLogo}
             alt="NULL SPACE"
           />
           <span className={styles.subtitle}>EYEWEAR</span>
-        </Link>
-        <Link className={`${styles.pill} ${styles.world}`} to="/world">
+        </a>
+        <a
+          className={`${styles.pill} ${styles.world}`}
+          href="/world"
+          onClick={(event) => handleDipClick(event, '/world')}
+        >
           <img
             className={styles.wordmark}
             src={worldLogo}
             alt="( NULL ) SPACE WORLD"
           />
           <span className={styles.subtitle}>CULTURAL &amp; EDITORIAL PLATFORM</span>
-        </Link>
+        </a>
       </div>
       {import.meta.env.MODE === 'development' ? <GateDevControls /> : null}
     </div>
