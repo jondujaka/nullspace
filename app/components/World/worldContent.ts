@@ -261,7 +261,7 @@ export const contactInfo = {
 } as const;
 
 export const worldNavItems = [
-  {label: 'EDITORIALS', to: '/world/editorials', comingSoon: false},
+  {label: 'WORLD', to: '/world', comingSoon: false},
   {label: 'FOUNDATION', to: '/world/foundation', comingSoon: false},
   {label: 'REMUNERATION POLICY', to: '/world/remuneration-policy', comingSoon: false},
   {label: 'CONTACT', to: '/world/contact', comingSoon: false},

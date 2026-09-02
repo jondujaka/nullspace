@@ -24,7 +24,7 @@ export default function GatePage() {
           />
           <span className={styles.subtitle}>EYEWEAR</span>
         </Link>
-        <Link className={`${styles.pill} ${styles.world}`} to="/world/foundation">
+        <Link className={`${styles.pill} ${styles.world}`} to="/world">
           <img
             className={styles.wordmark}
             src={worldLogo}

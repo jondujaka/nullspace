@@ -1,6 +1,8 @@
-import {redirect, type LoaderFunctionArgs, type MetaFunction} from 'react-router';
+import {type MetaFunction} from 'react-router';
 import {getSeoMeta} from '@shopify/hydrogen';
-import {WORLD_TAGLINE} from '~/components/World/worldContent';
+import WorldLayout from '~/components/World/WorldLayout';
+import WorldTextPage, {WorldSection} from '~/components/World/WorldTextPage';
+import {WORLD_TAGLINE, worldIntro} from '~/components/World/worldContent';
 
 export const meta: MetaFunction = () => {
   return getSeoMeta({
@@ -9,11 +11,19 @@ export const meta: MetaFunction = () => {
   });
 };
 
-/** Phase 1: World entry goes to Editorials (coming soon). */
-export async function loader(_args: LoaderFunctionArgs) {
-  return redirect('/world/editorials');
-}
-
+/** Phase 1 World intro — manifesto text only (no editorial gallery). */
 export default function WorldIndex() {
-  return null;
+  return (
+    <WorldLayout>
+      <WorldTextPage tagline={WORLD_TAGLINE}>
+        {worldIntro.sections.map((section) => (
+          <WorldSection key={section.title} title={section.title}>
+            {section.paragraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+            ))}
+          </WorldSection>
+        ))}
+      </WorldTextPage>
+    </WorldLayout>
+  );
 }
