@@ -16,12 +16,12 @@ export default function WorldContact() {
   return (
     <WorldLayout>
       <WorldTextPage title={contactInfo.title}>
-        <div className={textStyles.contactStack}>
-          <div className={textStyles.block}>
+        <div className={`ns-world-contact-stack ${textStyles.contactStack}`}>
+          <div className={`ns-world-block ${textStyles.block}`}>
             <p>{contactInfo.statutoryName}</p>
           </div>
 
-          <div className={textStyles.block}>
+          <div className={`ns-world-block ${textStyles.block}`}>
             <p>
               {contactInfo.addressLabel}
               <br />
@@ -34,7 +34,7 @@ export default function WorldContact() {
             </p>
           </div>
 
-          <div className={textStyles.block}>
+          <div className={`ns-world-block ${textStyles.block}`}>
             <p>
               {contactInfo.registration.map((line, index) => (
                 <span key={line}>
@@ -45,7 +45,7 @@ export default function WorldContact() {
             </p>
           </div>
 
-          <div className={textStyles.block}>
+          <div className={`ns-world-block ${textStyles.block}`}>
             <p>
               tel: <a href={`tel:${contactInfo.phone}`}>{contactInfo.phone}</a>
               <br />

@@ -25,7 +25,7 @@ export default function WorldRemunerationPolicy() {
             ))}
             {section.listIntro ? <p>{section.listIntro}</p> : null}
             {section.items ? (
-              <ul className={textStyles.list}>
+              <ul className={`ns-world-list ${textStyles.list}`}>
                 {section.items.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -35,7 +35,7 @@ export default function WorldRemunerationPolicy() {
               <p key={paragraph.slice(0, 48)}>{paragraph}</p>
             ))}
             {section.afterItems ? (
-              <ul className={textStyles.list}>
+              <ul className={`ns-world-list ${textStyles.list}`}>
                 {section.afterItems.map((item) => (
                   <li key={item}>{item}</li>
                 ))}

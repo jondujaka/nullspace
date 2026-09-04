@@ -74,14 +74,17 @@ footer {
         margin-right: auto;
     }
 
-
-
+    svg {
+        display: block;
+        height: 24px;
+        width: auto;
+    }
 
     span {
         display: block;
         margin-top: 1rem;
         text-transform: capitalize;
-
+        font-family: 'Unica77', sans-serif;
         color: black;
         font-size: .625rem;
     }

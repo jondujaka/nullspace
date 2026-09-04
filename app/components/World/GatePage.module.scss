@@ -1,8 +1,10 @@
 .gate {
-  position: relative;
-  min-height: 100vh;
-  min-height: 100dvh;
+  /* Pin to the visual viewport — avoids pills landing below the fold when
+     layout viewport height diverges from visualViewport (Chrome mobile/devtools). */
+  position: fixed;
+  inset: 0;
   width: 100%;
+  height: 100%;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -16,9 +18,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: blur(22px) saturate(0.88) brightness(1.02);
-  transform: scale(1.12);
   pointer-events: none;
+  opacity: 1;
   animation: gateBgIn 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -26,6 +27,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
+  opacity: 1;
   background:
     radial-gradient(ellipse 70% 55% at 50% 48%, rgba(255, 255, 255, 0.18) 0%, transparent 70%),
     linear-gradient(
@@ -43,17 +45,42 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--gate-pill-gap, 48px);
-  width: min(92vw, 820px);
+  align-self: center;
+  gap: var(--gate-pill-gap, 160px);
+  width: min(92%, 820px);
+  max-width: 100%;
+  margin-inline: auto;
   padding: 1.5rem;
+  box-sizing: border-box;
+  /* Base visible state — never leave opacity stuck at 0 if animation is cancelled */
+  opacity: 1;
+  transform: translateY(0);
   animation: gateChoicesIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+@media screen and (max-width: 767px) {
+  /* Cold-load in Chrome device mode can cancel the entrance animation and leave
+     fill-mode `both` at opacity 0; skip motion on small viewports. */
+  .choices {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    /* Keep stacked pills within a phone-sized visual viewport */
+    gap: var(--gate-pill-gap-mobile, 48px);
+  }
+
+  .background,
+  .overlay {
+    animation: none;
+    opacity: 1;
+  }
 }
 
 @media screen and (min-width: 768px) {
   .choices {
     flex-direction: row;
     justify-content: center;
-    gap: var(--gate-pill-gap, 48px);
+    gap: var(--gate-pill-gap, 160px);
     width: auto;
   }
 }
@@ -67,18 +94,21 @@
   text-align: center;
   text-decoration: none;
   border-radius: 999px;
-  isolation: isolate;
-  overflow: hidden;
   border: 1px solid transparent;
   box-shadow: none;
+  transform: translateY(0);
   transition:
     background 220ms ease,
     border-color 220ms ease,
-    opacity 220ms ease;
+    opacity 220ms ease,
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 280ms ease;
 }
 
 .pill:hover {
-  opacity: 0.92;
+  opacity: 0.96;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 28px rgba(20, 24, 28, 0.18);
 }
 
 .pill:focus-visible {
@@ -87,10 +117,10 @@
 }
 
 .eyewear {
-  min-width: min(100%, var(--gate-eyewear-min-w, 400px));
-  min-height: var(--gate-eyewear-min-h, 108px);
-  padding: var(--gate-eyewear-pad-top, 32px) var(--gate-eyewear-pad-x, 52px)
-    var(--gate-eyewear-pad-bottom, 20px);
+  min-width: min(100%, var(--gate-eyewear-min-w, 300px));
+  min-height: var(--gate-eyewear-min-h, 78px);
+  padding: var(--gate-eyewear-pad-top, 20px) var(--gate-eyewear-pad-x, 36px)
+    var(--gate-eyewear-pad-bottom, 18px);
   background: rgba(42, 42, 42, 0.55);
   backdrop-filter: blur(16px) saturate(1.1);
   -webkit-backdrop-filter: blur(16px) saturate(1.1);
@@ -105,20 +135,20 @@
 
 .eyewear .subtitle {
   color: #fff;
-  margin-top: var(--gate-eyewear-sub-gap, 10px);
-  font-size: var(--gate-eyewear-sub-size, 10px);
+  margin-top: var(--gate-eyewear-sub-gap, 8px);
+  font-size: var(--gate-eyewear-sub-size, 9px);
   letter-spacing: var(--gate-eyewear-sub-track, 0.08em);
 }
 
 .eyewear .wordmark {
-  height: var(--gate-eyewear-logo, 31px);
+  height: var(--gate-eyewear-logo, 22px);
 }
 
 .world {
-  min-width: min(100%, var(--gate-world-min-w, 420px));
-  min-height: var(--gate-world-min-h, 108px);
-  padding: var(--gate-world-pad-top, 32px) var(--gate-world-pad-x, 28px)
-    var(--gate-world-pad-bottom, 20px);
+  min-width: min(100%, var(--gate-world-min-w, 310px));
+  min-height: var(--gate-world-min-h, 78px);
+  padding: var(--gate-world-pad-top, 20px) var(--gate-world-pad-x, 22px)
+    var(--gate-world-pad-bottom, 18px);
   background: rgba(245, 244, 242, 0.42);
   backdrop-filter: blur(16px) saturate(1.1);
   -webkit-backdrop-filter: blur(16px) saturate(1.1);
@@ -133,13 +163,13 @@
 
 .world .subtitle {
   color: #3a3633;
-  margin-top: var(--gate-world-sub-gap, 10px);
-  font-size: var(--gate-world-sub-size, 10px);
+  margin-top: var(--gate-world-sub-gap, 8px);
+  font-size: var(--gate-world-sub-size, 9px);
   letter-spacing: var(--gate-world-sub-track, 0.08em);
 }
 
 .world .wordmark {
-  height: var(--gate-world-logo, 32px);
+  height: var(--gate-world-logo, 23px);
 }
 
 .subtitle,
@@ -166,13 +196,9 @@
 @keyframes gateBgIn {
   from {
     opacity: 0;
-    transform: scale(1.18);
-    filter: blur(32px) saturate(0.8) brightness(1.05);
   }
   to {
     opacity: 1;
-    transform: scale(1.12);
-    filter: blur(22px) saturate(0.88) brightness(1.02);
   }
 }
 
@@ -205,5 +231,10 @@
 
   .pill {
     transition: none;
+  }
+
+  .pill:hover {
+    transform: none;
+    box-shadow: none;
   }
 }

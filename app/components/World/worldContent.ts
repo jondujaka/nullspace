@@ -248,7 +248,7 @@ export const contactInfo = {
   title: 'CONTACT PAGE',
   statutoryName:
     'Statutory name: Stichting Divina Capital Funds (soon, NULL SPACE World Foundation)',
-  addressLabel: 'ADRES:',
+  addressLabel: 'ADDRESS:',
   addressLines: [
     'Uiterwaardenstraat 20-2',
     '1079BX Amsterdam',

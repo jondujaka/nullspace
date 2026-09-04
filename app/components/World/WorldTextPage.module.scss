@@ -161,6 +161,14 @@
   margin-top: 1.35em !important;
 }
 
+.landingImage {
+  display: block;
+  width: 72%;
+  max-width: 42rem;
+  height: auto;
+  margin: 1.75em auto 0;
+}
+
 .contactStack {
   display: flex;
   flex-direction: column;

@@ -310,533 +310,6 @@ export type StoreRobotsQueryVariables = StorefrontAPI.Exact<{
 
 export type StoreRobotsQuery = {shop: Pick<StorefrontAPI.Shop, 'id'>};
 
-export type ImagesSetionImageFragment = Pick<StorefrontAPI.MediaImage, 'id'> & {
-  image?: StorefrontAPI.Maybe<
-    Pick<
-      StorefrontAPI.Image,
-      | 'originalSrc'
-      | 'src'
-      | 'transformedSrc'
-      | 'width'
-      | 'url'
-      | 'height'
-      | 'id'
-      | 'altText'
-    >
-  >;
-};
-
-export type ImagesSetionProductFragment = Pick<
-  StorefrontAPI.Product,
-  'id' | 'title' | 'handle'
->;
-
-export type HomeImagesSectionQueryVariables = StorefrontAPI.Exact<{
-  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
-  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
-}>;
-
-export type HomeImagesSectionQuery = {
-  metaobjects: {
-    nodes: Array<
-      Pick<StorefrontAPI.Metaobject, 'id'> & {
-        fields: Array<
-          Pick<StorefrontAPI.MetaobjectField, 'type' | 'value'> & {
-            reference?: StorefrontAPI.Maybe<
-              | (Pick<StorefrontAPI.MediaImage, 'id'> & {
-                  image?: StorefrontAPI.Maybe<
-                    Pick<
-                      StorefrontAPI.Image,
-                      | 'originalSrc'
-                      | 'src'
-                      | 'transformedSrc'
-                      | 'width'
-                      | 'url'
-                      | 'height'
-                      | 'id'
-                      | 'altText'
-                    >
-                  >;
-                })
-              | Pick<StorefrontAPI.Product, 'id' | 'title' | 'handle'>
-            >;
-          }
-        >;
-      }
-    >;
-  };
-};
-
-export type ProductImageFragment = Pick<StorefrontAPI.MediaImage, 'id'> & {
-  image?: StorefrontAPI.Maybe<
-    Pick<
-      StorefrontAPI.Image,
-      | 'originalSrc'
-      | 'src'
-      | 'transformedSrc'
-      | 'width'
-      | 'url'
-      | 'height'
-      | 'id'
-      | 'altText'
-    >
-  >;
-};
-
-export type ProductInfoFragment = Pick<
-  StorefrontAPI.Product,
-  'id' | 'title' | 'handle'
->;
-
-export type ProductHighlightsQueryQueryVariables = StorefrontAPI.Exact<{
-  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
-  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
-}>;
-
-export type ProductHighlightsQueryQuery = {
-  metaobjects: {
-    nodes: Array<
-      Pick<StorefrontAPI.Metaobject, 'id'> & {
-        fields: Array<
-          Pick<StorefrontAPI.MetaobjectField, 'type' | 'value'> & {
-            reference?: StorefrontAPI.Maybe<
-              | (Pick<StorefrontAPI.MediaImage, 'id'> & {
-                  image?: StorefrontAPI.Maybe<
-                    Pick<
-                      StorefrontAPI.Image,
-                      | 'originalSrc'
-                      | 'src'
-                      | 'transformedSrc'
-                      | 'width'
-                      | 'url'
-                      | 'height'
-                      | 'id'
-                      | 'altText'
-                    >
-                  >;
-                })
-              | Pick<StorefrontAPI.Product, 'id' | 'title' | 'handle'>
-            >;
-          }
-        >;
-      }
-    >;
-  };
-};
-
-export type HomeProductsFragment = Pick<
-  StorefrontAPI.Product,
-  'id' | 'title' | 'handle'
-> & {
-  priceRange: {
-    minVariantPrice: Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>;
-    maxVariantPrice: Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>;
-  };
-  featuredImage?: StorefrontAPI.Maybe<
-    Pick<StorefrontAPI.Image, 'id' | 'altText' | 'url' | 'width' | 'height'>
-  >;
-  metafield?: StorefrontAPI.Maybe<
-    Pick<StorefrontAPI.Metafield, 'id'> & {
-      reference?: StorefrontAPI.Maybe<
-        Pick<StorefrontAPI.MediaImage, 'id'> & {
-          image?: StorefrontAPI.Maybe<
-            Pick<
-              StorefrontAPI.Image,
-              | 'originalSrc'
-              | 'src'
-              | 'transformedSrc'
-              | 'width'
-              | 'url'
-              | 'height'
-              | 'id'
-              | 'altText'
-            >
-          >;
-        }
-      >;
-    }
-  >;
-};
-
-export type HomeProductsQueryVariables = StorefrontAPI.Exact<{
-  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
-  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
-}>;
-
-export type HomeProductsQuery = {
-  products: {
-    nodes: Array<
-      Pick<StorefrontAPI.Product, 'id' | 'title' | 'handle'> & {
-        priceRange: {
-          minVariantPrice: Pick<
-            StorefrontAPI.MoneyV2,
-            'amount' | 'currencyCode'
-          >;
-          maxVariantPrice: Pick<
-            StorefrontAPI.MoneyV2,
-            'amount' | 'currencyCode'
-          >;
-        };
-        featuredImage?: StorefrontAPI.Maybe<
-          Pick<
-            StorefrontAPI.Image,
-            'id' | 'altText' | 'url' | 'width' | 'height'
-          >
-        >;
-        metafield?: StorefrontAPI.Maybe<
-          Pick<StorefrontAPI.Metafield, 'id'> & {
-            reference?: StorefrontAPI.Maybe<
-              Pick<StorefrontAPI.MediaImage, 'id'> & {
-                image?: StorefrontAPI.Maybe<
-                  Pick<
-                    StorefrontAPI.Image,
-                    | 'originalSrc'
-                    | 'src'
-                    | 'transformedSrc'
-                    | 'width'
-                    | 'url'
-                    | 'height'
-                    | 'id'
-                    | 'altText'
-                  >
-                >;
-              }
-            >;
-          }
-        >;
-      }
-    >;
-  };
-};
-
-export type HomeProductVariantFragment = Pick<
-  StorefrontAPI.ProductVariant,
-  'availableForSale' | 'id' | 'sku' | 'title'
-> & {
-  compareAtPrice?: StorefrontAPI.Maybe<
-    Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>
-  >;
-  image?: StorefrontAPI.Maybe<
-    {__typename: 'Image'} & Pick<
-      StorefrontAPI.Image,
-      'id' | 'url' | 'altText' | 'width' | 'height'
-    >
-  >;
-  price: Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>;
-  product: Pick<StorefrontAPI.Product, 'title' | 'handle'>;
-  selectedOptions: Array<Pick<StorefrontAPI.SelectedOption, 'name' | 'value'>>;
-  unitPrice?: StorefrontAPI.Maybe<
-    Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>
-  >;
-};
-
-export type HomeAllProductsItemFragment = Pick<
-  StorefrontAPI.Product,
-  'id' | 'handle' | 'title'
-> & {
-  featuredImage?: StorefrontAPI.Maybe<
-    Pick<StorefrontAPI.Image, 'id' | 'altText' | 'url' | 'width' | 'height'>
-  >;
-  variants: {
-    nodes: Array<
-      Pick<
-        StorefrontAPI.ProductVariant,
-        'availableForSale' | 'id' | 'sku' | 'title'
-      > & {
-        compareAtPrice?: StorefrontAPI.Maybe<
-          Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>
-        >;
-        image?: StorefrontAPI.Maybe<
-          {__typename: 'Image'} & Pick<
-            StorefrontAPI.Image,
-            'id' | 'url' | 'altText' | 'width' | 'height'
-          >
-        >;
-        price: Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>;
-        product: Pick<StorefrontAPI.Product, 'title' | 'handle'>;
-        selectedOptions: Array<
-          Pick<StorefrontAPI.SelectedOption, 'name' | 'value'>
-        >;
-        unitPrice?: StorefrontAPI.Maybe<
-          Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>
-        >;
-      }
-    >;
-  };
-  metafields: Array<
-    StorefrontAPI.Maybe<
-      Pick<StorefrontAPI.Metafield, 'id' | 'key'> & {
-        reference?: StorefrontAPI.Maybe<
-          Pick<StorefrontAPI.MediaImage, 'id'> & {
-            image?: StorefrontAPI.Maybe<
-              Pick<
-                StorefrontAPI.Image,
-                | 'originalSrc'
-                | 'src'
-                | 'transformedSrc'
-                | 'width'
-                | 'url'
-                | 'height'
-                | 'id'
-                | 'altText'
-              >
-            >;
-          }
-        >;
-      }
-    >
-  >;
-};
-
-export type HomeAllProductsQueryVariables = StorefrontAPI.Exact<{
-  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
-  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
-}>;
-
-export type HomeAllProductsQuery = {
-  products: {
-    nodes: Array<
-      Pick<StorefrontAPI.Product, 'id' | 'handle' | 'title'> & {
-        featuredImage?: StorefrontAPI.Maybe<
-          Pick<
-            StorefrontAPI.Image,
-            'id' | 'altText' | 'url' | 'width' | 'height'
-          >
-        >;
-        variants: {
-          nodes: Array<
-            Pick<
-              StorefrontAPI.ProductVariant,
-              'availableForSale' | 'id' | 'sku' | 'title'
-            > & {
-              compareAtPrice?: StorefrontAPI.Maybe<
-                Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>
-              >;
-              image?: StorefrontAPI.Maybe<
-                {__typename: 'Image'} & Pick<
-                  StorefrontAPI.Image,
-                  'id' | 'url' | 'altText' | 'width' | 'height'
-                >
-              >;
-              price: Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>;
-              product: Pick<StorefrontAPI.Product, 'title' | 'handle'>;
-              selectedOptions: Array<
-                Pick<StorefrontAPI.SelectedOption, 'name' | 'value'>
-              >;
-              unitPrice?: StorefrontAPI.Maybe<
-                Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>
-              >;
-            }
-          >;
-        };
-        metafields: Array<
-          StorefrontAPI.Maybe<
-            Pick<StorefrontAPI.Metafield, 'id' | 'key'> & {
-              reference?: StorefrontAPI.Maybe<
-                Pick<StorefrontAPI.MediaImage, 'id'> & {
-                  image?: StorefrontAPI.Maybe<
-                    Pick<
-                      StorefrontAPI.Image,
-                      | 'originalSrc'
-                      | 'src'
-                      | 'transformedSrc'
-                      | 'width'
-                      | 'url'
-                      | 'height'
-                      | 'id'
-                      | 'altText'
-                    >
-                  >;
-                }
-              >;
-            }
-          >
-        >;
-      }
-    >;
-  };
-};
-
-export type VideoObjectFragment = {__typename: 'Video'} & Pick<
-  StorefrontAPI.Video,
-  'id' | 'mediaContentType' | 'alt'
-> & {
-    sources: Array<
-      Pick<
-        StorefrontAPI.VideoSource,
-        'url' | 'width' | 'mimeType' | 'height' | 'format'
-      >
-    >;
-    previewImage?: StorefrontAPI.Maybe<
-      Pick<
-        StorefrontAPI.Image,
-        | 'originalSrc'
-        | 'src'
-        | 'transformedSrc'
-        | 'width'
-        | 'url'
-        | 'height'
-        | 'id'
-        | 'altText'
-      >
-    >;
-    presentation?: StorefrontAPI.Maybe<
-      Pick<StorefrontAPI.MediaPresentation, 'id'>
-    >;
-  };
-
-export type ImageObjectFragment = {__typename: 'MediaImage'} & Pick<
-  StorefrontAPI.MediaImage,
-  'id' | 'mediaContentType' | 'alt'
-> & {
-    image?: StorefrontAPI.Maybe<
-      Pick<
-        StorefrontAPI.Image,
-        | 'originalSrc'
-        | 'src'
-        | 'transformedSrc'
-        | 'width'
-        | 'url'
-        | 'height'
-        | 'id'
-        | 'altText'
-      >
-    >;
-    previewImage?: StorefrontAPI.Maybe<
-      Pick<
-        StorefrontAPI.Image,
-        | 'originalSrc'
-        | 'src'
-        | 'transformedSrc'
-        | 'width'
-        | 'url'
-        | 'height'
-        | 'id'
-        | 'altText'
-      >
-    >;
-    presentation?: StorefrontAPI.Maybe<
-      Pick<StorefrontAPI.MediaPresentation, 'id'>
-    >;
-  };
-
-export type HomePageMetaObjectsQueryVariables = StorefrontAPI.Exact<{
-  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
-  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
-}>;
-
-export type HomePageMetaObjectsQuery = {
-  metaobject?: StorefrontAPI.Maybe<
-    Pick<StorefrontAPI.Metaobject, 'id'> & {
-      fields: Array<
-        Pick<StorefrontAPI.MetaobjectField, 'value' | 'type' | 'key'> & {
-          references?: StorefrontAPI.Maybe<{
-            nodes: Array<
-              | ({__typename: 'MediaImage'} & Pick<
-                  StorefrontAPI.MediaImage,
-                  'id' | 'mediaContentType' | 'alt'
-                > & {
-                    image?: StorefrontAPI.Maybe<
-                      Pick<
-                        StorefrontAPI.Image,
-                        | 'originalSrc'
-                        | 'src'
-                        | 'transformedSrc'
-                        | 'width'
-                        | 'url'
-                        | 'height'
-                        | 'id'
-                        | 'altText'
-                      >
-                    >;
-                    previewImage?: StorefrontAPI.Maybe<
-                      Pick<
-                        StorefrontAPI.Image,
-                        | 'originalSrc'
-                        | 'src'
-                        | 'transformedSrc'
-                        | 'width'
-                        | 'url'
-                        | 'height'
-                        | 'id'
-                        | 'altText'
-                      >
-                    >;
-                    presentation?: StorefrontAPI.Maybe<
-                      Pick<StorefrontAPI.MediaPresentation, 'id'>
-                    >;
-                  })
-              | ({__typename: 'Video'} & Pick<
-                  StorefrontAPI.Video,
-                  'id' | 'mediaContentType' | 'alt'
-                > & {
-                    sources: Array<
-                      Pick<
-                        StorefrontAPI.VideoSource,
-                        'url' | 'width' | 'mimeType' | 'height' | 'format'
-                      >
-                    >;
-                    previewImage?: StorefrontAPI.Maybe<
-                      Pick<
-                        StorefrontAPI.Image,
-                        | 'originalSrc'
-                        | 'src'
-                        | 'transformedSrc'
-                        | 'width'
-                        | 'url'
-                        | 'height'
-                        | 'id'
-                        | 'altText'
-                      >
-                    >;
-                    presentation?: StorefrontAPI.Maybe<
-                      Pick<StorefrontAPI.MediaPresentation, 'id'>
-                    >;
-                  })
-            >;
-          }>;
-          reference?: StorefrontAPI.Maybe<
-            {__typename: 'MediaImage'} & Pick<
-              StorefrontAPI.MediaImage,
-              'id' | 'mediaContentType' | 'alt'
-            > & {
-                image?: StorefrontAPI.Maybe<
-                  Pick<
-                    StorefrontAPI.Image,
-                    | 'originalSrc'
-                    | 'src'
-                    | 'transformedSrc'
-                    | 'width'
-                    | 'url'
-                    | 'height'
-                    | 'id'
-                    | 'altText'
-                  >
-                >;
-                previewImage?: StorefrontAPI.Maybe<
-                  Pick<
-                    StorefrontAPI.Image,
-                    | 'originalSrc'
-                    | 'src'
-                    | 'transformedSrc'
-                    | 'width'
-                    | 'url'
-                    | 'height'
-                    | 'id'
-                    | 'altText'
-                  >
-                >;
-                presentation?: StorefrontAPI.Maybe<
-                  Pick<StorefrontAPI.MediaPresentation, 'id'>
-                >;
-              }
-          >;
-        }
-      >;
-    }
-  >;
-};
-
 export type AboutPageQueryVariables = StorefrontAPI.Exact<{
   country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
   language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
@@ -907,6 +380,41 @@ export type FaqPageQuery = {
     >;
   }>;
 };
+
+export type ImageObjectFragment = {__typename: 'MediaImage'} & Pick<
+  StorefrontAPI.MediaImage,
+  'id' | 'mediaContentType' | 'alt'
+> & {
+    image?: StorefrontAPI.Maybe<
+      Pick<
+        StorefrontAPI.Image,
+        | 'originalSrc'
+        | 'src'
+        | 'transformedSrc'
+        | 'width'
+        | 'url'
+        | 'height'
+        | 'id'
+        | 'altText'
+      >
+    >;
+    previewImage?: StorefrontAPI.Maybe<
+      Pick<
+        StorefrontAPI.Image,
+        | 'originalSrc'
+        | 'src'
+        | 'transformedSrc'
+        | 'width'
+        | 'url'
+        | 'height'
+        | 'id'
+        | 'altText'
+      >
+    >;
+    presentation?: StorefrontAPI.Maybe<
+      Pick<StorefrontAPI.MediaPresentation, 'id'>
+    >;
+  };
 
 export type JournalMetaObjectsQueryVariables = StorefrontAPI.Exact<{
   country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
@@ -1938,6 +1446,498 @@ export type PredictiveSearchQuery = {
   }>;
 };
 
+export type ImagesSetionImageFragment = Pick<StorefrontAPI.MediaImage, 'id'> & {
+  image?: StorefrontAPI.Maybe<
+    Pick<
+      StorefrontAPI.Image,
+      | 'originalSrc'
+      | 'src'
+      | 'transformedSrc'
+      | 'width'
+      | 'url'
+      | 'height'
+      | 'id'
+      | 'altText'
+    >
+  >;
+};
+
+export type ImagesSetionProductFragment = Pick<
+  StorefrontAPI.Product,
+  'id' | 'title' | 'handle'
+>;
+
+export type HomeImagesSectionQueryVariables = StorefrontAPI.Exact<{
+  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+}>;
+
+export type HomeImagesSectionQuery = {
+  metaobjects: {
+    nodes: Array<
+      Pick<StorefrontAPI.Metaobject, 'id'> & {
+        fields: Array<
+          Pick<StorefrontAPI.MetaobjectField, 'type' | 'value'> & {
+            reference?: StorefrontAPI.Maybe<
+              | (Pick<StorefrontAPI.MediaImage, 'id'> & {
+                  image?: StorefrontAPI.Maybe<
+                    Pick<
+                      StorefrontAPI.Image,
+                      | 'originalSrc'
+                      | 'src'
+                      | 'transformedSrc'
+                      | 'width'
+                      | 'url'
+                      | 'height'
+                      | 'id'
+                      | 'altText'
+                    >
+                  >;
+                })
+              | Pick<StorefrontAPI.Product, 'id' | 'title' | 'handle'>
+            >;
+          }
+        >;
+      }
+    >;
+  };
+};
+
+export type ProductImageFragment = Pick<StorefrontAPI.MediaImage, 'id'> & {
+  image?: StorefrontAPI.Maybe<
+    Pick<
+      StorefrontAPI.Image,
+      | 'originalSrc'
+      | 'src'
+      | 'transformedSrc'
+      | 'width'
+      | 'url'
+      | 'height'
+      | 'id'
+      | 'altText'
+    >
+  >;
+};
+
+export type ProductInfoFragment = Pick<
+  StorefrontAPI.Product,
+  'id' | 'title' | 'handle'
+>;
+
+export type ProductHighlightsQueryQueryVariables = StorefrontAPI.Exact<{
+  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+}>;
+
+export type ProductHighlightsQueryQuery = {
+  metaobjects: {
+    nodes: Array<
+      Pick<StorefrontAPI.Metaobject, 'id'> & {
+        fields: Array<
+          Pick<StorefrontAPI.MetaobjectField, 'type' | 'value'> & {
+            reference?: StorefrontAPI.Maybe<
+              | (Pick<StorefrontAPI.MediaImage, 'id'> & {
+                  image?: StorefrontAPI.Maybe<
+                    Pick<
+                      StorefrontAPI.Image,
+                      | 'originalSrc'
+                      | 'src'
+                      | 'transformedSrc'
+                      | 'width'
+                      | 'url'
+                      | 'height'
+                      | 'id'
+                      | 'altText'
+                    >
+                  >;
+                })
+              | Pick<StorefrontAPI.Product, 'id' | 'title' | 'handle'>
+            >;
+          }
+        >;
+      }
+    >;
+  };
+};
+
+export type HomeProductsFragment = Pick<
+  StorefrontAPI.Product,
+  'id' | 'title' | 'handle'
+> & {
+  priceRange: {
+    minVariantPrice: Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>;
+    maxVariantPrice: Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>;
+  };
+  featuredImage?: StorefrontAPI.Maybe<
+    Pick<StorefrontAPI.Image, 'id' | 'altText' | 'url' | 'width' | 'height'>
+  >;
+  metafield?: StorefrontAPI.Maybe<
+    Pick<StorefrontAPI.Metafield, 'id'> & {
+      reference?: StorefrontAPI.Maybe<
+        Pick<StorefrontAPI.MediaImage, 'id'> & {
+          image?: StorefrontAPI.Maybe<
+            Pick<
+              StorefrontAPI.Image,
+              | 'originalSrc'
+              | 'src'
+              | 'transformedSrc'
+              | 'width'
+              | 'url'
+              | 'height'
+              | 'id'
+              | 'altText'
+            >
+          >;
+        }
+      >;
+    }
+  >;
+};
+
+export type HomeProductsQueryVariables = StorefrontAPI.Exact<{
+  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+}>;
+
+export type HomeProductsQuery = {
+  products: {
+    nodes: Array<
+      Pick<StorefrontAPI.Product, 'id' | 'title' | 'handle'> & {
+        priceRange: {
+          minVariantPrice: Pick<
+            StorefrontAPI.MoneyV2,
+            'amount' | 'currencyCode'
+          >;
+          maxVariantPrice: Pick<
+            StorefrontAPI.MoneyV2,
+            'amount' | 'currencyCode'
+          >;
+        };
+        featuredImage?: StorefrontAPI.Maybe<
+          Pick<
+            StorefrontAPI.Image,
+            'id' | 'altText' | 'url' | 'width' | 'height'
+          >
+        >;
+        metafield?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.Metafield, 'id'> & {
+            reference?: StorefrontAPI.Maybe<
+              Pick<StorefrontAPI.MediaImage, 'id'> & {
+                image?: StorefrontAPI.Maybe<
+                  Pick<
+                    StorefrontAPI.Image,
+                    | 'originalSrc'
+                    | 'src'
+                    | 'transformedSrc'
+                    | 'width'
+                    | 'url'
+                    | 'height'
+                    | 'id'
+                    | 'altText'
+                  >
+                >;
+              }
+            >;
+          }
+        >;
+      }
+    >;
+  };
+};
+
+export type HomeProductVariantFragment = Pick<
+  StorefrontAPI.ProductVariant,
+  'availableForSale' | 'id' | 'sku' | 'title'
+> & {
+  compareAtPrice?: StorefrontAPI.Maybe<
+    Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>
+  >;
+  image?: StorefrontAPI.Maybe<
+    {__typename: 'Image'} & Pick<
+      StorefrontAPI.Image,
+      'id' | 'url' | 'altText' | 'width' | 'height'
+    >
+  >;
+  price: Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>;
+  product: Pick<StorefrontAPI.Product, 'title' | 'handle'>;
+  selectedOptions: Array<Pick<StorefrontAPI.SelectedOption, 'name' | 'value'>>;
+  unitPrice?: StorefrontAPI.Maybe<
+    Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>
+  >;
+};
+
+export type HomeAllProductsItemFragment = Pick<
+  StorefrontAPI.Product,
+  'id' | 'handle' | 'title'
+> & {
+  featuredImage?: StorefrontAPI.Maybe<
+    Pick<StorefrontAPI.Image, 'id' | 'altText' | 'url' | 'width' | 'height'>
+  >;
+  variants: {
+    nodes: Array<
+      Pick<
+        StorefrontAPI.ProductVariant,
+        'availableForSale' | 'id' | 'sku' | 'title'
+      > & {
+        compareAtPrice?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>
+        >;
+        image?: StorefrontAPI.Maybe<
+          {__typename: 'Image'} & Pick<
+            StorefrontAPI.Image,
+            'id' | 'url' | 'altText' | 'width' | 'height'
+          >
+        >;
+        price: Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>;
+        product: Pick<StorefrontAPI.Product, 'title' | 'handle'>;
+        selectedOptions: Array<
+          Pick<StorefrontAPI.SelectedOption, 'name' | 'value'>
+        >;
+        unitPrice?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>
+        >;
+      }
+    >;
+  };
+  metafields: Array<
+    StorefrontAPI.Maybe<
+      Pick<StorefrontAPI.Metafield, 'id' | 'key'> & {
+        reference?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.MediaImage, 'id'> & {
+            image?: StorefrontAPI.Maybe<
+              Pick<
+                StorefrontAPI.Image,
+                | 'originalSrc'
+                | 'src'
+                | 'transformedSrc'
+                | 'width'
+                | 'url'
+                | 'height'
+                | 'id'
+                | 'altText'
+              >
+            >;
+          }
+        >;
+      }
+    >
+  >;
+};
+
+export type HomeAllProductsQueryVariables = StorefrontAPI.Exact<{
+  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+}>;
+
+export type HomeAllProductsQuery = {
+  products: {
+    nodes: Array<
+      Pick<StorefrontAPI.Product, 'id' | 'handle' | 'title'> & {
+        featuredImage?: StorefrontAPI.Maybe<
+          Pick<
+            StorefrontAPI.Image,
+            'id' | 'altText' | 'url' | 'width' | 'height'
+          >
+        >;
+        variants: {
+          nodes: Array<
+            Pick<
+              StorefrontAPI.ProductVariant,
+              'availableForSale' | 'id' | 'sku' | 'title'
+            > & {
+              compareAtPrice?: StorefrontAPI.Maybe<
+                Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>
+              >;
+              image?: StorefrontAPI.Maybe<
+                {__typename: 'Image'} & Pick<
+                  StorefrontAPI.Image,
+                  'id' | 'url' | 'altText' | 'width' | 'height'
+                >
+              >;
+              price: Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>;
+              product: Pick<StorefrontAPI.Product, 'title' | 'handle'>;
+              selectedOptions: Array<
+                Pick<StorefrontAPI.SelectedOption, 'name' | 'value'>
+              >;
+              unitPrice?: StorefrontAPI.Maybe<
+                Pick<StorefrontAPI.MoneyV2, 'amount' | 'currencyCode'>
+              >;
+            }
+          >;
+        };
+        metafields: Array<
+          StorefrontAPI.Maybe<
+            Pick<StorefrontAPI.Metafield, 'id' | 'key'> & {
+              reference?: StorefrontAPI.Maybe<
+                Pick<StorefrontAPI.MediaImage, 'id'> & {
+                  image?: StorefrontAPI.Maybe<
+                    Pick<
+                      StorefrontAPI.Image,
+                      | 'originalSrc'
+                      | 'src'
+                      | 'transformedSrc'
+                      | 'width'
+                      | 'url'
+                      | 'height'
+                      | 'id'
+                      | 'altText'
+                    >
+                  >;
+                }
+              >;
+            }
+          >
+        >;
+      }
+    >;
+  };
+};
+
+export type VideoObjectFragment = {__typename: 'Video'} & Pick<
+  StorefrontAPI.Video,
+  'id' | 'mediaContentType' | 'alt'
+> & {
+    sources: Array<
+      Pick<
+        StorefrontAPI.VideoSource,
+        'url' | 'width' | 'mimeType' | 'height' | 'format'
+      >
+    >;
+    previewImage?: StorefrontAPI.Maybe<
+      Pick<
+        StorefrontAPI.Image,
+        | 'originalSrc'
+        | 'src'
+        | 'transformedSrc'
+        | 'width'
+        | 'url'
+        | 'height'
+        | 'id'
+        | 'altText'
+      >
+    >;
+    presentation?: StorefrontAPI.Maybe<
+      Pick<StorefrontAPI.MediaPresentation, 'id'>
+    >;
+  };
+
+export type HomePageMetaObjectsQueryVariables = StorefrontAPI.Exact<{
+  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+}>;
+
+export type HomePageMetaObjectsQuery = {
+  metaobject?: StorefrontAPI.Maybe<
+    Pick<StorefrontAPI.Metaobject, 'id'> & {
+      fields: Array<
+        Pick<StorefrontAPI.MetaobjectField, 'value' | 'type' | 'key'> & {
+          references?: StorefrontAPI.Maybe<{
+            nodes: Array<
+              | ({__typename: 'MediaImage'} & Pick<
+                  StorefrontAPI.MediaImage,
+                  'id' | 'mediaContentType' | 'alt'
+                > & {
+                    image?: StorefrontAPI.Maybe<
+                      Pick<
+                        StorefrontAPI.Image,
+                        | 'originalSrc'
+                        | 'src'
+                        | 'transformedSrc'
+                        | 'width'
+                        | 'url'
+                        | 'height'
+                        | 'id'
+                        | 'altText'
+                      >
+                    >;
+                    previewImage?: StorefrontAPI.Maybe<
+                      Pick<
+                        StorefrontAPI.Image,
+                        | 'originalSrc'
+                        | 'src'
+                        | 'transformedSrc'
+                        | 'width'
+                        | 'url'
+                        | 'height'
+                        | 'id'
+                        | 'altText'
+                      >
+                    >;
+                    presentation?: StorefrontAPI.Maybe<
+                      Pick<StorefrontAPI.MediaPresentation, 'id'>
+                    >;
+                  })
+              | ({__typename: 'Video'} & Pick<
+                  StorefrontAPI.Video,
+                  'id' | 'mediaContentType' | 'alt'
+                > & {
+                    sources: Array<
+                      Pick<
+                        StorefrontAPI.VideoSource,
+                        'url' | 'width' | 'mimeType' | 'height' | 'format'
+                      >
+                    >;
+                    previewImage?: StorefrontAPI.Maybe<
+                      Pick<
+                        StorefrontAPI.Image,
+                        | 'originalSrc'
+                        | 'src'
+                        | 'transformedSrc'
+                        | 'width'
+                        | 'url'
+                        | 'height'
+                        | 'id'
+                        | 'altText'
+                      >
+                    >;
+                    presentation?: StorefrontAPI.Maybe<
+                      Pick<StorefrontAPI.MediaPresentation, 'id'>
+                    >;
+                  })
+            >;
+          }>;
+          reference?: StorefrontAPI.Maybe<
+            {__typename: 'MediaImage'} & Pick<
+              StorefrontAPI.MediaImage,
+              'id' | 'mediaContentType' | 'alt'
+            > & {
+                image?: StorefrontAPI.Maybe<
+                  Pick<
+                    StorefrontAPI.Image,
+                    | 'originalSrc'
+                    | 'src'
+                    | 'transformedSrc'
+                    | 'width'
+                    | 'url'
+                    | 'height'
+                    | 'id'
+                    | 'altText'
+                  >
+                >;
+                previewImage?: StorefrontAPI.Maybe<
+                  Pick<
+                    StorefrontAPI.Image,
+                    | 'originalSrc'
+                    | 'src'
+                    | 'transformedSrc'
+                    | 'width'
+                    | 'url'
+                    | 'height'
+                    | 'id'
+                    | 'altText'
+                  >
+                >;
+                presentation?: StorefrontAPI.Maybe<
+                  Pick<StorefrontAPI.MediaPresentation, 'id'>
+                >;
+              }
+          >;
+        }
+      >;
+    }
+  >;
+};
+
 export type TocoPageQueryVariables = StorefrontAPI.Exact<{
   country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
   language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
@@ -1967,26 +1967,6 @@ interface GeneratedQueryTypes {
   '#graphql\n  query StoreRobots($country: CountryCode, $language: LanguageCode)\n   @inContext(country: $country, language: $language) {\n    shop {\n      id\n    }\n  }\n': {
     return: StoreRobotsQuery;
     variables: StoreRobotsQueryVariables;
-  };
-  '#graphql\n\n\n  fragment ImagesSetionImage on MediaImage {\n    id\n    image {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n  }\n\n  fragment ImagesSetionProduct on Product {\n    id\n    title\n    handle\n  }\n\n  query HomeImagesSection($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n      metaobjects(type: "home_page_second_section", first: 10) {\n        nodes {\n          id\n          fields {\n            type\n            value\n            reference {\n              ...ImagesSetionImage\n              ...ImagesSetionProduct\n            }\n          }\n        }\n      }\n  }\n  \n': {
-    return: HomeImagesSectionQuery;
-    variables: HomeImagesSectionQueryVariables;
-  };
-  '#graphql\n\n\n  fragment ProductImage on MediaImage {\n    id\n    image {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n  }\n\n  fragment ProductInfo on Product {\n    id\n    title\n    handle\n  }\n\n  query ProductHighlightsQuery($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n      metaobjects(type: "product_highlight", first: 10, reverse: true) {\n        nodes {\n          id\n          fields {\n            type\n            value\n            reference {\n              ...ProductImage\n              ...ProductInfo\n            }\n          }\n        }\n      }\n  }\n  \n': {
-    return: ProductHighlightsQueryQuery;
-    variables: ProductHighlightsQueryQueryVariables;
-  };
-  '#graphql\n  fragment HomeProducts on Product {\n    id\n    title\n    handle\n    priceRange {\n      minVariantPrice {\n        amount\n        currencyCode\n      }\n        maxVariantPrice {\n        amount\n        currencyCode\n      }\n    }\n    featuredImage {\n      id\n      altText\n      url\n      width\n      height\n    }\n    metafield(key: "featured_image", namespace: "custom") {\n      id\n      reference {\n        ... on MediaImage {\n          id\n          image {\n            originalSrc\n            src\n            transformedSrc\n            width\n            url\n            height\n            id\n            altText\n          }\n        }\n      }\n    }\n  }\n\n  query HomeProducts($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    products(first: 2, sortKey: UPDATED_AT, reverse: true) {\n      nodes {\n        ...HomeProducts\n      }\n    }\n  }\n': {
-    return: HomeProductsQuery;
-    variables: HomeProductsQueryVariables;
-  };
-  '#graphql\n\n  fragment HomeProductVariant on ProductVariant {\n    availableForSale\n    compareAtPrice {\n      amount\n      currencyCode\n    }\n    id\n    image {\n      __typename\n      id\n      url\n      altText\n      width\n      height\n    }\n    price {\n      amount\n      currencyCode\n    }\n    product {\n      title\n      handle\n    }\n    selectedOptions {\n      name\n      value\n    }\n    sku\n    title\n    unitPrice {\n      amount\n      currencyCode\n    }\n  }\n\n  fragment HomeAllProductsItem on Product {\n    id\n    handle\n    title\n    featuredImage {\n      id\n      altText\n      url\n      width\n      height\n    }\n    variants(first: 1) {\n      nodes {\n        ...HomeProductVariant\n      }\n    }\n\n    \n\n    \n    metafields(identifiers: [\n          { namespace: "custom", key: "thumbnail" },\n          { namespace: "custom", key: "thumbnail_side" },\n          { namespace: "custom", key: "thumbnail_model" },\n        ]) {\n      id\n      key\n      reference {\n        ... on MediaImage {\n          id\n          image {\n            originalSrc\n            src\n            transformedSrc\n            width\n            url\n            height\n            id\n            altText\n          }\n        }\n      }\n    }\n  }\n\n\n   query HomeAllProducts($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    products(first: 20, sortKey: TITLE, reverse:true) {\n      nodes {\n        ...HomeAllProductsItem\n      }\n    }\n  }\n': {
-    return: HomeAllProductsQuery;
-    variables: HomeAllProductsQueryVariables;
-  };
-  '#graphql\n\n\n  fragment VideoObject on Video {\n    id\n    __typename\n    sources {\n      url\n      width\n      mimeType\n      height\n      format\n    }\n    previewImage {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    presentation {\n      id\n    }\n   \n    mediaContentType\n    alt\n  }\n\n  fragment ImageObject on MediaImage {\n    id\n    __typename\n    \n    image {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    previewImage {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    presentation {\n      id\n    }\n    mediaContentType\n    alt\n  }\n\n\n  query HomePageMetaObjects($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    metaobject(handle: {handle: "home-page-ubjrgxn5", type: "home_page"}) {\n      id\n      fields {\n        value\n        type\n        key\n        references(first: 10){\n          nodes {\n            ...VideoObject\n            ...ImageObject\n          }\n        }\n          reference {\n          ...ImageObject\n          }\n      }\n    }\n  }\n': {
-    return: HomePageMetaObjectsQuery;
-    variables: HomePageMetaObjectsQueryVariables;
   };
   '#graphql\n\nquery AboutPage($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n        metaobject(handle: {handle: "about-page-description-zsw7daga", type: "about_page_description"}) {\n            fields {\n                value\n                key\n                reference {\n                    \n                    ... on MediaImage {\n                        id\n                        image {\n                            originalSrc\n                            src\n                            transformedSrc\n                            width\n                            url\n                            height\n                            id\n                            altText\n                        }\n                    }\n                    ... on Video {\n                        id\n                        __typename\n                        sources {\n                            url\n                            width\n                            mimeType\n                            height\n                            format\n                        }\n                        previewImage {\n                            originalSrc\n                            src\n                            transformedSrc\n                            width\n                            url\n                            height\n                            id\n                            altText\n                        }\n                        presentation {\n                            id\n                        }\n                    \n                        mediaContentType\n                        alt\n                    }\n                }\n                type\n            }\n        }\n    }\n\n': {
     return: AboutPageQuery;
@@ -2039,6 +2019,26 @@ interface GeneratedQueryTypes {
   '#graphql\n  query PredictiveSearch(\n    $country: CountryCode\n    $language: LanguageCode\n    $limit: Int!\n    $limitScope: PredictiveSearchLimitScope!\n    $term: String!\n    $types: [PredictiveSearchType!]\n  ) @inContext(country: $country, language: $language) {\n    predictiveSearch(\n      limit: $limit,\n      limitScope: $limitScope,\n      query: $term,\n      types: $types,\n    ) {\n      articles {\n        ...PredictiveArticle\n      }\n      collections {\n        ...PredictiveCollection\n      }\n      pages {\n        ...PredictivePage\n      }\n      products {\n        ...PredictiveProduct\n      }\n      queries {\n        ...PredictiveQuery\n      }\n    }\n  }\n  #graphql\n  fragment PredictiveArticle on Article {\n    __typename\n    id\n    title\n    handle\n    blog {\n      handle\n    }\n    image {\n      url\n      altText\n      width\n      height\n    }\n    trackingParameters\n  }\n\n  #graphql\n  fragment PredictiveCollection on Collection {\n    __typename\n    id\n    title\n    handle\n    image {\n      url\n      altText\n      width\n      height\n    }\n    trackingParameters\n  }\n\n  #graphql\n  fragment PredictivePage on Page {\n    __typename\n    id\n    title\n    handle\n    trackingParameters\n  }\n\n  #graphql\n  fragment PredictiveProduct on Product {\n    __typename\n    id\n    title\n    handle\n    trackingParameters\n    selectedOrFirstAvailableVariant(\n      selectedOptions: []\n      ignoreUnknownOptions: true\n      caseInsensitiveMatch: true\n    ) {\n      id\n      image {\n        url\n        altText\n        width\n        height\n      }\n      price {\n        amount\n        currencyCode\n      }\n    }\n  }\n\n  #graphql\n  fragment PredictiveQuery on SearchQuerySuggestion {\n    __typename\n    text\n    styledText\n    trackingParameters\n  }\n\n': {
     return: PredictiveSearchQuery;
     variables: PredictiveSearchQueryVariables;
+  };
+  '#graphql\n\n\n  fragment ImagesSetionImage on MediaImage {\n    id\n    image {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n  }\n\n  fragment ImagesSetionProduct on Product {\n    id\n    title\n    handle\n  }\n\n  query HomeImagesSection($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n      metaobjects(type: "home_page_second_section", first: 10) {\n        nodes {\n          id\n          fields {\n            type\n            value\n            reference {\n              ...ImagesSetionImage\n              ...ImagesSetionProduct\n            }\n          }\n        }\n      }\n  }\n  \n': {
+    return: HomeImagesSectionQuery;
+    variables: HomeImagesSectionQueryVariables;
+  };
+  '#graphql\n\n\n  fragment ProductImage on MediaImage {\n    id\n    image {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n  }\n\n  fragment ProductInfo on Product {\n    id\n    title\n    handle\n  }\n\n  query ProductHighlightsQuery($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n      metaobjects(type: "product_highlight", first: 10, reverse: true) {\n        nodes {\n          id\n          fields {\n            type\n            value\n            reference {\n              ...ProductImage\n              ...ProductInfo\n            }\n          }\n        }\n      }\n  }\n  \n': {
+    return: ProductHighlightsQueryQuery;
+    variables: ProductHighlightsQueryQueryVariables;
+  };
+  '#graphql\n  fragment HomeProducts on Product {\n    id\n    title\n    handle\n    priceRange {\n      minVariantPrice {\n        amount\n        currencyCode\n      }\n        maxVariantPrice {\n        amount\n        currencyCode\n      }\n    }\n    featuredImage {\n      id\n      altText\n      url\n      width\n      height\n    }\n    metafield(key: "featured_image", namespace: "custom") {\n      id\n      reference {\n        ... on MediaImage {\n          id\n          image {\n            originalSrc\n            src\n            transformedSrc\n            width\n            url\n            height\n            id\n            altText\n          }\n        }\n      }\n    }\n  }\n\n  query HomeProducts($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    products(first: 2, sortKey: UPDATED_AT, reverse: true) {\n      nodes {\n        ...HomeProducts\n      }\n    }\n  }\n': {
+    return: HomeProductsQuery;
+    variables: HomeProductsQueryVariables;
+  };
+  '#graphql\n\n  fragment HomeProductVariant on ProductVariant {\n    availableForSale\n    compareAtPrice {\n      amount\n      currencyCode\n    }\n    id\n    image {\n      __typename\n      id\n      url\n      altText\n      width\n      height\n    }\n    price {\n      amount\n      currencyCode\n    }\n    product {\n      title\n      handle\n    }\n    selectedOptions {\n      name\n      value\n    }\n    sku\n    title\n    unitPrice {\n      amount\n      currencyCode\n    }\n  }\n\n  fragment HomeAllProductsItem on Product {\n    id\n    handle\n    title\n    featuredImage {\n      id\n      altText\n      url\n      width\n      height\n    }\n    variants(first: 1) {\n      nodes {\n        ...HomeProductVariant\n      }\n    }\n\n    \n\n    \n    metafields(identifiers: [\n          { namespace: "custom", key: "thumbnail" },\n          { namespace: "custom", key: "thumbnail_side" },\n          { namespace: "custom", key: "thumbnail_model" },\n        ]) {\n      id\n      key\n      reference {\n        ... on MediaImage {\n          id\n          image {\n            originalSrc\n            src\n            transformedSrc\n            width\n            url\n            height\n            id\n            altText\n          }\n        }\n      }\n    }\n  }\n\n\n   query HomeAllProducts($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    products(first: 20, sortKey: TITLE, reverse:true) {\n      nodes {\n        ...HomeAllProductsItem\n      }\n    }\n  }\n': {
+    return: HomeAllProductsQuery;
+    variables: HomeAllProductsQueryVariables;
+  };
+  '#graphql\n\n\n  fragment VideoObject on Video {\n    id\n    __typename\n    sources {\n      url\n      width\n      mimeType\n      height\n      format\n    }\n    previewImage {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    presentation {\n      id\n    }\n   \n    mediaContentType\n    alt\n  }\n\n  fragment ImageObject on MediaImage {\n    id\n    __typename\n    \n    image {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    previewImage {\n      originalSrc\n      src\n      transformedSrc\n      width\n      url\n      height\n      id\n      altText\n    }\n    presentation {\n      id\n    }\n    mediaContentType\n    alt\n  }\n\n\n  query HomePageMetaObjects($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    metaobject(handle: {handle: "home-page-ubjrgxn5", type: "home_page"}) {\n      id\n      fields {\n        value\n        type\n        key\n        references(first: 10){\n          nodes {\n            ...VideoObject\n            ...ImageObject\n          }\n        }\n          reference {\n          ...ImageObject\n          }\n      }\n    }\n  }\n': {
+    return: HomePageMetaObjectsQuery;
+    variables: HomePageMetaObjectsQueryVariables;
   };
   '#graphql\n\nquery TocoPage($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n        metaobject(handle: {handle: "terms-and-conditions", type: "information_pages"}) {\n            fields {\n                value\n                type\n                key\n            }\n        }\n    }\n\n': {
     return: TocoPageQuery;

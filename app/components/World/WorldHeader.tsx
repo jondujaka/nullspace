@@ -42,28 +42,28 @@ function AccountIcon() {
 
 export default function WorldHeader() {
   return (
-    <header className={styles.header}>
-      <nav className={styles.nav} aria-label="World navigation">
+    <header className={`ns-world-header ${styles.header}`}>
+      <nav className={`ns-world-nav ${styles.nav}`} aria-label="World navigation">
         <Link
           to="/"
-          className={styles.brand}
+          className={`ns-world-brand ${styles.brand}`}
           aria-label="NULL SPACE — back to split"
         >
-          <span className={styles.brandSwap} aria-hidden="true">
+          <span className={`ns-world-brand-swap ${styles.brandSwap}`} aria-hidden="true">
             <img
-              className={`${styles.brandLogo} ${styles.brandLogoWorld}`}
+              className={`ns-world-brand-logo ns-world-brand-logo-world ${styles.brandLogo} ${styles.brandLogoWorld}`}
               src={worldLogo}
               alt=""
             />
             <img
-              className={`${styles.brandLogo} ${styles.brandLogoEyewear}`}
+              className={`ns-world-brand-logo ns-world-brand-logo-eyewear ${styles.brandLogo} ${styles.brandLogoEyewear}`}
               src={eyewearLogo}
               alt=""
             />
           </span>
         </Link>
 
-        <div className={styles.menu}>
+        <div className={`ns-world-menu ${styles.menu}`}>
           {worldNavItems.map((item, index) => {
             const orderClass =
               index === 0
@@ -73,13 +73,23 @@ export default function WorldHeader() {
                   : index === 2
                     ? styles.order3
                     : styles.order4;
+            const nsOrder =
+              index === 0
+                ? 'ns-world-order1'
+                : index === 1
+                  ? 'ns-world-order2'
+                  : index === 2
+                    ? 'ns-world-order3'
+                    : 'ns-world-order4';
 
             return (
               <NavLink
                 key={item.to}
                 to={item.to}
                 className={({isActive}) =>
-                  `${styles.link} ${orderClass} ${isActive ? styles.active : ''}`
+                  `ns-world-link ${nsOrder} ${styles.link} ${orderClass} ${
+                    isActive ? `ns-world-link-active ${styles.active}` : ''
+                  }`
                 }
                 end
               >
@@ -89,7 +99,10 @@ export default function WorldHeader() {
           })}
         </div>
 
-        <div className={styles.utilities} aria-hidden="true">
+        <div
+          className={`ns-world-utilities ${styles.utilities}`}
+          aria-hidden="true"
+        >
           <span className={styles.utility}>
             <SearchIcon />
           </span>

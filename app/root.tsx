@@ -18,6 +18,7 @@ import appleIcon from '~/assets/apple-touch-icon.png';
 import {FOOTER_QUERY, HEADER_QUERY, STORES_QUERY} from '~/lib/fragments';
 import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
+import worldStyles from '~/styles/world.css?url';
 import {PageLayout} from './components/PageLayout';
 import PageDipWhite from './components/PageDipWhite';
 // import ibmPlexSans from '@fontsource-variable/ibm-plex-sans?url';
@@ -176,6 +177,7 @@ export function Layout({children}: {children?: React.ReactNode}) {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <link rel="stylesheet" href={resetStyles}></link>
         <link rel="stylesheet" href={appStyles}></link>
+        <link rel="stylesheet" href={worldStyles}></link>
 
         <meta property="og:title" content="Nullspace" />
         <meta

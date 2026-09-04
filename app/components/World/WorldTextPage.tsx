@@ -11,10 +11,12 @@ export default function WorldTextPage({
   children: ReactNode;
 }) {
   return (
-    <article className={styles.page}>
-      {tagline ? <p className={styles.tagline}>{tagline}</p> : null}
-      <div className={styles.body}>
-        {title ? <h1 className={styles.title}>{title}</h1> : null}
+    <article className={`ns-world-page ${styles.page}`}>
+      {tagline ? (
+        <p className={`ns-world-tagline ${styles.tagline}`}>{tagline}</p>
+      ) : null}
+      <div className={`ns-world-body ${styles.body}`}>
+        {title ? <h1 className={`ns-world-title ${styles.title}`}>{title}</h1> : null}
         {children}
       </div>
     </article>
@@ -31,8 +33,16 @@ export function WorldSection({
   plainTitle?: boolean;
 }) {
   return (
-    <section className={styles.section}>
-      <h2 className={plainTitle ? styles.subheading : styles.title}>{title}</h2>
+    <section className={`ns-world-section ${styles.section}`}>
+      <h2
+        className={
+          plainTitle
+            ? `ns-world-subheading ${styles.subheading}`
+            : `ns-world-title ${styles.title}`
+        }
+      >
+        {title}
+      </h2>
       {children}
     </section>
   );

@@ -19,7 +19,7 @@ export default function WorldFoundation() {
     <WorldLayout>
       <WorldTextPage title={purpose.title}>
         <p>{purpose.lead}</p>
-        <ul className={textStyles.list}>
+        <ul className={`ns-world-list ${textStyles.list}`}>
           {purpose.items.map((item) => (
             <li key={item}>{item}</li>
           ))}
@@ -29,12 +29,16 @@ export default function WorldFoundation() {
         <WorldSection title={board.title}>
           <p>{board.intro}</p>
           {board.members.map((member) => (
-            <div className={textStyles.block} key={member.name}>
-              <p className={textStyles.memberName}>{member.name}</p>
+            <div className={`ns-world-block ${textStyles.block}`} key={member.name}>
+              <p className={`ns-world-member-name ${textStyles.memberName}`}>
+                {member.name}
+              </p>
               <p>{member.bio}</p>
             </div>
           ))}
-          <p className={textStyles.boardClosing}>{board.closing}</p>
+          <p className={`ns-world-board-closing ${textStyles.boardClosing}`}>
+            {board.closing}
+          </p>
         </WorldSection>
       </WorldTextPage>
     </WorldLayout>
