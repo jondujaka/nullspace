@@ -1,0 +1,483 @@
+@font-face {
+  font-family: 'Milliard';
+  src: url('/fonts/milliard/milliard-light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Milliard';
+  src: url('/fonts/milliard/milliard-book.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Milliard';
+  src: url('/fonts/milliard/milliard-medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Milliard';
+  src: url('/fonts/milliard/milliard-semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Milliard';
+  src: url('/fonts/milliard/milliard-bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*
+  Mobile-first tokens. Chrome device mode often reports a large *layout* viewport
+  while visualViewport is phone-sized — so max-width media queries never fire.
+  Desktop tokens apply via html[data-world-wide='true'] (set from visualViewport).
+*/
+:root {
+  --world-header: #070707;
+  --world-text: #a8a7a8;
+  --world-bg: #ffffff;
+  --world-max: 920px;
+  --world-pad-x: 24px;
+  --world-body-pad-x: 24px;
+  --world-nav-pad-x: 18px;
+  --world-header-pad-y: 16px;
+  --world-header-height: 4.5rem;
+  --world-content-top: 32px;
+  --world-content-bottom: 4rem;
+  --world-type-size: 15.5px;
+  --world-heading-size: 15.5px;
+  --world-nav-size: 13.5px;
+  --world-logo-size: 26px;
+  --world-leading: 1.35;
+  --world-stack: 0.85em;
+  --world-section-gap: 2rem;
+  --world-measure: 100%;
+  --world-nav-row: 2.15rem;
+}
+
+html[data-world-wide='true'] {
+  --world-pad-x: 64px;
+  --world-body-pad-x: 64px;
+  --world-nav-pad-x: 120px;
+  --world-header-pad-y: 22px;
+  --world-content-top: 46px;
+  --world-content-bottom: 5rem;
+  --world-nav-row: 0px;
+}
+
+@media screen and (max-width: 380px) {
+  :root {
+    --world-nav-pad-x: 14px;
+  }
+}
+
+.world-scope,
+.world-scope * {
+  box-sizing: border-box;
+}
+
+.world-scope a {
+  color: inherit;
+}
+
+/* Kill global reset heading styles inside World */
+.world-scope .page h1,
+.world-scope .page h2,
+.world-scope .page h3,
+.world-scope .page h4,
+.world-scope .ns-world-page h1,
+.world-scope .ns-world-page h2,
+.world-scope .ns-world-page h3,
+.world-scope .ns-world-page h4 {
+  font-size: var(--world-heading-size) !important;
+  font-weight: 400 !important;
+  line-height: var(--world-leading) !important;
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 0 !important;
+}
+
+/* ——— Critical World chrome (SSR-linked; CSS modules inject too late / never on Chrome mobile) ——— */
+
+.ns-world-shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--world-bg, #fff);
+  color: var(--world-text, #a8a7a8);
+  font-family: 'Milliard', 'Unica77', sans-serif;
+}
+
+.ns-world-main {
+  flex: 1 0 auto;
+  width: 100%;
+  margin: 0;
+  padding: var(--world-content-top, 2.75rem) var(--world-body-pad-x, var(--world-pad-x, 1.75rem))
+    var(--world-content-bottom, 2rem);
+}
+
+.ns-world-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  color: var(--world-header);
+  padding: var(--world-header-pad-y, 1.5rem) var(--world-nav-pad-x, 1.5rem);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px) saturate(1.05);
+  -webkit-backdrop-filter: blur(10px) saturate(1.05);
+}
+
+.ns-world-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.15rem;
+  width: 100%;
+  margin: 0;
+}
+
+.ns-world-brand {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.ns-world-brand-swap {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.ns-world-brand-logo {
+  display: block;
+  grid-area: 1 / 1;
+  height: var(--world-logo-size, 1.25rem);
+  width: auto;
+  max-width: min(72vw, 280px);
+  object-fit: contain;
+}
+
+.ns-world-brand-logo-world {
+  opacity: 1;
+}
+
+.ns-world-brand-logo-eyewear {
+  opacity: 0;
+  height: calc(var(--world-logo-size, 1.25rem) * 0.62);
+  max-width: min(46vw, 170px);
+}
+
+.ns-world-menu {
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: clamp(0.2rem, 1.5vw, 0.55rem);
+  min-width: 0;
+}
+
+.ns-world-link {
+  flex: 0 1 auto;
+  min-width: 0;
+  text-align: center;
+  font-family: 'Milliard', 'Unica77', sans-serif;
+  font-size: clamp(0.48rem, 2.05vw, var(--world-nav-size, 0.875rem));
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--world-header) !important;
+  white-space: nowrap;
+}
+
+.ns-world-link:hover,
+.ns-world-link-active {
+  opacity: 0.65;
+}
+
+.ns-world-utilities {
+  display: none;
+}
+
+html[data-world-wide='true'] .ns-world-nav {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+html[data-world-wide='true'] .ns-world-menu {
+  display: contents;
+}
+
+html[data-world-wide='true'] .ns-world-brand {
+  order: 3;
+}
+
+html[data-world-wide='true'] .ns-world-order1 {
+  order: 1;
+}
+
+html[data-world-wide='true'] .ns-world-order2 {
+  order: 2;
+}
+
+html[data-world-wide='true'] .ns-world-order3 {
+  order: 4;
+}
+
+html[data-world-wide='true'] .ns-world-order4 {
+  order: 5;
+}
+
+html[data-world-wide='true'] .ns-world-link {
+  flex: 0 0 auto;
+  font-size: var(--world-nav-size, 0.875rem);
+  letter-spacing: 0.12em;
+}
+
+html[data-world-wide='true'] .ns-world-brand-logo {
+  max-width: min(40vw, 280px);
+}
+
+.ns-world-page {
+  width: 100%;
+  max-width: var(--world-measure);
+  margin: 0;
+  font-family: 'Milliard', sans-serif;
+  font-size: var(--world-type-size);
+  line-height: var(--world-leading);
+  color: var(--world-text);
+}
+
+.ns-world-tagline {
+  position: fixed;
+  left: 50%;
+  top: calc(
+    var(--world-header-pad-y, 22px) * 2 + var(--world-logo-size, 26px) +
+      var(--world-nav-row, 0px) + 0.75rem
+  );
+  z-index: 15;
+  display: block;
+  width: fit-content;
+  max-width: min(98vw, 52rem);
+  margin: 0;
+  padding: 0.4rem clamp(0.4rem, 1.5vw, 1rem);
+  text-align: center;
+  font-size: clamp(0.34rem, 1.55vw, 0.72rem);
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--world-text);
+  background: rgba(200, 199, 200, 0.28);
+  backdrop-filter: blur(10px) saturate(1.05);
+  -webkit-backdrop-filter: blur(10px) saturate(1.05);
+  transform: translateX(-50%);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.ns-world-body {
+  width: 100%;
+  color: var(--world-text);
+  font-size: var(--world-type-size);
+  line-height: var(--world-leading);
+}
+
+.ns-world-body > :first-child {
+  margin-top: 0;
+}
+
+.ns-world-title {
+  display: block;
+  margin: 0 0 0.35em;
+  font-family: 'Milliard', sans-serif;
+  font-size: var(--world-heading-size);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--world-header);
+  line-height: var(--world-leading);
+}
+
+.ns-world-body p {
+  margin: 0;
+  font-size: var(--world-type-size);
+  line-height: var(--world-leading);
+  color: var(--world-text) !important;
+}
+
+.ns-world-body p + p {
+  margin-top: 0.55em;
+}
+
+.ns-world-body a {
+  color: var(--world-text) !important;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.ns-world-section {
+  margin: 1.35em 0 0;
+}
+
+.ns-world-section:first-child {
+  margin-top: 0;
+}
+
+.ns-world-subheading {
+  display: block;
+  margin: 0 0 0.35em;
+  font-family: 'Milliard', sans-serif;
+  font-size: var(--world-type-size);
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--world-header);
+  line-height: var(--world-leading);
+}
+
+.ns-world-list {
+  margin: 0.15em 0 0.55em;
+  padding: 0;
+  list-style: none;
+}
+
+.ns-world-list li {
+  position: relative;
+  padding-left: 0.9em;
+  margin: 0;
+  font-size: var(--world-type-size);
+  line-height: var(--world-leading);
+  color: var(--world-text);
+}
+
+.ns-world-list li::before {
+  content: '-';
+  position: absolute;
+  left: 0;
+}
+
+.ns-world-block {
+  margin: 0.55em 0 0;
+}
+
+.ns-world-block:first-child {
+  margin-top: 0;
+}
+
+.ns-world-member-name {
+  display: block;
+  margin: 0;
+  font-family: 'Milliard', sans-serif;
+  font-size: var(--world-type-size);
+  font-weight: 400;
+  color: var(--world-header) !important;
+  line-height: var(--world-leading);
+}
+
+.ns-world-board-closing {
+  margin-top: 1.35em !important;
+}
+
+.ns-world-landing-image {
+  display: block;
+  width: 72%;
+  max-width: 42rem;
+  height: auto;
+  margin: 1.75em auto 0;
+}
+
+.ns-world-contact-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35em;
+  color: var(--world-text);
+}
+
+.ns-world-footer-wrap {
+  width: 100%;
+  margin-top: auto;
+}
+
+.ns-world-footer-desktop {
+  background: var(--color-light, #fff);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 2rem;
+  flex-wrap: wrap;
+  flex-direction: row;
+  z-index: 10;
+  position: relative;
+}
+
+.ns-world-footer-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 1rem;
+}
+
+.ns-world-footer-copyright {
+  text-align: center;
+}
+
+.ns-world-footer-copyright svg {
+  display: block;
+  height: 24px;
+  width: auto;
+  margin-inline: auto;
+}
+
+.ns-world-footer-copyright span {
+  display: block;
+  margin-top: 1rem;
+  text-transform: capitalize;
+  font-family: 'Unica77', sans-serif;
+  color: black;
+  font-size: 0.625rem;
+}
+
+.ns-world-footer-copyright svg * {
+  fill: black;
+}
+
+.ns-world-footer-logo {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 1rem;
+}
+
+html[data-world-wide='true'] .ns-world-footer-desktop {
+  display: flex;
+}
+
+html[data-world-wide='true'] .ns-world-footer-mobile {
+  display: none;
+}
+
+html[data-world-wide='true'] .ns-world-footer-copyright {
+  margin-left: 0;
+  margin-right: auto;
+  text-align: left;
+}
+
+html[data-world-wide='true'] .ns-world-footer-copyright svg {
+  margin-inline: 0;
+}

@@ -1,0 +1,191 @@
+.page {
+  width: 100%;
+  max-width: var(--world-measure);
+  margin: 0;
+  font-family: 'Milliard', sans-serif;
+  font-size: var(--world-type-size);
+  line-height: var(--world-leading);
+  color: var(--world-text);
+}
+
+.tagline {
+  position: fixed;
+  left: 50%;
+  top: calc(
+    var(--world-header-pad-y, 22px) * 2 + var(--world-logo-size, 26px) +
+      var(--world-nav-row, 0px) + 0.75rem
+  );
+  z-index: 15;
+  display: block;
+  width: fit-content;
+  max-width: min(98vw, 52rem);
+  margin: 0;
+  padding: 0.4rem clamp(0.4rem, 1.5vw, 1rem);
+  text-align: center;
+  font-size: clamp(0.34rem, 1.55vw, 0.72rem);
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--world-text);
+  background: rgba(200, 199, 200, 0.28);
+  backdrop-filter: blur(10px) saturate(1.05);
+  -webkit-backdrop-filter: blur(10px) saturate(1.05);
+  transform: translateX(-50%);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.body {
+  width: 100%;
+  color: var(--world-text);
+  font-size: var(--world-type-size);
+  line-height: var(--world-leading);
+}
+
+.body > :first-child {
+  margin-top: 0;
+}
+
+.title {
+  display: block;
+  margin: 0 0 0.35em;
+  font-family: 'Milliard', sans-serif;
+  font-size: var(--world-heading-size);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--world-header);
+  line-height: var(--world-leading);
+}
+
+/* Dense body copy: soft breaks, not airy paragraph stacks */
+.body p {
+  margin: 0;
+  font-size: var(--world-type-size);
+  line-height: var(--world-leading);
+  color: var(--world-text) !important;
+}
+
+.body p + p {
+  margin-top: 0.55em;
+}
+
+.body a {
+  color: var(--world-text) !important;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.section {
+  margin: 1.35em 0 0;
+}
+
+.section:first-child {
+  margin-top: 0;
+}
+
+.subheading {
+  display: block;
+  margin: 0 0 0.35em;
+  font-family: 'Milliard', sans-serif;
+  font-size: var(--world-type-size);
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--world-header);
+  line-height: var(--world-leading);
+}
+
+.body p.memberName,
+.memberName {
+  display: block;
+  margin: 0;
+  font-family: 'Milliard', sans-serif;
+  font-size: var(--world-type-size);
+  font-weight: 400;
+  color: var(--world-header) !important;
+  line-height: var(--world-leading);
+}
+
+.label {
+  display: block;
+  margin: 0;
+  font-family: 'Milliard', sans-serif;
+  font-size: var(--world-type-size);
+  font-weight: 400;
+  color: var(--world-header);
+  line-height: var(--world-leading);
+}
+
+.list {
+  margin: 0.15em 0 0.55em;
+  padding: 0;
+  list-style: none;
+}
+
+.list li {
+  position: relative;
+  padding-left: 0.9em;
+  margin: 0;
+  font-size: var(--world-type-size);
+  line-height: var(--world-leading);
+  color: var(--world-text);
+}
+
+.list li::before {
+  content: '-';
+  position: absolute;
+  left: 0;
+}
+
+.body p + .list {
+  margin-top: 0.15em;
+}
+
+.list + p {
+  margin-top: 0.55em;
+}
+
+.block {
+  margin: 0.55em 0 0;
+}
+
+.block:first-child {
+  margin-top: 0;
+}
+
+.block .memberName + p {
+  margin-top: 0;
+}
+
+.boardClosing {
+  margin-top: 1.35em !important;
+}
+
+.landingImage {
+  display: block;
+  width: 72%;
+  max-width: 42rem;
+  height: auto;
+  margin: 1.75em auto 0;
+}
+
+.contactStack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35em;
+  color: var(--world-text);
+}
+
+.contactStack .block {
+  margin: 0;
+}
+
+.contactStack p,
+.contactStack span,
+.contactStack a {
+  color: var(--world-text) !important;
+}
+
+.contactStack a[href^='tel'] {
+  text-decoration: none;
+}

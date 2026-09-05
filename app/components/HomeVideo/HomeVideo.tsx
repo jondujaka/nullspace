@@ -10,7 +10,7 @@ export default function HomeVideo({ video }: { video: VideoType }) {
     return <div className={styles.wrapper}>
 
         <div className={styles.content}>
-            <h2>2025 COLLECTION</h2>
+            <h2>2026 COLLECTION</h2>
 
             <div className={styles.buttons}>
                 <Link to="/products" className={styles.button}>View Sunglasses</Link>

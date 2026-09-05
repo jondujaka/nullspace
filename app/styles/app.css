@@ -19,6 +19,137 @@ body {
   -moz-text-size-adjust: 100%;
 }
 
+/* Gate critical layout — linked in SSR (CSS modules inject too late on mobile cold load) */
+.ns-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #c8d0d6;
+}
+
+.ns-gate-choices {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  gap: 48px;
+  /* Use % of the gate (visual-sized), not vw — vw can track the larger layout viewport
+     and make the stack look shifted after hydration. */
+  width: min(92%, 820px);
+  max-width: 100%;
+  margin-inline: auto;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  opacity: 1;
+}
+
+.ns-gate[data-wide='true'] .ns-gate-choices {
+  flex-direction: row;
+  justify-content: center;
+  gap: var(--gate-pill-gap, 160px);
+  width: auto;
+}
+
+.ns-gate-pill {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 999px;
+  /* Avoid overflow:hidden — with backdrop-filter it can drop the glass layer on
+     Chrome mobile while leaving the text visible. */
+  border: 1px solid transparent;
+  opacity: 1;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.ns-gate-pill img {
+  display: block;
+  width: auto;
+  height: 22px;
+  max-width: min(88%, 280px);
+  object-fit: contain;
+}
+
+.ns-gate-pill-eyewear {
+  min-width: min(100%, 300px);
+  min-height: 78px;
+  padding: 20px 36px 18px;
+  background: rgba(42, 42, 42, 0.55);
+  backdrop-filter: blur(16px) saturate(1.1);
+  -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.ns-gate-pill-eyewear .ns-gate-sub {
+  color: #fff;
+  margin-top: 8px;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: 'Unica77', 'Milliard', sans-serif;
+  opacity: 0.82;
+  line-height: 1.2;
+}
+
+.ns-gate-pill-world {
+  min-width: min(100%, 310px);
+  min-height: 78px;
+  padding: 20px 22px 18px;
+  background: rgba(245, 244, 242, 0.42);
+  backdrop-filter: blur(16px) saturate(1.1);
+  -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #3a3633;
+}
+
+.ns-gate-pill-world .ns-gate-sub {
+  color: #3a3633;
+  margin-top: 8px;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: 'Unica77', 'Milliard', sans-serif;
+  opacity: 0.82;
+  line-height: 1.2;
+}
+
+.ns-gate-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.ns-gate-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 48%, rgba(255, 255, 255, 0.18) 0%, transparent 70%),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.02) 45%,
+      rgba(20, 24, 28, 0.12) 100%
+    );
+}
 
 html {
   scroll-behavior: smooth;

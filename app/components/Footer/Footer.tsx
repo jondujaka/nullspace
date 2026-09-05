@@ -16,7 +16,7 @@ export default function Footer() {
             </div>
             <div className={styles.copyright}>
                 <Logo />
-                <span>NULL SPACE ALL RIGHTS RESERVED 2025&copy;</span>
+                <span>NULL SPACE ALL RIGHTS RESERVED 2026&copy;</span>
             </div>
 
             <nav className={styles.menu}>
@@ -87,7 +87,7 @@ export default function Footer() {
                 </a>
             </nav>
             <div className={styles.copyright}>
-                <span>NULL SPACE ALL RIGHTS RESERVED 2025&copy;</span>
+                <span>NULL SPACE ALL RIGHTS RESERVED 2026&copy;</span>
             </div>
         </footer ></>
     );
